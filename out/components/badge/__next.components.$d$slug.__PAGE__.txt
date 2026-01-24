@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/50c1dce0ca2df704.js","/_next/static/chunks/5023c72ce8883bad.js"],"MarkdownRenderer"]
+2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/ba4193e63147897d.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T249f,
@@ -374,8 +374,8 @@ Optional icon that appears before the badge text to provide additional visual co
   />
 </div>
 ```
-0:{"buildId":"utird0IPFY-fjGMEOk-Wj","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Small label component for displaying status, counts, tags, or attributes"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+0:{"buildId":"Z8QX0b9kX2dyRp08jpglp","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Small label component for displaying status, counts, tags, or attributes"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
-5:["$","script","script-0",{"src":"/_next/static/chunks/5023c72ce8883bad.js","async":true}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/ba4193e63147897d.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null
