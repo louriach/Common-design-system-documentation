@@ -60,10 +60,6 @@ ls -la out/components/
 # button/
 # card/
 # input/
-# menu/
-# modal/
-# pagination/
-# tooltip/
 ```
 
 ### Why This Happens
@@ -106,8 +102,8 @@ npm run build
 # Check markdown files
 ls -la content/components/*.md
 
-# Should show 8 files:
-# badge.md, button.md, card.md, input.md, menu.md, modal.md, pagination.md, tooltip.md
+# Should show 4 files:
+# badge.md, button.md, card.md, input.md
 ```
 
 ### Links Point to Wrong Paths

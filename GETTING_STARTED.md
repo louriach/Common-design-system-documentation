@@ -62,11 +62,7 @@ content/components/       # 📝 Edit these to update docs!
 ├── button.md
 ├── input.md
 ├── card.md
-├── menu.md
-├── badge.md
-├── modal.md
-├── tooltip.md
-└── pagination.md
+└── badge.md
 
 .github/workflows/
 └── deploy.yml            # Auto-deployment config
@@ -147,7 +143,7 @@ git push origin main
 ## What's Included
 
 ✅ **8 Component Guides**
-- Button, Input, Card, Menu, Badge, Modal, Tooltip, Pagination
+- Button, Input, Card, Badge
 
 ✅ **Features**
 - Responsive design (mobile, tablet, desktop)

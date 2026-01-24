@@ -308,7 +308,7 @@ Larger size for emphasis or simple forms.
 ### Focus Management
 - Visible focus indicator must meet WCAG 2.1 AA contrast (3:1)
 - Focus ring should be clearly visible
-- Focus should not be trapped in input (unless in modal)
+- Focus should not be trapped in input
 
 ### Color Contrast
 - Text must meet WCAG 2.1 AA: 4.5:1 for normal text, 3:1 for large text

@@ -121,10 +121,6 @@ ls -la out/components/
 # button/
 # card/
 # input/
-# menu/
-# modal/
-# pagination/
-# tooltip/
 
 # Count generated pages
 find out/components -name "index.html" | wc -l

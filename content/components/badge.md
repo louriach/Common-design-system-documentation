@@ -232,7 +232,7 @@ Optional icon that appears before the badge text to provide additional visual co
 ### When Not to Use
 - ❌ For critical alerts (use Alert component)
 - ❌ For actionable items (use Button or Chip)
-- ❌ For primary navigation (use Menu or Tabs)
+- ❌ For primary navigation (use navigation components)
 - ❌ When information requires detailed explanation
 - ❌ For error messages that need user action
 
@@ -291,7 +291,7 @@ Optional icon that appears before the badge text to provide additional visual co
 - **Chip**: For removable tags or filters
 - **Tag**: For categorization and labeling
 - **Button**: For interactive actions
-- **Tooltip**: For additional context on hover
+- **Alert**: For important messages requiring user attention
 
 ## Examples from Design Systems
 

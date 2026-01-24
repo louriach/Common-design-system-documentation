@@ -4,7 +4,7 @@ A public static website providing a shared knowledge base for design system comp
 
 ## 🎯 Features
 
-- **📚 8 Core Components**: Comprehensive documentation for Button, Input, Card, Menu, Badge, Modal, Tooltip, and Pagination
+- **📚 4 Core Components**: Comprehensive documentation for Button, Input, Card, and Badge
 - **♿ Accessibility First**: Built on Radix UI and shadcn/ui with WCAG 2.1 AA compliance
 - **📱 Responsive Design**: Mobile-first approach with Tailwind CSS utilities
 - **🌙 Dark Mode**: Full dark mode support out of the box
@@ -30,11 +30,7 @@ A public static website providing a shared knowledge base for design system comp
 │   ├── button.md
 │   ├── input.md
 │   ├── card.md
-│   ├── menu.md
-│   ├── badge.md
-│   ├── modal.md
-│   ├── tooltip.md
-│   └── pagination.md
+│   └── badge.md
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx          # Homepage with component grid
@@ -83,14 +79,14 @@ Static output is generated in the `out/` directory.
 
 To add a new component:
 
-1. Create a new Markdown file in `content/components/` (e.g., `tooltip.md`)
+1. Create a new Markdown file in `content/components/` (e.g., `alert.md`)
 2. Add frontmatter with metadata:
 
 ```markdown
 ---
-title: Tooltip
-description: Informational popup component for displaying contextual help
-category: Overlays
+title: Alert
+description: Contextual feedback messages for users
+category: Feedback
 ---
 
 ## Overview
@@ -103,7 +99,7 @@ Your content here...
 ## Best Practices
 ```
 
-3. Run `npm run build` - the component page will be automatically generated at `/components/tooltip/`
+3. Run `npm run build` - the component page will be automatically generated at `/components/alert/`
 
 ## ♿ Accessibility Features
 

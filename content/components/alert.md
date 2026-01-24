@@ -146,7 +146,7 @@ Contextual alert placed near related content. Appears within task flows to provi
 
 ### When NOT to Use
 - ❌ For information that should be permanently visible (use callout/banner instead)
-- ❌ For critical errors that block user flow (use modal/error page)
+- ❌ For critical errors that block user flow (use error pages)
 - ❌ For non-urgent information that doesn't need immediate attention
 - ❌ As a replacement for inline form validation
 - ❌ For promotional content (use dedicated promotional components)
@@ -211,8 +211,8 @@ Contextual alert placed near related content. Appears within task flows to provi
 ```
 
 ## Related Components
-- **Modal** - For critical errors requiring immediate attention
+- **Button** - For actions related to the alert
 - **Toast** - For non-intrusive, time-based notifications
 - **Callout** - For persistent, contextual information
 - **Badge** - For status indicators
-- **Tooltip** - For additional context on specific elements
+- **Badge** - For status indicators
