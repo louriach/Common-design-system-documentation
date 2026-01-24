@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -23,6 +24,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   CardDescription,
   CardContent,
   Badge,
+  Input,
 };
 
 // Icon mapping
@@ -183,6 +185,29 @@ export function renderComponent(parsed: {
       >
         {children}
       </Badge>
+    );
+  }
+
+  // Handle Input component
+  if (componentName === "Input") {
+    return (
+      <Input
+        type={props.type || "text"}
+        label={props.label}
+        placeholder={props.placeholder}
+        disabled={props.disabled === true || props.disabled === "true"}
+        required={props.required === true || props.required === "true"}
+        error={props.error === true || props.error === "true"}
+        helperText={props.helperText}
+        value={props.value}
+        defaultValue={props.defaultValue}
+        maxLength={props.maxLength ? parseInt(props.maxLength, 10) : undefined}
+        minLength={props.minLength ? parseInt(props.minLength, 10) : undefined}
+        pattern={props.pattern}
+        autoComplete={props.autoComplete}
+        name={props.name}
+        id={props.id}
+      />
     );
   }
 

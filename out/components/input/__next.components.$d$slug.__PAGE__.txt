@@ -1,50 +1,562 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/ba4193e63147897d.js"],"MarkdownRenderer"]
-4:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
-5:"$Sreact.suspense"
-3:T53c,
+2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/d0ba5e815470bb62.js"],"MarkdownRenderer"]
+7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T3a58,
 ## Overview
-Input component for collecting text data from users. Supports various input types including text, email, password, and number.
+
+Input component enables users to enter free-form text data. Text inputs are used for collecting short, single-line entries such as names, emails, passwords, and search queries. They provide a flexible way to capture user information that cannot be predicted with preset options.
 
 ## Usage
-```tsx
-<input type="text" placeholder="Enter text..." />
+
+### Basic Input
+```tsx:live
+<Input placeholder="Enter your name" />
+```
+
+### Input with Label
+```tsx:live
+<Input label="Email" type="email" placeholder="you@example.com" />
+```
+
+### Required Input
+```tsx:live
+<Input label="Username" required placeholder="Choose a username" />
+```
+
+### Input with Helper Text
+```tsx:live
+<Input label="Password" type="password" helperText="Must be at least 8 characters" />
+```
+
+### Error State
+```tsx:live
+<Input label="Email" type="email" error helperText="Please enter a valid email address" />
+```
+
+### Disabled Input
+```tsx:live
+<Input label="Disabled" disabled value="Cannot edit" />
 ```
 
 ## Props
-- `type`: "text" | "email" | "password" | "number" | "tel" | "url"
-- `placeholder`: string - Placeholder text when input is empty
-- `disabled`: boolean - Disables the input
-- `readonly`: boolean - Makes the input read-only
-- `required`: boolean - Marks the input as required
-- `maxlength`: number - Maximum character limit
-- `value`: string - Controlled value
-- `onChange`: function - Change event handler
 
-## Accessibility
-- Always associate with a `<label>` element using `htmlFor` attribute
-- Use `aria-label` if label is not visible
-- Use `aria-describedby` for error messages or help text
-- Provide clear error states with color + icon + text
-- Support keyboard navigation and focus states
-- Consider autocomplete attributes for better UX
+- `type`: "text" | "email" | "password" | "number" | "tel" | "url" | "search" - Input type (default: "text")
+- `label`: string - Label text displayed above the input
+- `placeholder`: string - Placeholder text when input is empty
+- `value`: string - Controlled input value
+- `defaultValue`: string - Uncontrolled default value
+- `onChange`: function - Change event handler
+- `onBlur`: function - Blur event handler
+- `onFocus`: function - Focus event handler
+- `disabled`: boolean - Disables the input (default: false)
+- `readOnly`: boolean - Makes the input read-only (default: false)
+- `required`: boolean - Marks the input as required (default: false)
+- `error`: boolean - Shows error state styling and message (default: false)
+- `helperText`: string - Helper text or error message displayed below input
+- `maxLength`: number - Maximum character limit
+- `minLength`: number - Minimum character limit
+- `pattern`: string - HTML5 pattern for validation
+- `autoComplete`: string - Autocomplete hint for browsers
+- `name`: string - Name attribute for form submission
+- `id`: string - Unique identifier (auto-generated if not provided)
+- `className`: string - Additional CSS classes
+- `aria-label`: string - Accessible label for screen readers
+- `aria-describedby`: string - ID of element describing the input
+
+## Input Types
+
+### Text
+Standard text input for general text entry.
+
+```tsx:live
+<Input type="text" label="Full Name" placeholder="John Doe" />
+```
+
+### Email
+Email input with built-in validation and mobile keyboard optimization.
+
+```tsx:live
+<Input type="email" label="Email Address" placeholder="you@example.com" />
+```
+
+### Password
+Password input that masks characters for security.
+
+```tsx:live
+<Input type="password" label="Password" placeholder="Enter password" />
+```
+
+### Number
+Numeric input optimized for numeric entry on mobile devices.
+
+```tsx:live
+<Input type="number" label="Age" placeholder="25" min="0" max="120" />
+```
+
+### Tel
+Telephone number input optimized for phone number entry.
+
+```tsx:live
+<Input type="tel" label="Phone Number" placeholder="+1 (555) 123-4567" />
+```
+
+### URL
+URL input with built-in validation for web addresses.
+
+```tsx:live
+<Input type="url" label="Website" placeholder="https://example.com" />
+```
+
+### Search
+Search input optimized for search functionality.
+
+```tsx:live
+<Input type="search" label="Search" placeholder="Search..." />
+```
 
 ## States
-- Default
-- Focus
-- Hover
-- Disabled
-- Error
-- Success
-- Loading
+
+### Default (Enabled)
+The standard state when the input is ready for user interaction.
+
+**Visual indicators:**
+- Neutral border color
+- Placeholder text visible (if provided)
+- Cursor indicates text entry
+
+### Focus
+Active state when the input receives keyboard or mouse focus.
+
+**Visual indicators:**
+- Focus ring around the input
+- Border color changes to indicate focus
+- Cursor positioned in input field
+
+**Accessibility:**
+- Keyboard users navigate to input with Tab
+- Screen readers announce the input label and state
+- Focus indicator must meet WCAG 2.1 AA contrast requirements
+
+### Hover
+State when the user hovers over the input with a mouse.
+
+**Visual indicators:**
+- Subtle border color change
+- Cursor changes to text cursor
+
+### Disabled
+State when the input cannot be interacted with.
+
+**Visual indicators:**
+- Reduced opacity
+- Grayed out appearance
+- No cursor interaction
+
+**Accessibility:**
+- Not focusable via keyboard
+- Screen readers announce as disabled
+- Visual contrast requirements relaxed (but still readable)
+
+### Error
+State indicating invalid input or validation failure.
+
+**Visual indicators:**
+- Red border color
+- Error icon (optional)
+- Error message displayed below input
+
+**Use cases:**
+- Invalid data format
+- Required field left empty
+- Validation rule violation
+- System error
+
+### Success
+State indicating valid input (optional, typically shown after validation).
+
+**Visual indicators:**
+- Green border color
+- Success icon (optional)
+- Success message (optional)
+
+### Read-Only
+State when input can be viewed but not modified.
+
+**Visual indicators:**
+- Different background color
+- No cursor interaction
+- Text remains selectable
+
+**Accessibility:**
+- Still focusable
+- Screen readers announce as read-only
+- Maintains visual contrast for readability
+
+## Variants
+
+### Default
+Standard input style with label and helper text outside the field. Most commonly used style.
+
+**Use when:**
+- White space is needed between form components
+- Space is at a premium
+- Smaller components are needed
+- Standard form layouts
+
+### With Icon (Start)
+Input with an icon at the beginning to provide visual context.
+
+**Use cases:**
+- Search inputs with search icon
+- Email inputs with email icon
+- Currency inputs with currency symbol
+
+### With Icon (End)
+Input with an icon at the end, typically for actions like clear or visibility toggle.
+
+**Use cases:**
+- Password visibility toggle
+- Clear button
+- Validation status icon
+
+### With Addon
+Input with text or button addons attached to the start or end.
+
+**Use cases:**
+- URL inputs with protocol prefix (https://)
+- Currency inputs with currency symbol
+- Search inputs with search button
+
+## Sizing
+
+### Small (sm)
+Compact size for space-constrained layouts.
+
+**Height:** 32px (2rem)
+**Use when:**
+- Space is constricted
+- Placing input in long, complex forms
+- Dense data entry interfaces
+
+### Medium (md)
+Default size, most commonly used.
+
+**Height:** 40px (2.5rem)
+**Use when:**
+- Standard form layouts
+- General purpose data entry
+- When in doubt, use medium
+
+### Large (lg)
+Larger size for emphasis or simple forms.
+
+**Height:** 48px (3rem)
+**Use when:**
+- Lots of space available
+- Simple forms with few fields
+- Standalone inputs on a page
+- Emphasis is needed
+
+## Anatomy
+
+### Components
+
+1. **Label**: Text that informs users what to enter (required for accessibility)
+2. **Input Field**: Container where users enter data
+3. **Placeholder** (optional): Hint text that disappears when user types
+4. **Helper Text** (optional): Assistive text below the field
+5. **Error Message** (optional): Error text that replaces helper text on error
+6. **Icon** (optional): Visual indicator at start or end of input
+7. **Addon** (optional): Text or button attached to input
+
+## Accessibility
+
+### Labels
+- **Always provide a visible label** unless you have an approved accessibility exemption
+- Use `<label>` element with `htmlFor` attribute matching input `id`
+- If label is hidden, use `aria-label` or `aria-labelledby`
+- Labels should be clear, concise, and descriptive
+
+### Error States
+- Use `aria-invalid="true"` on input when in error state
+- Associate error message with `aria-describedby`
+- Error message should be clear and actionable
+- Don't rely on color alone - use text and icons
+
+### Helper Text
+- Associate helper text with `aria-describedby`
+- Helper text should provide useful context or format examples
+- Replace helper text with error message when validation fails
+
+### Keyboard Navigation
+- **Tab**: Move focus to input
+- **Enter/Space**: Submit form or trigger associated actions
+- **Arrow keys**: Navigate within input text
+- **Ctrl/Cmd + Arrow**: Move word by word
+- **Home/End**: Move to start/end of input
+- **Escape**: Close associated popovers or clear input (if implemented)
+
+### Screen Readers
+- Inputs are announced with their label
+- Required inputs are announced as "required"
+- Error states are announced with error message
+- Disabled inputs are announced as "disabled"
+- Read-only inputs are announced as "read-only"
+
+### Focus Management
+- Visible focus indicator must meet WCAG 2.1 AA contrast (3:1)
+- Focus ring should be clearly visible
+- Focus should not be trapped in input (unless in modal)
+
+### Color Contrast
+- Text must meet WCAG 2.1 AA: 4.5:1 for normal text, 3:1 for large text
+- Border must meet 3:1 non-text contrast
+- Placeholder text must meet 4.5:1 contrast (when visible)
+
+## Content Guidelines
+
+### Labels
+- Use sentence-style capitalization (except for product names and proper nouns)
+- Keep labels short and concise (1-3 words typically)
+- Don't use colons after label names
+- Be specific: "Email address" not "Email" (if context needed)
+
+**Examples:**
+- ✅ "Email address"
+- ✅ "Full name"
+- ✅ "Phone number"
+- ❌ "Email:"
+- ❌ "Please enter your email address here"
+
+### Placeholder Text
+- Use sparingly - placeholder is not a replacement for labels
+- Provide hints or examples of expected format
+- Use sentence-style capitalization
+- Write as direct statements without punctuation
+- Disappears when user starts typing
+
+**Examples:**
+- ✅ "you@example.com"
+- ✅ "Enter your full name"
+- ❌ "Please enter your email address here"
+- ❌ "EMAIL ADDRESS"
+
+### Helper Text
+- Provide additional context or format examples
+- Use sentence-style capitalization
+- Write as full sentences with punctuation
+- Appears persistently below field (unless replaced by error)
+
+**Examples:**
+- ✅ "Must be at least 8 characters long."
+- ✅ "We'll never share your email with anyone."
+- ❌ "8+ chars"
+- ❌ "Required field"
+
+### Error Messages
+- Be specific about what went wrong
+- Provide guidance on how to fix it
+- Use clear, actionable language
+- Appear immediately when error occurs
+
+**Examples:**
+- ✅ "Please enter a valid email address."
+- ✅ "Password must be at least 8 characters."
+- ❌ "Invalid"
+- ❌ "Error"
+
+## Validation
+
+### Real-Time Validation
+Validate input as the user types to provide immediate feedback.
+
+**Best for:**
+- Format validation (email, phone, URL)
+- Character count limits
+- Password strength indicators
+
+### On Blur Validation
+Validate when the user leaves the field (on blur).
+
+**Best for:**
+- Required field validation
+- Complex validation rules
+- Reducing validation noise
+
+### On Submit Validation
+Validate when the form is submitted.
+
+**Best for:**
+- Simple forms
+- When real-time validation is disruptive
+- Server-side validation
+
+### Validation Patterns
+
+**Email:**
+```tsx
+<Input
+  type="email"
+  label="Email"
+  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+  helperText="Enter a valid email address"
+/>
+```
+
+**Phone:**
+```tsx
+<Input
+  type="tel"
+  label="Phone"
+  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+  helperText="Format: 123-456-7890"
+/>
+```
 
 ## Best Practices
-- Always provide visible labels
-- Display error messages clearly
-- Use appropriate input types for better mobile UX
-- Validate input in real-time when appropriate
-- Provide feedback for success and error states
-- Use placeholder text sparingly - it's not a substitute for labels
 
-0:{"buildId":"Z8QX0b9kX2dyRp08jpglp","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/ba4193e63147897d.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
-6:null
+### When to Use
+- ✅ User needs to input unique information not in a preset list
+- ✅ User needs to input memorable data quickly
+- ✅ Collecting free-form text data
+- ✅ Search functionality
+- ✅ Single-line text entry
+
+### When Not to Use
+- ❌ User can only select from predefined options (use Select/Dropdown)
+- ❌ Multiple related options (use Checkbox group or Radio group)
+- ❌ Long-form text entry (use Textarea)
+- ❌ Date selection (use DatePicker)
+- ❌ File upload (use FileUpload)
+
+### Design Guidelines
+
+1. **Consistent Sizing**: Use consistent input heights when pairing form components
+2. **Appropriate Width**: Make input width proportional to expected content length
+3. **Clear Labels**: Always provide visible, descriptive labels
+4. **Helpful Placeholders**: Use placeholders to show format examples, not as labels
+5. **Error Feedback**: Provide clear, actionable error messages
+6. **Visual Hierarchy**: Use helper text and error states to guide users
+7. **Spacing**: Provide adequate spacing between form fields
+
+### Form Patterns
+
+**Required vs Optional:**
+- If most fields are required, mark only optional fields with "(optional)"
+- If most fields are optional, mark only required fields with "(required)" or asterisk (*)
+
+**Field Grouping:**
+- Group related fields together
+- Use consistent spacing between groups
+- Provide clear section headings for complex forms
+
+## Related Components
+
+- **Textarea**: For multi-line text entry
+- **Select**: For choosing from predefined options
+- **Checkbox**: For binary choices
+- **Radio**: For single selection from multiple options
+- **DatePicker**: For date selection
+- **FileUpload**: For file selection
+- **Form**: Container for multiple inputs
+
+## Examples from Design Systems
+
+### Chakra UI Pattern
+- Supports variants: outline, subtle, flushed
+- Multiple sizes: 2xs, xs, sm, md, lg, xl, 2xl
+- Helper text and error text support
+- Start and end elements (icons, text, buttons)
+- Focus and error color customization
+
+### Carbon Design System Pattern
+- Default and fluid styles
+- Three height sizes: small (32px), medium (40px), large (48px)
+- Comprehensive state management
+- Password input variant
+- Character and word counters for textarea
+- Clear button support
+
+### Base Web Pattern
+- Clean, minimal design
+- Consistent spacing and typography
+- Clear focus states
+- Accessible color contrast
+
+### Skyscanner Pattern
+- Default, disabled, validation, and clearable variants
+- Multiple input types
+- Docked inputs for grouped fields
+- Multiline text input support
+
+## Technical Considerations
+
+### Performance
+- Input components are lightweight and render quickly
+- Avoid excessive re-renders with proper state management
+- Debounce validation for real-time checks
+
+### Browser Support
+- Works in all modern browsers
+- Autocomplete attributes improve mobile UX
+- Input types trigger appropriate mobile keyboards
+
+### Mobile Optimization
+- Use appropriate `type` attributes for mobile keyboard optimization
+- Ensure touch targets are at least 44x44px
+- Test on actual mobile devices
+
+### Security
+- Always validate input on the server side
+- Sanitize user input before displaying
+- Use `type="password"` for sensitive data
+- Consider rate limiting for public forms
+
+## Common Patterns
+
+### Search Input
+```tsx
+<Input
+  type="search"
+  placeholder="Search..."
+  label="Search"
+/>
+```
+
+### Email with Validation
+```tsx
+<Input
+  type="email"
+  label="Email"
+  placeholder="you@example.com"
+  required
+  helperText="We'll never share your email"
+/>
+```
+
+### Password with Requirements
+```tsx
+<Input
+  type="password"
+  label="Password"
+  required
+  helperText="Must be at least 8 characters"
+  minLength={8}
+/>
+```
+
+### Form Field with Error
+```tsx
+<Input
+  label="Username"
+  error={!!errors.username}
+  helperText={errors.username || "Choose a unique username"}
+  required
+/>
+```
+0:{"buildId":"1UMKxhhN_ykUN7-WDuLIU","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/d0ba5e815470bb62.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null
