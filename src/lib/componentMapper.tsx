@@ -14,6 +14,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Combobox } from "@/components/ui/combobox";
 import { Avatar } from "@/components/ui/avatar";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -44,6 +45,10 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   TabsContent,
   Combobox,
   Avatar,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
 };
 
 // Icon mapping
@@ -91,6 +96,20 @@ export function parseMultipleComponents(code: string): Array<{
     const props = parseProps(propsString);
     components.push({
       component: "Tabs",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
+
+  const accordionMatch = code.match(/<Accordion([^>]*)>([\s\S]*?)<\/Accordion>/i);
+  if (accordionMatch) {
+    // This is an Accordion component, don't parse its nested children as separate components
+    const propsString = accordionMatch[1];
+    const childrenContent = accordionMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Accordion",
       props,
       children: childrenContent || undefined,
     });
@@ -208,9 +227,9 @@ export function parseComponentCode(code: string): {
   const openingTag = openingTagMatch[0];
   const startIndex = code.indexOf(openingTag) + openingTag.length;
 
-  // For Select and Tabs components (and other components that might have nested tags),
+  // For Select, Tabs, and Accordion components (and other components that might have nested tags),
   // we need to find the matching closing tag by counting opening/closing tags
-  if (componentName === "Select" || componentName === "select" || componentName === "Tabs") {
+  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion") {
     let depth = 1;
     let currentIndex = startIndex;
     let closingIndex = -1;
@@ -666,6 +685,80 @@ export function renderComponent(parsed: {
         className={props.className}
       />
     )
+  }
+
+  // Handle Accordion components
+  if (componentName === "Accordion") {
+    // Parse nested Accordion components from children string
+    let accordionChildren: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      const accordionChildrenArray: React.ReactNode[] = [];
+      
+      // Parse AccordionItem components
+      const itemRegex = /<AccordionItem\s+([^>]*)>([\s\S]*?)<\/AccordionItem>/g;
+      let itemMatch;
+      while ((itemMatch = itemRegex.exec(children)) !== null) {
+        const itemProps = parseProps(itemMatch[1]);
+        const itemContent = itemMatch[2];
+        
+        // Parse AccordionTrigger within AccordionItem
+        const triggerMatch = itemContent.match(/<AccordionTrigger[^>]*>([\s\S]*?)<\/AccordionTrigger>/);
+        const triggerText = triggerMatch ? triggerMatch[1].trim() : "";
+        
+        // Parse AccordionContent within AccordionItem
+        const contentMatch = itemContent.match(/<AccordionContent[^>]*>([\s\S]*?)<\/AccordionContent>/);
+        const contentText = contentMatch ? contentMatch[1].trim() : "";
+        
+        accordionChildrenArray.push(
+          <AccordionItem key={itemProps.value} value={itemProps.value || `item-${accordionChildrenArray.length}`}>
+            <AccordionTrigger>{triggerText}</AccordionTrigger>
+            <AccordionContent>{contentText}</AccordionContent>
+          </AccordionItem>
+        );
+      }
+      
+      accordionChildren = accordionChildrenArray.length > 0 ? accordionChildrenArray : null;
+    } else if (children) {
+      accordionChildren = children;
+    }
+    
+    return (
+      <Accordion
+        type={props.type || "single"}
+        defaultValue={props.defaultValue}
+        value={props.value}
+        onValueChange={props.onValueChange}
+        collapsible={props.collapsible !== false}
+        className={props.className}
+      >
+        {accordionChildren}
+      </Accordion>
+    );
+  }
+
+  if (componentName === "AccordionItem") {
+    return (
+      <AccordionItem value={props.value || children} className={props.className}>
+        {children}
+      </AccordionItem>
+    );
+  }
+
+  if (componentName === "AccordionTrigger") {
+    return (
+      <AccordionTrigger className={props.className}>
+        {children}
+      </AccordionTrigger>
+    );
+  }
+
+  if (componentName === "AccordionContent") {
+    return (
+      <AccordionContent className={props.className}>
+        {children}
+      </AccordionContent>
+    );
   }
 
   // Handle Toggle component
