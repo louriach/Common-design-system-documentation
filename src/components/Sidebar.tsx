@@ -110,9 +110,6 @@ export function Sidebar({ components }: SidebarProps) {
             {/* Theme switcher */}
             <div className="flex items-center gap-2">
               <ThemeSwitcher />
-              <span className="text-xs text-gray-600 dark:text-gray-400">
-                Theme
-              </span>
             </div>
           </div>
 

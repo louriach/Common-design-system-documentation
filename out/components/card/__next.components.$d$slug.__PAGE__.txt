@@ -1,21 +1,25 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/135aa1e47e43b074.js","/_next/static/chunks/ce12643b4b8497c3.js","/_next/static/chunks/279a492353842ec1.js"],"MarkdownRenderer"]
+2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/50c1dce0ca2df704.js","/_next/static/chunks/9e9b0585fa4fc711.js"],"MarkdownRenderer"]
 4:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 5:"$Sreact.suspense"
-3:T50d,
+3:T58c,
 ## Overview
 Card component serves as a flexible container for grouping related information. Used throughout applications for displaying content blocks, product listings, profile cards, and more.
 
 ## Usage
-```tsx
-<div class="card">
-  <div class="card-header">
-    <h3>Card Title</h3>
-  </div>
-  <div class="card-content">
-    <p>Card content goes here</p>
-  </div>
-</div>
+
+### Basic Card
+```tsx:live
+<Card title="Card Title" description="Card content goes here">
+  This is the card content area.
+</Card>
+```
+
+### Card with Header
+```tsx:live
+<Card title="Example Card" description="A simple card component">
+  Card content can include any content you need.
+</Card>
 ```
 
 ## Props
@@ -46,5 +50,5 @@ Card component serves as a flexible container for grouping related information. 
 - Avoid excessive nesting
 - Provide clear visual hierarchy within the card
 
-0:{"buildId":"2bj0lD0T9LTuQMKNwVZAk","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Card"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Layouts"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Container component for organizing related content"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/279a492353842ec1.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"A2esn0yBeefaMaxfLrj2J","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Card"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Layouts"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Container component for organizing related content"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/9e9b0585fa4fc711.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
 6:null
