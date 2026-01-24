@@ -11,6 +11,7 @@ import { Radio } from "@/components/ui/radio";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Toggle } from "@/components/ui/toggle";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -35,6 +36,10 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Select,
   Textarea,
   Toggle,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
 };
 
 // Icon mapping
@@ -59,7 +64,7 @@ export function parseMultipleComponents(code: string): Array<{
     children?: React.ReactNode;
   }> = [];
   
-  // First, check if there's a Select component - handle it specially to avoid parsing options
+  // First, check if there's a Select or Tabs component - handle them specially to avoid parsing nested children
   const selectMatch = code.match(/<Select([^>]*)>([\s\S]*?)<\/Select>/i);
   if (selectMatch) {
     // This is a Select component, don't parse its option children as separate components
@@ -68,6 +73,20 @@ export function parseMultipleComponents(code: string): Array<{
     const props = parseProps(propsString);
     components.push({
       component: "Select",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
+
+  const tabsMatch = code.match(/<Tabs([^>]*)>([\s\S]*?)<\/Tabs>/i);
+  if (tabsMatch) {
+    // This is a Tabs component, don't parse its nested children as separate components
+    const propsString = tabsMatch[1];
+    const childrenContent = tabsMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Tabs",
       props,
       children: childrenContent || undefined,
     });
@@ -185,9 +204,9 @@ export function parseComponentCode(code: string): {
   const openingTag = openingTagMatch[0];
   const startIndex = code.indexOf(openingTag) + openingTag.length;
 
-  // For Select components (and other components that might have nested tags),
+  // For Select and Tabs components (and other components that might have nested tags),
   // we need to find the matching closing tag by counting opening/closing tags
-  if (componentName === "Select" || componentName === "select") {
+  if (componentName === "Select" || componentName === "select" || componentName === "Tabs") {
     let depth = 1;
     let currentIndex = startIndex;
     let closingIndex = -1;
@@ -442,6 +461,108 @@ export function renderComponent(parsed: {
         name={props.name}
         id={props.id}
       />
+    );
+  }
+
+  // Handle Tabs components
+  if (componentName === "Tabs") {
+    // Parse nested Tabs components from children string
+    let tabsChildren: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      const tabsChildrenArray: React.ReactNode[] = [];
+      
+      // Parse TabsList
+      const tabsListRegex = /<TabsList([^>]*)>([\s\S]*?)<\/TabsList>/g;
+      let listMatch;
+      while ((listMatch = tabsListRegex.exec(children)) !== null) {
+        const listProps = parseProps(listMatch[1]);
+        const listContent = listMatch[2];
+        
+        // Parse TabsTrigger components within TabsList
+        const triggerRegex = /<TabsTrigger\s+([^>]*)>([^<]*)<\/TabsTrigger>/g;
+        const triggers: React.ReactNode[] = [];
+        let triggerMatch;
+        while ((triggerMatch = triggerRegex.exec(listContent)) !== null) {
+          const triggerProps = parseProps(triggerMatch[1]);
+          triggers.push(
+            <TabsTrigger
+              key={triggerProps.value || triggerMatch[2]}
+              value={triggerProps.value || triggerMatch[2]}
+              disabled={triggerProps.disabled === true || triggerProps.disabled === "true"}
+            >
+              {triggerMatch[2]}
+            </TabsTrigger>
+          );
+        }
+        
+        tabsChildrenArray.push(
+          <TabsList key="tabslist" {...listProps}>
+            {triggers}
+          </TabsList>
+        );
+      }
+      
+      // Parse TabsContent components
+      const contentRegex = /<TabsContent\s+([^>]*)>([\s\S]*?)<\/TabsContent>/g;
+      let contentMatch;
+      while ((contentMatch = contentRegex.exec(children)) !== null) {
+        const contentProps = parseProps(contentMatch[1]);
+        tabsChildrenArray.push(
+          <TabsContent
+            key={contentProps.value}
+            value={contentProps.value}
+          >
+            {contentMatch[2].trim()}
+          </TabsContent>
+        );
+      }
+      
+      tabsChildren = tabsChildrenArray.length > 0 ? tabsChildrenArray : null;
+    } else if (children) {
+      tabsChildren = children;
+    }
+    
+    return (
+      <Tabs
+        defaultValue={props.defaultValue}
+        value={props.value}
+        onValueChange={props.onValueChange}
+        className={props.className}
+      >
+        {tabsChildren}
+      </Tabs>
+    );
+  }
+
+  if (componentName === "TabsList") {
+    return (
+      <TabsList className={props.className}>
+        {children}
+      </TabsList>
+    );
+  }
+
+  if (componentName === "TabsTrigger") {
+    return (
+      <TabsTrigger
+        value={props.value || children}
+        disabled={props.disabled === true || props.disabled === "true"}
+        className={props.className}
+      >
+        {children}
+      </TabsTrigger>
+    );
+  }
+
+  if (componentName === "TabsContent") {
+    return (
+      <TabsContent
+        value={props.value}
+        className={props.className}
+      >
+        {children}
+      </TabsContent>
     );
   }
 
