@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -21,6 +22,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   CardTitle,
   CardDescription,
   CardContent,
+  Badge,
 };
 
 // Icon mapping
@@ -159,6 +161,28 @@ export function renderComponent(parsed: {
         )}
         {children && <CardContent>{children}</CardContent>}
       </Card>
+    );
+  }
+
+  // Handle Badge component
+  if (componentName === "Badge") {
+    // Parse count if provided as string
+    const count = props.count !== undefined ? 
+      (typeof props.count === "string" ? parseInt(props.count, 10) : props.count) : 
+      undefined;
+    
+    return (
+      <Badge
+        variant={props.variant || "default"}
+        size={props.size}
+        shape={props.shape}
+        count={count}
+        dot={props.dot === true || props.dot === "true"}
+        showZero={props.showZero === true || props.showZero === "true"}
+        overflowCount={props.overflowCount ? parseInt(props.overflowCount, 10) : 99}
+      >
+        {children}
+      </Badge>
     );
   }
 

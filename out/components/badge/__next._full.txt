@@ -4,8 +4,8 @@
 4:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"default"]
 5:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"default"]
 d:I[68027,[],"default"]
-:HL["/_next/static/chunks/8131c9d7317384c4.css","style"]
-0:{"P":null,"b":"A2esn0yBeefaMaxfLrj2J","c":["","components","badge",""],"q":"","i":false,"f":[[["",{"children":["components",{"children":[["slug","badge","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/8131c9d7317384c4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/08ffabef2e13f1d6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/50c1dce0ca2df704.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"children":["$","div",null,{"className":"flex flex-1 overflow-hidden bg-white dark:bg-gray-950","children":[["$","$L3",null,{"components":[{"slug":"alert","title":"Alert","description":"Contextual feedback messages for communicating information, status updates, and important notices to users","category":"Feedback"},{"slug":"badge","title":"Badge","description":"Small label component for displaying status, counts, or tags","category":"Data Display"},{"slug":"button","title":"Button","description":"Primary action component for triggering events","category":"Actions"},{"slug":"card","title":"Card","description":"Container component for organizing related content","category":"Layouts"},{"slug":"input","title":"Input","description":"Text input field component for user data entry","category":"Forms"},{"slug":"menu","title":"Menu","description":"Navigation menu component for displaying lists of actions or links","category":"Navigation"},{"slug":"modal","title":"Modal","description":"Dialog component for displaying content in a focused overlay","category":"Overlays"},{"slug":"pagination","title":"Pagination","description":"Navigation component for moving between pages or sections","category":"Navigation"},{"slug":"tooltip","title":"Tooltip","description":"Informational popup component for displaying contextual help","category":"Overlays"}]}],["$","div",null,{"className":"flex flex-col flex-1 overflow-hidden bg-white dark:bg-gray-950","children":[["$","main",null,{"className":"flex-1 overflow-y-auto bg-white dark:bg-gray-950","children":["$","div",null,{"className":"container mx-auto px-4 py-8 max-w-4xl","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}],["$","footer",null,{"className":"border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950","children":["$","div",null,{"className":"container mx-auto px-4 py-8","children":[["$","div",null,{"className":"grid grid-cols-1 md:grid-cols-3 gap-8 mb-8","children":[["$","div",null,{"children":[["$","h3",null,{"className":"font-bold mb-3","children":"Design System KB"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"A shared knowledge base for design system component documentation."}]]}],"$L6","$L7"]}],"$L8"]}]}]]}]]}]}]}]}]]}],{"children":["$L9",{"children":["$La",{"children":["$Lb",{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$Lc",false]],"m":"$undefined","G":["$d",[]],"S":true}
+:HL["/_next/static/chunks/e62bde1a854eaeac.css","style"]
+0:{"P":null,"b":"utird0IPFY-fjGMEOk-Wj","c":["","components","badge",""],"q":"","i":false,"f":[[["",{"children":["components",{"children":[["slug","badge","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/e62bde1a854eaeac.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/08ffabef2e13f1d6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/50c1dce0ca2df704.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"children":["$","div",null,{"className":"flex flex-1 overflow-hidden bg-white dark:bg-gray-950","children":[["$","$L3",null,{"components":[{"slug":"alert","title":"Alert","description":"Contextual feedback messages for communicating information, status updates, and important notices to users","category":"Feedback"},{"slug":"badge","title":"Badge","description":"Small label component for displaying status, counts, tags, or attributes","category":"Data Display"},{"slug":"button","title":"Button","description":"Primary action component for triggering events","category":"Actions"},{"slug":"card","title":"Card","description":"Container component for organizing related content","category":"Layouts"},{"slug":"input","title":"Input","description":"Text input field component for user data entry","category":"Forms"},{"slug":"menu","title":"Menu","description":"Navigation menu component for displaying lists of actions or links","category":"Navigation"},{"slug":"modal","title":"Modal","description":"Dialog component for displaying content in a focused overlay","category":"Overlays"},{"slug":"pagination","title":"Pagination","description":"Navigation component for moving between pages or sections","category":"Navigation"},{"slug":"tooltip","title":"Tooltip","description":"Informational popup component for displaying contextual help","category":"Overlays"}]}],["$","div",null,{"className":"flex flex-col flex-1 overflow-hidden bg-white dark:bg-gray-950","children":[["$","main",null,{"className":"flex-1 overflow-y-auto bg-white dark:bg-gray-950","children":["$","div",null,{"className":"container mx-auto px-4 py-8 max-w-4xl","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}],["$","footer",null,{"className":"border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950","children":["$","div",null,{"className":"container mx-auto px-4 py-8","children":[["$","div",null,{"className":"grid grid-cols-1 md:grid-cols-3 gap-8 mb-8","children":[["$","div",null,{"children":[["$","h3",null,{"className":"font-bold mb-3","children":"Design System KB"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"A shared knowledge base for design system component documentation."}]]}],"$L6","$L7"]}],"$L8"]}]}]]}]]}]}]}]}]]}],{"children":["$L9",{"children":["$La",{"children":["$Lb",{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$Lc",false]],"m":"$undefined","G":["$d",[]],"S":true}
 e:I[22016,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/50c1dce0ca2df704.js"],""]
 10:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 11:"$Sreact.suspense"
@@ -16,52 +16,384 @@ e:I[22016,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/50c1
 8:["$","div",null,{"className":"border-t pt-6 text-center text-sm text-gray-600 dark:text-gray-400","children":["$","p",null,{"children":"© 2026 Design System Knowledge Base. MIT Licensed."}]}]
 9:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 a:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"max-w-4xl mx-auto py-12","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-4xl font-bold mb-4","children":"Component Not Found"}],["$","p",null,{"className":"text-lg text-gray-600 dark:text-gray-400 mb-8","children":"The component you're looking for doesn't exist or has been moved."}],["$","$Le",null,{"href":"/","children":["$","button",null,{"data-slot":"button","data-variant":"default","data-size":"default","className":"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3","children":"← Back to Components"}]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-b:["$","$1","c",{"children":["$Lf",[["$","script","script-0",{"src":"/_next/static/chunks/9e9b0585fa4fc711.js","async":true,"nonce":"$undefined"}]],["$","$L10",null,{"children":["$","$11",null,{"name":"Next.MetadataOutlet","children":"$@12"}]}]]}]
+b:["$","$1","c",{"children":["$Lf",[["$","script","script-0",{"src":"/_next/static/chunks/5023c72ce8883bad.js","async":true,"nonce":"$undefined"}]],["$","$L10",null,{"children":["$","$11",null,{"name":"Next.MetadataOutlet","children":"$@12"}]}]]}]
 c:["$","$1","h",{"children":[null,["$","$L13",null,{"children":"$L14"}],["$","div",null,{"hidden":true,"children":["$","$L15",null,{"children":["$","$11",null,{"name":"Next.Metadata","children":"$L16"}]}]}],null]}]
-17:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/50c1dce0ca2df704.js","/_next/static/chunks/9e9b0585fa4fc711.js"],"MarkdownRenderer"]
-18:T542,
+17:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/50c1dce0ca2df704.js","/_next/static/chunks/5023c72ce8883bad.js"],"MarkdownRenderer"]
+18:T249f,
 ## Overview
-Badge component for displaying status, counts, tags, or labels. Typically used for notifications, statuses, or categorization.
+
+Badge component displays small labels, status indicators, counts, or tags to provide additional context about an item or action. Badges are typically used to show notifications, status information, categorization, or numerical counts. They help users quickly identify important attributes or states without overwhelming the interface.
 
 ## Usage
-```tsx
-<span class="badge">New</span>
-<span class="badge badge-success">Active</span>
-<span class="badge badge-error">Error</span>
+
+### Basic Badge
+```tsx:live
+<Badge>New</Badge>
+```
+
+### Status Badges
+```tsx:live
+<Badge variant="default">Default</Badge>
+```
+
+```tsx:live
+<Badge variant="success">Active</Badge>
+```
+
+```tsx:live
+<Badge variant="warning">Pending</Badge>
+```
+
+```tsx:live
+<Badge variant="error">Error</Badge>
+```
+
+### Badge with Count
+```tsx:live
+<Badge variant="default">5</Badge>
+```
+
+### Badge Sizes
+```tsx:live
+<Badge size="sm">Small</Badge>
+```
+
+```tsx:live
+<Badge size="md">Medium</Badge>
+```
+
+```tsx:live
+<Badge size="lg">Large</Badge>
 ```
 
 ## Props
-- `variant`: "default" | "success" | "error" | "warning" | "info"
-- `size`: "sm" | "md" | "lg"
-- `shape`: "rounded" | "square" | "pill"
-- `dot`: boolean - Show dot before text
-- `dismissible`: boolean - Show close button
 
-## Accessibility
-- Use semantic elements where appropriate
-- Ensure sufficient color contrast
-- Don't rely on color alone to convey meaning - use text or icons
-- For dismissible badges: provide clear label for close button
-- If badge conveys important status: use `aria-label` or `title` attribute
-- Consider screen reader announcements for dynamic badges
+- `variant`: "default" | "success" | "warning" | "error" | "info" | "secondary" - Visual style variant
+- `size`: "sm" | "md" | "lg" - Badge size (default: "md")
+- `shape`: "rounded" | "square" | "pill" - Border radius style (default: "rounded")
+- `dot`: boolean - Show dot indicator instead of text (default: false)
+- `count`: number | ReactNode - Numeric count or custom content to display
+- `overflowCount`: number - Maximum count to display before showing "+" (default: 99)
+- `showZero`: boolean - Show badge when count is zero (default: false)
+- `status`: "success" | "processing" | "default" | "error" | "warning" - Status indicator style
+- `text`: ReactNode - Text content for status badges
+- `className`: string - Additional CSS classes
+
+## Variants
+
+### Default
+Standard badge style for general use. Best for neutral information, tags, or categorization.
+
+**Use cases:**
+- Category labels
+- General status indicators
+- Non-critical information
+- Tags and metadata
+
+### Success
+Green badge indicating positive status or successful completion.
+
+**Use cases:**
+- Active status
+- Completed tasks
+- Verified items
+- Success confirmations
+
+### Warning
+Yellow/Orange badge for cautionary information or pending states.
+
+**Use cases:**
+- Pending approval
+- Warning states
+- Attention-required items
+- Temporary status
+
+### Error
+Red badge for errors, failures, or critical issues.
+
+**Use cases:**
+- Error states
+- Failed operations
+- Critical alerts
+- Blocked actions
+
+### Info
+Blue badge for informational content or neutral status.
+
+**Use cases:**
+- Informational labels
+- Neutral status
+- Additional context
+- Helpful hints
+
+### Secondary
+Subtle badge style for less prominent information.
+
+**Use cases:**
+- Secondary categorization
+- Subtle status indicators
+- Background information
 
 ## States
-- Default
-- Hover (if interactive)
-- Focus (if interactive)
-- Disabled
+
+### Default
+Standard appearance with appropriate color and contrast.
+
+### With Count
+Badge displays a numeric count, typically used for notifications or quantities.
+
+**Behavior:**
+- Hides when count is 0 (unless `showZero` is true)
+- Shows overflow format (e.g., "99+") when count exceeds `overflowCount`
+- Animates when count changes (optional)
+
+### Dot Badge
+Small circular indicator without text, used for presence indicators or minimal status.
+
+**Use cases:**
+- Online/offline status
+- Notification presence
+- Minimal status indicators
+- Avatar overlays
+
+### Status Badge
+Badge with status dot and optional text, commonly used for system status indicators.
+
+**Status types:**
+- **Success**: Green dot, indicates successful state
+- **Processing**: Blue animated dot, indicates in-progress state
+- **Error**: Red dot, indicates error state
+- **Warning**: Yellow dot, indicates warning state
+- **Default**: Gray dot, neutral state
+
+## Anatomy
+
+### Components
+
+1. **Container**: Wrapper element with background, border, and padding
+2. **Content**: Text, count, or icon content
+3. **Dot** (optional): Small circular indicator
+4. **Icon** (optional): Leading or trailing icon for visual context
+
+### Leading Icon
+Optional icon that appears before the badge text to provide additional visual context.
+
+**Guidelines:**
+- Use icons that clearly represent the badge's meaning
+- Keep icons small and proportional to text
+- Ensure icons maintain sufficient contrast
+- Don't use icons for purely decorative purposes
+
+## Accessibility
+
+- Use semantic HTML: `<span>` for non-interactive badges, `<button>` for interactive badges
+- Provide `aria-label` for icon-only or dot badges:
+  ```tsx
+  <Badge dot aria-label="3 unread notifications">3</Badge>
+  ```
+- Ensure sufficient color contrast (WCAG 2.1 AA minimum):
+  - Text on background: 4.5:1 for normal text, 3:1 for large text
+  - Status indicators: Don't rely on color alone
+- For count badges, provide context:
+  ```tsx
+  <Badge count={5} aria-label="5 unread messages">5</Badge>
+  ```
+- Use `title` attribute for additional context on hover
+- For status badges, use `aria-live` if status changes dynamically:
+  ```tsx
+  <Badge status="success" aria-live="polite">Active</Badge>
+  ```
+- Ensure badges are readable at all sizes
+- Don't use badges for critical information that requires immediate attention (use Alert instead)
+
+## Content Guidelines
+
+### Text Content
+- Keep text short and concise (1-3 words typically)
+- Use title case or sentence case consistently
+- Avoid punctuation unless necessary
+- Use clear, descriptive labels
+
+### Count Display
+- Show exact numbers for counts under 100
+- Use overflow format (e.g., "99+") for large numbers
+- Consider hiding badge when count is zero (unless contextually important)
+- Format large numbers appropriately (e.g., "1.2k" for 1,200)
+
+### Examples
+
+**Good:**
+- "New"
+- "Active"
+- "5"
+- "99+"
+- "Premium"
+
+**Avoid:**
+- "This is a very long badge label that doesn't fit"
+- "!!!"
+- "---"
+- "New Item Available Now"
 
 ## Best Practices
-- Keep text short and concise
-- Use color purposefully - establish a color scheme for meaning
-- Consider icon usage for common statuses
-- Don't overuse badges - they should highlight important information
-- Ensure text has sufficient contrast against background
-- Use badges to complement, not replace, descriptive text
-- Position badges consistently relative to content
 
-f:["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Small label component for displaying status, counts, or tags"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L17",null,{"content":"$18"}]}],["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]]}]
+### When to Use
+- ✅ Display status or state information
+- ✅ Show notification counts
+- ✅ Categorize or tag items
+- ✅ Indicate attributes or properties
+- ✅ Show presence indicators
+- ✅ Display small numerical values
+
+### When Not to Use
+- ❌ For critical alerts (use Alert component)
+- ❌ For actionable items (use Button or Chip)
+- ❌ For primary navigation (use Menu or Tabs)
+- ❌ When information requires detailed explanation
+- ❌ For error messages that need user action
+
+### Design Guidelines
+
+1. **Consistency**: Use consistent badge styles across the application
+2. **Hierarchy**: Use variant colors purposefully to establish meaning
+3. **Spacing**: Provide adequate spacing around badges
+4. **Positioning**: Position badges consistently relative to content
+5. **Color**: Establish a color scheme and stick to it:
+   - Green = Success/Active
+   - Red = Error/Critical
+   - Yellow = Warning/Pending
+   - Blue = Info/Neutral
+   - Gray = Default/Secondary
+
+### Usage Patterns
+
+**On Cards:**
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Product Name</CardTitle>
+    <Badge variant="success">In Stock</Badge>
+  </CardHeader>
+</Card>
+```
+
+**With Avatars:**
+```tsx
+<div className="relative">
+  <Avatar />
+  <Badge dot className="absolute top-0 right-0" />
+</div>
+```
+
+**Notification Counts:**
+```tsx
+<Button>
+  Notifications
+  <Badge count={5} />
+</Button>
+```
+
+**Status Indicators:**
+```tsx
+<div>
+  <span>Server Status</span>
+  <Badge status="success" text="Online" />
+</div>
+```
+
+## Related Components
+
+- **Alert**: For important messages requiring user attention
+- **Chip**: For removable tags or filters
+- **Tag**: For categorization and labeling
+- **Button**: For interactive actions
+- **Tooltip**: For additional context on hover
+
+## Examples from Design Systems
+
+### Ant Design Pattern
+- Supports count badges with overflow handling
+- Status badges with dot indicators
+- Ribbon badges for special emphasis
+- Customizable colors and sizes
+
+### Base Web Pattern
+- Simple, clean badge design
+- Consistent spacing and typography
+- Clear variant differentiation
+- Accessible color contrast
+
+### Skyscanner Pattern
+- Variants: Normal, Strong, Success, Warning, Critical, Brand
+- Optional leading icons
+- Used sparingly to avoid overwhelming users
+- Clear hierarchy and purpose
+
+### Atlassian Pattern
+- Status-based variants
+- Count support
+- Consistent with design system tokens
+- Accessible and keyboard-friendly
+
+## Technical Considerations
+
+### Performance
+- Badge components are lightweight and render quickly
+- Count animations should be smooth and not impact performance
+- Avoid excessive badge usage on a single page
+
+### Responsive Design
+- Badges should scale appropriately on mobile devices
+- Consider hiding counts on very small screens if space is limited
+- Ensure touch targets are adequate for interactive badges
+
+### Browser Support
+- Works in all modern browsers
+- CSS custom properties for theming
+- Fallbacks for older browsers if needed
+
+## Common Patterns
+
+### Notification Badge
+```tsx
+<Button>
+  Messages
+  <Badge count={12} className="ml-2" />
+</Button>
+```
+
+### Status Indicator
+```tsx
+<div className="flex items-center gap-2">
+  <span>Service Status</span>
+  <Badge status="success" text="Operational" />
+</div>
+```
+
+### Category Tag
+```tsx
+<Card>
+  <div className="flex items-center gap-2">
+    <CardTitle>Article Title</CardTitle>
+    <Badge variant="info">Technology</Badge>
+  </div>
+</Card>
+```
+
+### Presence Indicator
+```tsx
+<div className="relative inline-block">
+  <Avatar />
+  <Badge 
+    dot 
+    className="absolute bottom-0 right-0 border-2 border-white" 
+    variant="success"
+  />
+</div>
+```
+f:["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Small label component for displaying status, counts, tags, or attributes"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L17",null,{"content":"$18"}]}],"$L19"]}]
+19:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
 14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-19:I[27201,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"IconMark"]
+1a:I[27201,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"IconMark"]
 12:null
-16:[["$","title","0",{"children":"Design System Knowledge Base"}],["$","meta","1",{"name":"description","content":"A shared knowledge base for design system component documentation"}],["$","meta","2",{"property":"og:title","content":"Design System Knowledge Base"}],["$","meta","3",{"property":"og:description","content":"A shared knowledge base for design system component documentation"}],["$","meta","4",{"property":"og:type","content":"website"}],["$","meta","5",{"name":"twitter:card","content":"summary"}],["$","meta","6",{"name":"twitter:title","content":"Design System Knowledge Base"}],["$","meta","7",{"name":"twitter:description","content":"A shared knowledge base for design system component documentation"}],["$","link","8",{"rel":"icon","href":"/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L19","9",{}]]
+16:[["$","title","0",{"children":"Design System Knowledge Base"}],["$","meta","1",{"name":"description","content":"A shared knowledge base for design system component documentation"}],["$","meta","2",{"property":"og:title","content":"Design System Knowledge Base"}],["$","meta","3",{"property":"og:description","content":"A shared knowledge base for design system component documentation"}],["$","meta","4",{"property":"og:type","content":"website"}],["$","meta","5",{"name":"twitter:card","content":"summary"}],["$","meta","6",{"name":"twitter:title","content":"Design System Knowledge Base"}],["$","meta","7",{"name":"twitter:description","content":"A shared knowledge base for design system component documentation"}],["$","link","8",{"rel":"icon","href":"/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L1a","9",{}]]
