@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { ComponentDemo } from "./ComponentDemo";
-import { parseComponentCode, renderComponent } from "@/lib/componentMapper";
+import { parseComponentCode, parseMultipleComponents, renderComponent, renderMultipleComponents } from "@/lib/componentMapper";
 
 interface MarkdownRendererProps {
   content: string;
@@ -63,6 +63,25 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             // Handle live component demos - return ComponentDemo directly
             // It will be wrapped in <pre> by react-markdown, but ComponentDemo handles its own layout
             if (isLive && (language === "tsx" || language === "jsx")) {
+              // First try to parse multiple components (for groups like Radio buttons)
+              const multipleComponents = parseMultipleComponents(codeString);
+              
+              // If we found multiple components, render them as a group
+              if (multipleComponents.length > 1) {
+                try {
+                  const renderedComponents = renderMultipleComponents(multipleComponents);
+                  return (
+                    <ComponentDemo code={codeString}>
+                      {renderedComponents}
+                    </ComponentDemo>
+                  );
+                } catch (error) {
+                  console.error("Error rendering multiple components:", error);
+                  // Fall through to single component parsing
+                }
+              }
+              
+              // Otherwise, try single component parsing
               const parsed = parseComponentCode(codeString);
               if (parsed) {
                 try {

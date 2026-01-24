@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Radio } from "@/components/ui/radio";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -27,6 +28,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Badge,
   Input,
   Checkbox,
+  Radio,
 };
 
 // Icon mapping
@@ -36,6 +38,96 @@ export const iconMap: Record<string, React.ComponentType<any>> = {
   AlertTriangle,
   XCircle,
 };
+
+/**
+ * Parse multiple components from code (for groups like Radio buttons)
+ */
+export function parseMultipleComponents(code: string): Array<{
+  component: string;
+  props: ComponentProps;
+  children?: React.ReactNode;
+}> {
+  const components: Array<{
+    component: string;
+    props: ComponentProps;
+    children?: React.ReactNode;
+  }> = [];
+  
+  // Skip wrapper divs, fieldset, etc. - extract only actual components
+  // Match all self-closing components: <Component prop="value" />
+  const selfClosingRegex = /<(\w+)([^>]*)\s*\/>/g;
+  let match;
+  const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li'];
+  
+  while ((match = selfClosingRegex.exec(code)) !== null) {
+    const componentName = match[1];
+    // Skip wrapper/container tags, but extract actual components
+    if (skipTags.includes(componentName.toLowerCase())) {
+      continue;
+    }
+    const propsString = match[2];
+    const props = parseProps(propsString);
+    components.push({
+      component: componentName,
+      props,
+    });
+  }
+  
+  // If we found multiple self-closing components, return them
+  if (components.length > 1) {
+    return components;
+  }
+  
+  // If we found one, also check for opening/closing tags
+  // Match opening/closing tags (but skip wrappers)
+  const tagRegex = /<(\w+)([^>]*)>(.*?)<\/\1>/g;
+  const processedComponents = new Set<string>();
+  
+  while ((match = tagRegex.exec(code)) !== null) {
+    const componentName = match[1];
+    // Skip wrapper/container tags
+    if (skipTags.includes(componentName.toLowerCase())) {
+      // Extract components from inside wrappers by running regex on inner content
+      const innerContent = match[3];
+      if (innerContent) {
+        // Find all component tags in inner content
+        const innerSelfClosing = /<(\w+)([^>]*)\s*\/>/g;
+        let innerMatch;
+        while ((innerMatch = innerSelfClosing.exec(innerContent)) !== null) {
+          const innerComponentName = innerMatch[1];
+          if (!skipTags.includes(innerComponentName.toLowerCase())) {
+            const innerPropsString = innerMatch[2];
+            const innerProps = parseProps(innerPropsString);
+            const componentKey = `${innerComponentName}-${JSON.stringify(innerProps)}`;
+            if (!processedComponents.has(componentKey)) {
+              processedComponents.add(componentKey);
+              components.push({
+                component: innerComponentName,
+                props: innerProps,
+              });
+            }
+          }
+        }
+      }
+      continue;
+    }
+    // Not a wrapper, it's an actual component
+    const propsString = match[2];
+    const childrenContent = match[3]?.trim();
+    const props = parseProps(propsString);
+    const componentKey = `${componentName}-${JSON.stringify(props)}`;
+    if (!processedComponents.has(componentKey)) {
+      processedComponents.add(componentKey);
+      components.push({
+        component: componentName,
+        props,
+        children: childrenContent || undefined,
+      });
+    }
+  }
+  
+  return components;
+}
 
 /**
  * Parse component code and extract component name and props
@@ -94,13 +186,52 @@ function parseProps(propsString: string): ComponentProps {
   for (const word of words) {
     if (word !== 'type' && !props[word] && !word.includes('=')) {
       // Check if it's a valid boolean prop name
-      if (['closable', 'disabled', 'required', 'readonly', 'checked', 'indeterminate', 'error'].includes(word)) {
+      if (['closable', 'disabled', 'required', 'readonly', 'checked', 'indeterminate', 'error', 'defaultChecked'].includes(word)) {
         props[word] = true;
       }
     }
   }
 
   return props;
+}
+
+/**
+ * Render multiple components (for groups)
+ */
+export function renderMultipleComponents(
+  components: Array<{
+    component: string;
+    props: ComponentProps;
+    children?: React.ReactNode;
+  }>
+): React.ReactNode {
+  // Check if all components are the same type (e.g., Radio group)
+  const firstComponent = components[0];
+  if (!firstComponent) return null;
+  
+  const allSameType = components.every(c => c.component === firstComponent.component);
+  
+  // Handle Radio groups
+  if (allSameType && firstComponent.component === "Radio") {
+    return (
+      <div className="space-y-2">
+        {components.map((comp, index) => {
+          const rendered = renderComponent(comp);
+          return <div key={index}>{rendered}</div>;
+        })}
+      </div>
+    );
+  }
+  
+  // Handle other groups (could add Checkbox groups, etc.)
+  return (
+    <div className="space-y-2">
+      {components.map((comp, index) => {
+        const rendered = renderComponent(comp);
+        return <div key={index}>{rendered}</div>;
+      })}
+    </div>
+  );
 }
 
 /**
@@ -234,6 +365,30 @@ export function renderComponent(parsed: {
         helperText={props.helperText}
         name={props.name}
         value={props.value}
+        id={props.id}
+      />
+    );
+  }
+
+  // Handle Radio component
+  if (componentName === "Radio") {
+    // For live demos, use defaultChecked instead of checked so it's interactive
+    const hasCheckedProp = 
+      props.checked === true || 
+      props.checked === "true" || 
+      props.checked === "checked" ||
+      (typeof props.checked === "string" && props.checked.toLowerCase() === "true")
+    
+    return (
+      <Radio
+        label={props.label || children}
+        name={props.name || "radio-group"}
+        value={props.value || props.label || children}
+        defaultChecked={hasCheckedProp || (props.defaultChecked === true || props.defaultChecked === "true")}
+        disabled={props.disabled === true || props.disabled === "true" || props.disabled === "disabled"}
+        required={props.required === true || props.required === "true" || props.required === "required"}
+        error={props.error === true || props.error === "true" || props.error === "error"}
+        helperText={props.helperText}
         id={props.id}
       />
     );

@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/31232b5e1a3af6a2.js"],"MarkdownRenderer"]
+2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/0dc7c2263b6b9237.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T3a46,
@@ -555,8 +555,8 @@ Validate when the form is submitted.
   required
 />
 ```
-0:{"buildId":"pznabod1pgZAH7S3bs1EL","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+0:{"buildId":"bqbv2u2Jsrkqp9eHC7gLo","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
-5:["$","script","script-0",{"src":"/_next/static/chunks/31232b5e1a3af6a2.js","async":true}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/0dc7c2263b6b9237.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null
