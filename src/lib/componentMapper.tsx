@@ -16,6 +16,7 @@ import { Combobox } from "@/components/ui/combobox";
 import { Avatar } from "@/components/ui/avatar";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
+import { DatePicker } from "@/components/ui/date-picker";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -52,6 +53,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   AccordionContent,
   Breadcrumb,
   BreadcrumbItem,
+  DatePicker,
 };
 
 // Icon mapping
@@ -503,6 +505,25 @@ export function renderComponent(parsed: {
         minLength={props.minLength ? parseInt(props.minLength, 10) : undefined}
         pattern={props.pattern}
         autoComplete={props.autoComplete}
+        name={props.name}
+        id={props.id}
+      />
+    );
+  }
+
+  // Handle DatePicker component
+  if (componentName === "DatePicker") {
+    return (
+      <DatePicker
+        label={props.label}
+        disabled={props.disabled === true || props.disabled === "true"}
+        required={props.required === true || props.required === "true"}
+        error={props.error === true || props.error === "true"}
+        helperText={props.helperText}
+        value={props.value}
+        defaultValue={props.defaultValue}
+        min={props.min}
+        max={props.max}
         name={props.name}
         id={props.id}
       />
