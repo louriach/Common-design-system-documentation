@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Radio } from "@/components/ui/radio";
 import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -31,6 +32,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Checkbox,
   Radio,
   Select,
+  Textarea,
 };
 
 // Icon mapping
@@ -412,6 +414,29 @@ export function renderComponent(parsed: {
         minLength={props.minLength ? parseInt(props.minLength, 10) : undefined}
         pattern={props.pattern}
         autoComplete={props.autoComplete}
+        name={props.name}
+        id={props.id}
+      />
+    );
+  }
+
+  // Handle Textarea component
+  if (componentName === "Textarea") {
+    return (
+      <Textarea
+        label={props.label}
+        placeholder={props.placeholder}
+        disabled={props.disabled === true || props.disabled === "true"}
+        required={props.required === true || props.required === "true"}
+        readOnly={props.readOnly === true || props.readOnly === "readOnly"}
+        error={props.error === true || props.error === "true"}
+        helperText={props.helperText}
+        value={props.value}
+        defaultValue={props.defaultValue || (typeof children === "string" ? children : undefined)}
+        rows={props.rows ? parseInt(props.rows, 10) : undefined}
+        cols={props.cols ? parseInt(props.cols, 10) : undefined}
+        maxLength={props.maxLength ? parseInt(props.maxLength, 10) : undefined}
+        minLength={props.minLength ? parseInt(props.minLength, 10) : undefined}
         name={props.name}
         id={props.id}
       />
