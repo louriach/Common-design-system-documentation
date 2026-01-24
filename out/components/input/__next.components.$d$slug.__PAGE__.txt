@@ -2,7 +2,7 @@
 2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/2a01346eca556db1.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T3a22,
+3:T39f3,
 ## Overview
 
 Input fields let people enter free-form text. Text inputs collect short, single-line entries like names, emails, passwords, and search queries. They offer a flexible approach for capturing information that doesn't fit into predefined options.
@@ -60,7 +60,6 @@ Input fields let people enter free-form text. Text inputs collect short, single-
 - `autoComplete`: string - Autocomplete hint for browsers
 - `name`: string - Name attribute for form submission
 - `id`: string - Unique identifier (auto-generated if not provided)
-- `className`: string - Additional CSS classes
 - `aria-label`: string - Accessible label for screen readers
 - `aria-describedby`: string - ID of element describing the input
 
@@ -555,7 +554,7 @@ Validate when the form is submitted.
   required
 />
 ```
-0:{"buildId":"ppibq3is3xT2-of1Jhb3h","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+0:{"buildId":"PTsuea6rzxpm26h1b9oua","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
 5:["$","script","script-0",{"src":"/_next/static/chunks/2a01346eca556db1.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

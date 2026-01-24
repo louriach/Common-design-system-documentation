@@ -65,7 +65,6 @@ Textarea components let people enter multiple lines of text. They're ideal for l
 - `minLength`: number - Minimum character limit
 - `name`: string - Name attribute for form submission
 - `id`: string - Unique identifier (auto-generated if not provided)
-- `className`: string - Additional CSS classes
 - `aria-label`: string - Accessible label for screen readers
 - `aria-describedby`: string - ID of element describing the textarea
 

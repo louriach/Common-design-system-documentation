@@ -60,17 +60,15 @@ Accordion components organize content into collapsible sections that people can 
 - `value`: string | string[] - Controlled open item(s)
 - `onValueChange`: function - Callback when open items change
 - `collapsible`: boolean - Whether open items can be collapsed (default: true)
-- `className`: string - Additional CSS classes
 
 ### AccordionItem
 - `value`: string - **Required** - Unique identifier for this item
-- `className`: string - Additional CSS classes
 
 ### AccordionTrigger
-- `className`: string - Additional CSS classes
+(No additional props beyond standard HTML button attributes)
 
 ### AccordionContent
-- `className`: string - Additional CSS classes
+(No additional props beyond standard HTML div attributes)
 
 ## States
 

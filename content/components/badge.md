@@ -61,7 +61,6 @@ Badge components show small labels, status indicators, counts, or tags that add 
 - `showZero`: boolean - Show badge when count is zero (default: false)
 - `status`: "success" | "processing" | "default" | "error" | "warning" - Status indicator style
 - `text`: ReactNode - Text content for status badges
-- `className`: string - Additional CSS classes
 
 ## Variants
 

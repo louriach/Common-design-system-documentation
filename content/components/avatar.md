@@ -67,7 +67,6 @@ Avatar components show user profile pictures, initials, or icons in a circular f
 - `size`: "sm" | "md" | "lg" | "xl" - Avatar size (default: "md")
 - `status`: "online" | "offline" | "away" | "busy" - Status indicator to show
 - `fallback`: ReactNode - Custom fallback content when image fails or is not provided
-- `className`: string - Additional CSS classes
 
 ## States
 

@@ -61,7 +61,6 @@ Checkboxes let people choose one or more options from a list. While radio button
 - `onChange`: function - Change event handler
 - `onBlur`: function - Blur event handler
 - `onFocus`: function - Focus event handler
-- `className`: string - Additional CSS classes
 - `aria-label`: string - Accessible label for screen readers
 - `aria-describedby`: string - ID of element describing the checkbox
 

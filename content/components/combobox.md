@@ -110,7 +110,6 @@ Combobox components blend text input with dropdown selection, letting people typ
 - `required`: boolean - Marks the combobox as required (default: false)
 - `filterFunction`: function - Custom function to filter options (default: case-insensitive label matching)
 - `id`: string - Unique identifier (auto-generated if not provided)
-- `className`: string - Additional CSS classes
 - `aria-label`: string - Accessible label for screen readers
 - `aria-describedby`: string - ID of element describing the combobox
 

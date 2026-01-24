@@ -72,7 +72,6 @@ Radio buttons let people choose a single option from a set of mutually exclusive
 - `onBlur`: function - Blur event handler
 - `onFocus`: function - Focus event handler
 - `id`: string - Unique identifier (auto-generated if not provided)
-- `className`: string - Additional CSS classes
 - `aria-label`: string - Accessible label for screen readers
 - `aria-describedby`: string - ID of element describing the radio button
 

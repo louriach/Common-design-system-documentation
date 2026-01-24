@@ -42,19 +42,16 @@ Tabs organize content into separate sections that people can switch between. The
 - `defaultValue`: string - Initial active tab value
 - `value`: string - Controlled active tab value
 - `onValueChange`: function - Callback when active tab changes
-- `className`: string - Additional CSS classes
 
 ### TabsList
-- `className`: string - Additional CSS classes
+(No additional props beyond standard HTML div attributes)
 
 ### TabsTrigger
 - `value`: string - **Required** - Unique identifier for this tab
 - `disabled`: boolean - Disables the tab trigger
-- `className`: string - Additional CSS classes
 
 ### TabsContent
 - `value`: string - **Required** - Unique identifier matching a TabsTrigger
-- `className`: string - Additional CSS classes
 
 ## States
 

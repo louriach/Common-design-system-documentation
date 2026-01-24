@@ -96,7 +96,6 @@ Select components let people pick one option from a dropdown list of predefined 
 - `helperText`: string - Helper text or error message displayed below select
 - `name`: string - Name attribute for form submission
 - `id`: string - Unique identifier (auto-generated if not provided)
-- `className`: string - Additional CSS classes
 - `aria-label`: string - Accessible label for screen readers
 - `aria-describedby`: string - ID of element describing the select
 - `multiple`: boolean - Allows multiple selections (default: false)
