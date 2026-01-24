@@ -67,10 +67,10 @@ export function Sidebar({ components }: SidebarProps) {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:sticky top-0 left-0 h-screen w-64 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800
+          fixed md:sticky md:top-0 left-0 h-screen md:h-screen w-64 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800
           z-40 transform transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-          overflow-y-auto
+          overflow-y-auto md:overflow-y-auto
         `}
       >
         <div className="p-4">

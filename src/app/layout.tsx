@@ -26,9 +26,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex flex-1 overflow-hidden bg-white dark:bg-gray-950">
+          <div className="flex flex-1 bg-white dark:bg-gray-950">
             <Sidebar components={components} />
-            <div className="flex flex-col flex-1 overflow-hidden bg-white dark:bg-gray-950">
+            <div className="flex flex-col flex-1 min-w-0 bg-white dark:bg-gray-950">
               <main className="flex-1 overflow-y-auto bg-white dark:bg-gray-950">
                 <div className="container mx-auto px-4 py-8 max-w-4xl">
                   {children}
