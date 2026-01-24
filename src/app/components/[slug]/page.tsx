@@ -39,16 +39,10 @@ export function generateStaticParams() {
   }
 }
 
-export default function ComponentPage({ params }: Props) {
-  // For static export, params should be synchronous
-  let slug: string;
-  
-  if (params instanceof Promise) {
-    // This shouldn't happen with static export, but handle it
-    throw new Error("Params should not be a Promise with static export");
-  }
-  
-  slug = params?.slug;
+export default async function ComponentPage({ params }: Props) {
+  // Handle both Promise and direct params (Next.js 16 compatibility)
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const slug = resolvedParams?.slug;
   
   // Early return for invalid slugs - don't even try to load
   if (!slug || typeof slug !== 'string' || slug.trim().length === 0) {

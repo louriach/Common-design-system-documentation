@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/Common-design-system-documentation npm run build",
+    "test:local": "npm run build:pages && echo '✓ Build complete! Starting server...' && echo 'Visit: http://localhost:3000/Common-design-system-documentation/' && npx serve out"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
