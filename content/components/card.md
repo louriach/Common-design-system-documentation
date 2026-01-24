@@ -8,15 +8,19 @@ category: Layouts
 Card component serves as a flexible container for grouping related information. Used throughout applications for displaying content blocks, product listings, profile cards, and more.
 
 ## Usage
-```tsx
-<div class="card">
-  <div class="card-header">
-    <h3>Card Title</h3>
-  </div>
-  <div class="card-content">
-    <p>Card content goes here</p>
-  </div>
-</div>
+
+### Basic Card
+```tsx:live
+<Card title="Card Title" description="Card content goes here">
+  This is the card content area.
+</Card>
+```
+
+### Card with Header
+```tsx:live
+<Card title="Example Card" description="A simple card component">
+  Card content can include any content you need.
+</Card>
 ```
 
 ## Props

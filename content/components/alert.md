@@ -8,19 +8,30 @@ category: Feedback
 Alert component displays contextual feedback messages that require user attention. Alerts communicate information, status updates, warnings, errors, and success messages in a non-intrusive way. They help users understand system status and guide them on next steps.
 
 ## Usage
-```tsx
+
+### Basic Alert
+```tsx:live
 <Alert type="info" title="Information">
   This is an informational alert message.
 </Alert>
+```
 
-<Alert type="success" title="Success" closable>
+### Success Alert
+```tsx:live
+<Alert type="success" title="Success">
   Your changes have been saved successfully.
 </Alert>
+```
 
+### Warning Alert
+```tsx:live
 <Alert type="warning" title="Warning">
   This action cannot be undone.
 </Alert>
+```
 
+### Error Alert
+```tsx:live
 <Alert type="error" title="Error">
   Failed to save changes. Please try again.
 </Alert>
@@ -172,50 +183,31 @@ Contextual alert placed near related content. Appears within task flows to provi
 ## Examples
 
 ### Basic Alert
-```tsx
+```tsx:live
 <Alert type="info" title="New feature available">
   Check out our latest updates in the settings panel.
 </Alert>
 ```
 
 ### With Description
-```tsx
-<Alert 
-  type="warning" 
-  title="Unsaved changes"
-  description="You have unsaved changes that will be lost if you navigate away."
-/>
+```tsx:live
+<Alert type="warning" title="Unsaved changes">
+  You have unsaved changes that will be lost if you navigate away.
+</Alert>
 ```
 
-### Dismissible Alert
-```tsx
-<Alert 
-  type="success" 
-  title="Changes saved"
-  closable
-  onClose={() => console.log('Alert dismissed')}
-/>
+### Success Alert
+```tsx:live
+<Alert type="success" title="Changes saved">
+  Your changes have been saved successfully.
+</Alert>
 ```
 
-### With Action
-```tsx
-<Alert 
-  type="error" 
-  title="Upload failed"
-  description="The file could not be uploaded. Please try again."
-  action={<Button onClick={handleRetry}>Retry</Button>}
-/>
-```
-
-### Banner Alert
-```tsx
-<Alert 
-  type="info" 
-  title="System maintenance"
-  description="Scheduled maintenance will occur tonight from 2-4 AM EST."
-  variant="banner"
-  closable
-/>
+### Error Alert
+```tsx:live
+<Alert type="error" title="Upload failed">
+  The file could not be uploaded. Please try again.
+</Alert>
 ```
 
 ## Related Components

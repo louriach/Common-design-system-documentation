@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ComponentMetadata } from "@/lib/markdown";
 import { Button } from "./ui/button";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 import { useState } from "react";
 
 interface SidebarProps {
@@ -74,36 +75,45 @@ export function Sidebar({ components }: SidebarProps) {
       >
         <div className="p-4">
           {/* Sidebar header */}
-          <div className="mb-6 pt-12 md:pt-4 flex items-center justify-between">
-            <Link
-              href="/"
-              className="text-xl font-bold hover:text-blue-600 dark:hover:text-blue-400"
-              onClick={() => setIsOpen(false)}
-            >
-              Design System KB
-            </Link>
-            {/* Close button for mobile */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close sidebar"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="mb-6 pt-12 md:pt-4">
+            <div className="flex items-center justify-between mb-4">
+              <Link
+                href="/"
+                className="text-xl font-bold hover:text-blue-600 dark:hover:text-blue-400"
+                onClick={() => setIsOpen(false)}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </Button>
+                Design System KB
+              </Link>
+              {/* Close button for mobile */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close sidebar"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </Button>
+            </div>
+            {/* Theme switcher */}
+            <div className="flex items-center gap-2">
+              <ThemeSwitcher />
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                Theme
+              </span>
+            </div>
           </div>
 
           {/* Navigation */}

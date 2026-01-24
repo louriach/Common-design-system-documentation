@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { getAllComponents } from "@/lib/markdown";
 import "./globals.css";
 
@@ -24,17 +25,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased flex flex-col min-h-screen bg-white dark:bg-gray-950">
-        <div className="flex flex-1 overflow-hidden">
-          <Sidebar components={components} />
-          <div className="flex flex-col flex-1 overflow-hidden">
-            <main className="flex-1 overflow-y-auto">
-              <div className="container mx-auto px-4 py-8 max-w-4xl">
-                {children}
-              </div>
-            </main>
-            <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="flex flex-1 overflow-hidden">
+            <Sidebar components={components} />
+            <div className="flex flex-col flex-1 overflow-hidden">
+              <main className="flex-1 overflow-y-auto">
+                <div className="container mx-auto px-4 py-8 max-w-4xl">
+                  {children}
+                </div>
+              </main>
+              <Footer />
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

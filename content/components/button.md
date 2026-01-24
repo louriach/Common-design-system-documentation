@@ -8,9 +8,28 @@ category: Actions
 Button component for user interactions.
 
 ## Usage
-\`\`\`tsx
-<button>Click me</button>
-\`\`\`
+
+### Basic Button
+```tsx:live
+<Button>Click me</Button>
+```
+
+### Button Variants
+```tsx:live
+<Button variant="default">Default</Button>
+```
+
+```tsx:live
+<Button variant="secondary">Secondary</Button>
+```
+
+```tsx:live
+<Button variant="outline">Outline</Button>
+```
+
+```tsx:live
+<Button variant="ghost">Ghost</Button>
+```
 
 ## Props
 - `variant`: "default" | "secondary" | "outline" | "ghost"

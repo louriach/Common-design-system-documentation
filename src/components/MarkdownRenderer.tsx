@@ -4,6 +4,8 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+import { ComponentDemo } from "./ComponentDemo";
+import { parseComponentCode, renderComponent } from "@/lib/componentMapper";
 
 interface MarkdownRendererProps {
   content: string;
@@ -42,8 +44,10 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           ),
           li: ({ node, ...props }) => <li className="ml-2" {...props} />,
           code: ({ node, inline, className, children, ...props }: any) => {
-            const match = /language-(\w+)/.exec(className || "");
+            const match = /language-(\w+)(?::live)?/.exec(className || "");
             const language = match ? match[1] : "";
+            const isLive = className?.includes(":live") || false;
+            const codeString = String(children).replace(/\n$/, "");
 
             if (inline) {
               return (
@@ -56,6 +60,26 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               );
             }
 
+            // Handle live component demos - return ComponentDemo directly
+            // It will be wrapped in <pre> by react-markdown, but ComponentDemo handles its own layout
+            if (isLive && (language === "tsx" || language === "jsx")) {
+              const parsed = parseComponentCode(codeString);
+              if (parsed) {
+                try {
+                  const renderedComponent = renderComponent(parsed);
+                  return (
+                    <ComponentDemo code={codeString}>
+                      {renderedComponent}
+                    </ComponentDemo>
+                  );
+                } catch (error) {
+                  console.error("Error rendering live component:", error);
+                  // Fall through to regular code block
+                }
+              }
+            }
+
+            // Regular code block
             return (
               <code
                 className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-3 text-sm`}
@@ -65,9 +89,21 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               </code>
             );
           },
-          pre: ({ node, ...props }) => (
-            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-3" {...props} />
-          ),
+          pre: ({ node, children, ...props }: any) => {
+            // Check if this pre contains a ComponentDemo (live demo)
+            // ComponentDemo handles its own styling, so we don't wrap it in pre styling
+            const child = React.Children.toArray(children)[0] as any;
+            if (child?.type?.displayName === "ComponentDemo" || 
+                (child?.props?.children?.type?.displayName === "ComponentDemo")) {
+              return <>{children}</>;
+            }
+            // Regular code block - apply pre styling
+            return (
+              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-3" {...props}>
+                {children}
+              </pre>
+            );
+          },
           blockquote: ({ node, ...props }) => (
             <blockquote
               className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-3"
