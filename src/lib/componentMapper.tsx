@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Toggle } from "@/components/ui/toggle";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Combobox } from "@/components/ui/combobox";
+import { Avatar } from "@/components/ui/avatar";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -42,6 +43,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   TabsTrigger,
   TabsContent,
   Combobox,
+  Avatar,
 };
 
 // Icon mapping
@@ -647,6 +649,21 @@ export function renderComponent(parsed: {
         onInputChange={props.onInputChange}
         options={options}
         id={props.id}
+      />
+    )
+  }
+
+  // Handle Avatar component
+  if (componentName === "Avatar") {
+    return (
+      <Avatar
+        src={props.src}
+        alt={props.alt}
+        name={props.name || children}
+        size={props.size || "md"}
+        status={props.status}
+        fallback={props.fallback}
+        className={props.className}
       />
     )
   }
