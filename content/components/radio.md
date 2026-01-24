@@ -6,7 +6,7 @@ category: Forms
 
 ## Overview
 
-Radio button component enables users to select exactly one option from a group of mutually exclusive choices. Unlike checkboxes which allow multiple selections, radio buttons ensure only one option can be selected at a time. They are ideal for single-choice questions, preference settings, and form selections where exclusivity is required.
+Radio buttons let people choose a single option from a set of mutually exclusive choices. While checkboxes support multiple selections, radio buttons guarantee that only one option is selected at a time. They work well for single-choice questions, preference settings, and form selections where choosing one option excludes the others.
 
 ## Usage
 

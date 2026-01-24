@@ -6,7 +6,7 @@ category: Forms
 
 ## Overview
 
-Input component enables users to enter free-form text data. Text inputs are used for collecting short, single-line entries such as names, emails, passwords, and search queries. They provide a flexible way to capture user information that cannot be predicted with preset options.
+Input fields let people enter free-form text. Text inputs collect short, single-line entries like names, emails, passwords, and search queries. They offer a flexible approach for capturing information that doesn't fit into predefined options.
 
 ## Usage
 

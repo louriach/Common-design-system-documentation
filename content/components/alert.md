@@ -5,7 +5,7 @@ category: Feedback
 ---
 
 ## Overview
-Alert component displays contextual feedback messages that require user attention. Alerts communicate information, status updates, warnings, errors, and success messages in a non-intrusive way. They help users understand system status and guide them on next steps.
+Alert components show contextual feedback messages that need attention. Alerts present information, status updates, warnings, errors, and success messages without disrupting the user's workflow. They clarify system status and suggest what to do next.
 
 ## Usage
 

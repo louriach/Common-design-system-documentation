@@ -6,7 +6,7 @@ category: Forms
 
 ## Overview
 
-Checkbox component enables users to select one or more options from a list. Unlike radio buttons which allow only a single selection, checkboxes allow multiple selections. Each checkbox works independently, making them ideal for forms, filtering, batch actions, and terms and conditions acceptance.
+Checkboxes let people choose one or more options from a list. While radio buttons restrict selection to a single choice, checkboxes support multiple selections. Each checkbox operates independently, making them well-suited for forms, filtering, batch actions, and accepting terms and conditions.
 
 ## Usage
 

@@ -6,7 +6,7 @@ category: Actions
 
 ## Overview
 
-Button group component organizes related action buttons together to save horizontal space and improve visual organization. Button groups are ideal for displaying multiple closely-related actions, such as form actions (Save, Cancel, Reset), filter options, or toolbar actions. They help users understand the relationship between actions and create a more cohesive interface.
+Button groups bring together related action buttons in a single visual unit. They create logical connections between actions that work together, making interfaces more organized and easier to scan. Common scenarios include form submission flows, toolbar collections, and filter sets where multiple options need to appear as a cohesive set.
 
 ## Usage
 
@@ -66,7 +66,7 @@ Button group component organizes related action buttons together to save horizon
 
 ## Props
 
-Button groups are composed of individual Button components. Each button accepts the standard Button props:
+Button groups contain individual Button components. Each button supports these standard properties:
 
 - `variant`: "default" | "secondary" | "outline" | "ghost" - Visual style of the button
 - `size`: "sm" | "md" | "lg" - Size of the button
@@ -76,33 +76,33 @@ Button groups are composed of individual Button components. Each button accepts 
 ## States
 
 ### Default
-The default state displays all buttons in their normal, interactive state.
+All buttons appear in their standard interactive state when the group is in default mode.
 
-**Visual indicators:**
-- Buttons displayed horizontally with consistent spacing
-- Each button maintains its individual variant styling
-- Clear visual grouping through proximity
+**Visual characteristics:**
+- Buttons arranged side-by-side with uniform gaps
+- Each button retains its chosen style variant
+- Proximity creates a clear visual relationship
 
 ### Disabled
-Individual buttons within a group can be disabled while others remain active.
+Any button in the group can be disabled independently while others stay active.
 
-**Visual indicators:**
-- Disabled button shows reduced opacity
-- Disabled button is not interactive
-- Other buttons in the group remain fully functional
+**Visual characteristics:**
+- Disabled buttons appear faded
+- Disabled buttons cannot be clicked
+- Active buttons continue to function normally
 
 ### Focus
-When navigating with keyboard, each button receives focus independently.
+Keyboard users can move focus between buttons one at a time.
 
-**Visual indicators:**
-- Focus ring appears on the focused button
-- Only one button has focus at a time
-- Tab navigation moves between buttons in visual order
+**Visual characteristics:**
+- Focused button shows a visible outline
+- Only one button has focus at any moment
+- Tab key moves focus in the same order as visual layout
 
 ## Use Cases
 
 ### Form Actions
-Group primary and secondary form actions together (e.g., Save, Cancel, Reset).
+Combine primary and secondary form actions in one location (e.g., Save, Cancel, Reset).
 
 **Example:**
 - Save (primary action)
@@ -110,7 +110,7 @@ Group primary and secondary form actions together (e.g., Save, Cancel, Reset).
 - Reset (tertiary action)
 
 ### Toolbar Actions
-Organize related toolbar functions (e.g., Edit, Delete, Share).
+Collect related toolbar functions in one place (e.g., Edit, Delete, Share).
 
 **Example:**
 - Edit
@@ -119,7 +119,7 @@ Organize related toolbar functions (e.g., Edit, Delete, Share).
 - More options
 
 ### Filter Controls
-Group filter or view options together (e.g., All, Active, Archived).
+Present filter or view options as a unified set (e.g., All, Active, Archived).
 
 **Example:**
 - All
@@ -128,7 +128,7 @@ Group filter or view options together (e.g., All, Active, Archived).
 - Draft
 
 ### Navigation Actions
-Group related navigation or workflow actions.
+Combine related navigation or workflow steps.
 
 **Example:**
 - Previous
@@ -137,121 +137,121 @@ Group related navigation or workflow actions.
 
 ## Anatomy
 
-Button groups consist of:
+Button groups include three main elements:
 
-1. **Container** - Wrapper element that groups buttons visually
-2. **Buttons** - Individual button components with their own variants and states
-3. **Spacing** - Consistent gap between buttons for visual cohesion
+1. **Container** - The wrapper that visually connects the buttons
+2. **Buttons** - Individual button components, each with its own style and state
+3. **Spacing** - Uniform gaps between buttons that reinforce the grouping
 
 ## Accessibility
 
 ### Keyboard Navigation
-- Each button receives focus via Tab key
-- Enter or Space activates the focused button
-- Buttons focus in logical (visual) order
-- Focus indicators must be clearly visible
+- Tab key moves focus to each button in sequence
+- Enter or Space triggers the focused button
+- Focus order follows the visual layout
+- Focus indicators must be easy to see
 
 ### Screen Reader Support
-- Each button has its own accessible name
-- Buttons are announced individually by screen readers
-- Use `aria-label` for icon-only buttons
-- Group label can be provided with `aria-labelledby` if needed
+- Every button has a unique accessible name
+- Screen readers announce each button separately
+- Icon-only buttons need `aria-label` attributes
+- Optional `aria-labelledby` can describe the entire group
 
 ### Visual Requirements
-- Minimum 24×24 CSS pixel target size for touch targets
-- Label text must meet 4.5:1 contrast ratio
-- Labels must remain legible at 200% zoom
-- Clear visual grouping through spacing and alignment
+- Interactive areas must be at least 24×24 pixels
+- Text must have at least 4.5:1 contrast with background
+- Text must be readable when zoomed to 200%
+- Spacing and alignment make the grouping obvious
 
 ### Best Practices
-- Group only related actions together
-- Limit to 3-4 buttons per group for usability
-- Use primarily default/secondary variants; limit primary buttons to one per group
-- Avoid mixing text-labeled buttons with icon-only buttons
-- Don't use button groups for selection (use segmented controls or radio buttons instead)
-- Don't use as replacement for tab navigation
+- Only group actions that are truly related
+- Keep groups small, ideally 3-4 buttons maximum
+- Prefer default and secondary styles; use primary sparingly
+- Don't mix text buttons with icon-only buttons
+- Use segmented controls or radio buttons for selection, not button groups
+- Don't replace tab navigation with button groups
 
 ## Content Guidelines
 
 ### Button Labels
-- Use clear, action-oriented verbs
-- Keep labels concise (1-3 words)
-- Use consistent terminology across related buttons
-- Match button importance to label prominence
+- Choose verbs that clearly describe the action
+- Keep labels short, typically 1-3 words
+- Use the same terminology style across related buttons
+- Make button importance match label prominence
 
 ### Grouping Logic
-- Group buttons that perform related actions
-- Group buttons that appear in the same context
-- Avoid grouping just because buttons are close together
-- Consider user workflow when organizing actions
+- Group buttons that accomplish related tasks
+- Group buttons that appear in the same workflow step
+- Don't group buttons just because they're positioned nearby
+- Think about how users will move through the workflow
 
 ## Best Practices
 
 ### When to Use
-- Multiple related actions in the same context
-- Form submission and cancellation actions
-- Toolbar or action bar scenarios
-- Filter or view toggle options
-- Related workflow navigation
+- Multiple related actions appear in the same area
+- Form submission and cancellation need to be together
+- Toolbar or action bar needs organization
+- Filter or view options should be presented together
+- Related workflow steps need to be grouped
 
 ### When Not to Use
-- Single primary action (use standalone button)
-- Selection controls (use segmented control or radio buttons)
-- Navigation between pages (use tabs or navigation menu)
-- Unrelated actions that happen to be near each other
-- Too many buttons (limit to 3-4 per group)
+- Only one primary action exists (use a single button)
+- Selection between options is needed (use segmented control or radio buttons)
+- Moving between different pages (use tabs or navigation menu)
+- Actions are unrelated but happen to be positioned together
+- Too many buttons would be in the group (keep to 3-4 maximum)
 
 ### Design Considerations
-- Maintain consistent spacing between buttons
-- Use appropriate button variants to indicate hierarchy
-- Ensure buttons align properly (top, center, or bottom)
-- Consider responsive behavior (wrap to multiple lines if needed)
-- Maintain visual balance and hierarchy
+- Keep spacing between buttons uniform
+- Use button styles to show importance hierarchy
+- Align buttons consistently (top, center, or bottom edges)
+- Plan for smaller screens (buttons may wrap to new lines)
+- Keep visual weight balanced across the group
 
 ## Related Components
 
-- **Button** - Individual button component used within groups
-- **Segmented Control** - For selection between mutually exclusive options
+- **Button** - The individual button component used within groups
+- **Segmented Control** - For choosing between mutually exclusive options
 - **Toolbar** - For organizing multiple action groups
-- **Card** - Often contains button groups for actions
+- **Card** - Frequently contains button groups for actions
 
 ## Design System Examples
 
 ### Material Design
-Material Design uses button groups for related actions, typically with a primary action and secondary actions.
+Material Design groups related actions together, usually with one primary action and supporting secondary actions.
 
 ### Ant Design
-Ant Design provides Button.Group component with options for size, orientation, and spacing.
+Ant Design offers a Button.Group component that supports size, orientation, and spacing customization.
 
 ### Chakra UI
-Chakra UI uses ButtonGroup component with props for spacing, size, and variant consistency.
+Chakra UI includes a ButtonGroup component with properties for spacing, size, and maintaining consistent variants.
 
 ### Base UI
-Base UI provides ButtonGroup with support for orientation, spacing, and disabled states.
+Base UI provides ButtonGroup with support for orientation, spacing, and handling disabled states.
 
 ## Technical Considerations
 
 ### Implementation
-- Button groups are typically implemented as flex containers
-- Horizontal layout is most common, but vertical stacking is possible
-- Spacing between buttons should be consistent (typically 8-16px)
-- Buttons should maintain their individual functionality and states
+- Button groups usually use flexbox for layout
+- Horizontal arrangement is standard, though vertical layouts work too
+- Maintain consistent gaps between buttons (usually 8-16 pixels)
+- Each button keeps its own behavior and state management
 
 ### Responsive Design
-- Button groups can wrap to multiple lines on smaller screens
-- Consider stacking vertically on mobile devices
-- Maintain touch target sizes (minimum 44×44px on mobile)
-- Ensure buttons remain accessible and usable at all screen sizes
+- Groups may wrap to multiple rows on narrow screens
+- Consider vertical stacking on mobile devices
+- Maintain adequate touch target sizes (at least 44×44 pixels on mobile)
+- Ensure buttons stay usable across all screen sizes
 
 ### Performance
-- Button groups have minimal performance impact
-- Each button maintains its own event handlers
-- No shared state between buttons (unless explicitly implemented)
+- Button groups have negligible performance overhead
+- Each button manages its own event listeners
+- Buttons don't share state unless you build that explicitly
 
 ## Common Patterns
 
 ### Form Actions Pattern
-Most common pattern: Primary action (Save/Submit) with secondary actions (Cancel/Reset).
+The most frequent pattern: Primary action (Save/Submit) paired with secondary actions (Cancel/Reset).
 
 ```tsx:live
 <div>
@@ -261,7 +261,7 @@ Most common pattern: Primary action (Save/Submit) with secondary actions (Cancel
 ```
 
 ### Three-Action Pattern
-Primary action, secondary action, and tertiary action grouped together.
+Primary, secondary, and tertiary actions presented together.
 
 ```tsx:live
 <div>
@@ -272,7 +272,7 @@ Primary action, secondary action, and tertiary action grouped together.
 ```
 
 ### Filter Pattern
-Multiple filter options grouped together for easy access.
+Multiple filter choices presented as a unified set.
 
 ```tsx:live
 <div>
@@ -285,21 +285,21 @@ Multiple filter options grouped together for easy access.
 ## Validation
 
 ### Visual Validation
-- Buttons are visually grouped with consistent spacing
-- Button variants create clear hierarchy
-- Group maintains alignment and balance
-- Spacing is consistent across all buttons
+- Buttons appear as a clear visual unit with consistent spacing
+- Button styles establish a clear importance order
+- Group maintains proper alignment and visual balance
+- Spacing remains uniform across all buttons
 
 ### Functional Validation
-- Each button functions independently
-- Keyboard navigation works correctly
-- Focus indicators are visible
-- Disabled states work as expected
-- Touch targets meet minimum size requirements
+- Each button operates independently
+- Keyboard navigation functions correctly
+- Focus indicators are clearly visible
+- Disabled states behave as expected
+- Touch targets meet minimum size standards
 
 ### Accessibility Validation
-- All buttons have accessible names
-- Keyboard navigation is logical
-- Focus indicators meet contrast requirements
-- Screen readers announce buttons correctly
-- Labels meet contrast ratio requirements
+- Every button has a descriptive accessible name
+- Keyboard navigation follows a logical sequence
+- Focus indicators meet contrast standards
+- Screen readers announce buttons appropriately
+- Labels meet minimum contrast requirements

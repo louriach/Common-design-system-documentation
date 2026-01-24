@@ -6,7 +6,7 @@ category: Data Display
 
 ## Overview
 
-Badge component displays small labels, status indicators, counts, or tags to provide additional context about an item or action. Badges are typically used to show notifications, status information, categorization, or numerical counts. They help users quickly identify important attributes or states without overwhelming the interface.
+Badge components show small labels, status indicators, counts, or tags that add context about an item or action. Badges commonly appear for notifications, status information, categorization, or numerical counts. They let people quickly spot important attributes or states without cluttering the interface.
 
 ## Usage
 
