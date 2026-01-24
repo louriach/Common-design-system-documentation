@@ -6,6 +6,7 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -25,6 +26,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   CardContent,
   Badge,
   Input,
+  Checkbox,
 };
 
 // Icon mapping
@@ -92,7 +94,7 @@ function parseProps(propsString: string): ComponentProps {
   for (const word of words) {
     if (word !== 'type' && !props[word] && !word.includes('=')) {
       // Check if it's a valid boolean prop name
-      if (['closable', 'disabled', 'required', 'readonly'].includes(word)) {
+      if (['closable', 'disabled', 'required', 'readonly', 'checked', 'indeterminate', 'error'].includes(word)) {
         props[word] = true;
       }
     }
@@ -206,6 +208,32 @@ export function renderComponent(parsed: {
         pattern={props.pattern}
         autoComplete={props.autoComplete}
         name={props.name}
+        id={props.id}
+      />
+    );
+  }
+
+  // Handle Checkbox component
+  if (componentName === "Checkbox") {
+    // For live demos, use defaultChecked instead of checked so it's interactive
+    // Check for checked prop in various formats
+    const hasCheckedProp = 
+      props.checked === true || 
+      props.checked === "true" || 
+      props.checked === "checked" ||
+      (typeof props.checked === "string" && props.checked.toLowerCase() === "true")
+    
+    return (
+      <Checkbox
+        label={props.label || children}
+        defaultChecked={hasCheckedProp || (props.defaultChecked === true || props.defaultChecked === "true")}
+        indeterminate={props.indeterminate === true || props.indeterminate === "true" || props.indeterminate === "indeterminate"}
+        disabled={props.disabled === true || props.disabled === "true" || props.disabled === "disabled"}
+        required={props.required === true || props.required === "true" || props.required === "required"}
+        error={props.error === true || props.error === "true" || props.error === "error"}
+        helperText={props.helperText}
+        name={props.name}
+        value={props.value}
         id={props.id}
       />
     );
