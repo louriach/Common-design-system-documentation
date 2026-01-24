@@ -11,6 +11,9 @@ interface Props {
 export function generateStaticParams() {
   try {
     const slugs = getAllComponentSlugs();
+    if (slugs.length === 0) {
+      console.warn("No component slugs found. Check content/components/ directory.");
+    }
     return slugs.map((slug) => ({
       slug,
     }));
@@ -23,8 +26,17 @@ export function generateStaticParams() {
 export default function ComponentPage({ params }: Props) {
   const { slug } = params;
 
+  let component;
   try {
-    const component = getComponentData(slug);
+    component = getComponentData(slug);
+  } catch (error) {
+    console.error(`Error loading component ${slug}:`, error);
+    notFound();
+  }
+
+  if (!component) {
+    notFound();
+  }
 
     return (
       <div className="max-w-4xl mx-auto">
@@ -73,8 +85,4 @@ export default function ComponentPage({ params }: Props) {
         </div>
       </div>
     );
-  } catch (error) {
-    console.error(`Error loading component ${slug}:`, error);
-    notFound();
-  }
 }

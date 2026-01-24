@@ -36,7 +36,12 @@ jobs:
       - name: Build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-        run: npm run build
+        run: |
+          echo "Building with basePath: /${{ github.event.repository.name }}"
+          npm run build
+          echo "Build complete. Checking generated routes..."
+          ls -la out/components/ || echo "No components directory found"
+          find out/components -name "index.html" | wc -l || echo "No component pages found"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
