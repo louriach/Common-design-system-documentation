@@ -1,33 +1,60 @@
 # 🧪 Testing Locally
 
-## Quick Test (Recommended)
+## Quick Test (Recommended - Without BasePath)
+
+For local testing, it's easier to test **without** basePath. The basePath is only needed for GitHub Pages deployment.
 
 ```bash
-# 1. Build the static site with basePath
-NEXT_PUBLIC_BASE_PATH=/Common-design-system-documentation npm run build
+# 1. Build WITHOUT basePath (simpler for local testing)
+npm run build
 
 # 2. Serve the built site
 npx serve out
 
-# 3. Visit http://localhost:3000/Common-design-system-documentation/
+# 3. Visit http://localhost:3000/
+# Component pages at: http://localhost:3000/components/button/
 ```
+
+**Note:** This tests the functionality. For testing the exact GitHub Pages setup with basePath, see "Testing With BasePath" below.
 
 ## Step-by-Step Guide
 
-### Option 1: Using `npx serve` (Easiest)
+### Option 1: Testing Without BasePath (Easiest)
+
+For local development, test without basePath - it's simpler and tests all functionality:
 
 ```bash
 # Navigate to project directory
 cd /Users/disco_lu/Github/Common-design-system-documentation
 
-# Build with basePath (matches your GitHub Pages URL)
-NEXT_PUBLIC_BASE_PATH=/Common-design-system-documentation npm run build
+# Build WITHOUT basePath
+npm run build
 
 # Serve the static files
 npx serve out
 
 # Open browser to:
-# http://localhost:3000/Common-design-system-documentation/
+# http://localhost:3000/
+# Component pages: http://localhost:3000/components/button/
+```
+
+This tests all functionality. The basePath is only needed for GitHub Pages deployment.
+
+### Option 1b: Testing With BasePath (For Exact GitHub Pages Testing)
+
+If you need to test the exact GitHub Pages setup:
+
+```bash
+# Build with basePath
+NEXT_PUBLIC_BASE_PATH=/Common-design-system-documentation npm run build
+
+# Create a symlink or copy structure to match basePath
+mkdir -p test-server/Common-design-system-documentation
+cp -r out/* test-server/Common-design-system-documentation/
+cd test-server
+npx serve -l 3000
+
+# Visit: http://localhost:3000/Common-design-system-documentation/
 ```
 
 ### Option 2: Using Python HTTP Server

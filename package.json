@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "build:pages": "NEXT_PUBLIC_BASE_PATH=/Common-design-system-documentation npm run build",
-    "test:local": "npm run build:pages && echo '✓ Build complete! Starting server...' && echo 'Visit: http://localhost:3000/Common-design-system-documentation/' && npx serve out"
+    "test:local": "npm run build && echo '✓ Build complete! Starting server...' && echo 'Visit: http://localhost:3000/' && npx serve out",
+    "test:pages": "npm run build:pages && echo '✓ Build complete! Setting up basePath structure...' && mkdir -p test-server/Common-design-system-documentation && cp -r out/* test-server/Common-design-system-documentation/ && cd test-server && echo 'Visit: http://localhost:3000/Common-design-system-documentation/' && npx serve -l 3000"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
