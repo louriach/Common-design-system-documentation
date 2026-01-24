@@ -12,6 +12,7 @@ import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Toggle } from "@/components/ui/toggle";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Combobox } from "@/components/ui/combobox";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -40,6 +41,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   TabsList,
   TabsTrigger,
   TabsContent,
+  Combobox,
 };
 
 // Icon mapping
@@ -260,10 +262,38 @@ function parseProps(propsString: string): ComponentProps {
   
   if (!propsString) return props;
 
+  // Extract array props: prop={[{ value: "...", label: "..." }, ...]}
+  // This handles Combobox options and similar array props
+  // Use [\s\S] instead of . with s flag for ES2017 compatibility
+  const arrayProps = propsString.match(/(\w+)=\{\[([\s\S]*?)\]\}/);
+  if (arrayProps) {
+    const propName = arrayProps[1];
+    const arrayContent = arrayProps[2];
+    
+    // Parse array of objects: { value: "...", label: "..." }
+    if (propName === "options") {
+      const options: Array<{ value: string; label: string; disabled?: boolean }> = [];
+      const optionRegex = /\{\s*value:\s*["']([^"']+)["'],\s*label:\s*["']([^"']+)["'](?:\s*,\s*disabled:\s*(true|false))?\s*\}/g;
+      let optionMatch;
+      while ((optionMatch = optionRegex.exec(arrayContent)) !== null) {
+        options.push({
+          value: optionMatch[1],
+          label: optionMatch[2],
+          disabled: optionMatch[3] === "true"
+        });
+      }
+      if (options.length > 0) {
+        props[propName] = options;
+      }
+    }
+  }
+
   // Extract string props: prop="value" or prop='value'
   const stringProps = propsString.matchAll(/(\w+)="([^"]*)"/g);
   for (const match of stringProps) {
-    props[match[1]] = match[2];
+    if (!props[match[1]]) { // Don't override array props
+      props[match[1]] = match[2];
+    }
   }
 
   // Extract boolean props (standalone words that aren't already in props)
@@ -564,6 +594,61 @@ export function renderComponent(parsed: {
         {children}
       </TabsContent>
     );
+  }
+
+  // Handle Combobox component
+  if (componentName === "Combobox") {
+    // Parse options array from props
+    // The options prop will be in the format: options={[{ value: "us", label: "United States" }, ...]}
+    let options: Array<{ value: string; label: string; disabled?: boolean }> = []
+    
+    // Try to parse options from props.options if it's a string representation
+    if (props.options && typeof props.options === "string") {
+      try {
+        // Match the array: [{ value: "...", label: "..." }, ...]
+        // Handle both single and multi-line formats
+        const arrayContent = props.options.trim()
+        // Match individual option objects
+        const optionRegex = /\{\s*value:\s*["']([^"']+)["'],\s*label:\s*["']([^"']+)["'](?:\s*,\s*disabled:\s*(true|false))?\s*\}/g
+        let optionMatch
+        while ((optionMatch = optionRegex.exec(arrayContent)) !== null) {
+          options.push({
+            value: optionMatch[1],
+            label: optionMatch[2],
+            disabled: optionMatch[3] === "true"
+          })
+        }
+      } catch (e) {
+        console.warn("Failed to parse Combobox options:", e)
+      }
+    } else if (Array.isArray(props.options)) {
+      options = props.options
+    }
+    
+    // Default options if none parsed
+    if (options.length === 0) {
+      options = [
+        { value: "option1", label: "Option 1" },
+        { value: "option2", label: "Option 2" },
+        { value: "option3", label: "Option 3" }
+      ]
+    }
+    
+    return (
+      <Combobox
+        label={props.label}
+        placeholder={props.placeholder}
+        disabled={props.disabled === true || props.disabled === "true"}
+        required={props.required === true || props.required === "required"}
+        error={props.error === true || props.error === "true"}
+        helperText={props.helperText}
+        value={props.value}
+        onChange={props.onChange}
+        onInputChange={props.onInputChange}
+        options={options}
+        id={props.id}
+      />
+    )
   }
 
   // Handle Toggle component
