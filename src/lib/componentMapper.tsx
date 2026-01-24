@@ -211,7 +211,7 @@ export function renderMultipleComponents(
   
   const allSameType = components.every(c => c.component === firstComponent.component);
   
-  // Handle Radio groups
+  // Handle Radio groups (vertical layout)
   if (allSameType && firstComponent.component === "Radio") {
     return (
       <div className="space-y-2">
@@ -223,7 +223,19 @@ export function renderMultipleComponents(
     );
   }
   
-  // Handle other groups (could add Checkbox groups, etc.)
+  // Handle Button groups (horizontal layout)
+  if (allSameType && firstComponent.component === "Button") {
+    return (
+      <div className="flex flex-wrap gap-2">
+        {components.map((comp, index) => {
+          const rendered = renderComponent(comp);
+          return <div key={index}>{rendered}</div>;
+        })}
+      </div>
+    );
+  }
+  
+  // Handle other groups (vertical layout by default)
   return (
     <div className="space-y-2">
       {components.map((comp, index) => {
