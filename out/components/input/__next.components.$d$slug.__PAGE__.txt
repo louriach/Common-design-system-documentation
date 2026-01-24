@@ -1,11 +1,11 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/d9a73eb4337ac1d3.js"],"MarkdownRenderer"]
+2:I[12740,["/_next/static/chunks/08ffabef2e13f1d6.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/c82410d115dbba57.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T3a46,
+3:T3a22,
 ## Overview
 
-Input component enables users to enter free-form text data. Text inputs are used for collecting short, single-line entries such as names, emails, passwords, and search queries. They provide a flexible way to capture user information that cannot be predicted with preset options.
+Input fields let people enter free-form text. Text inputs collect short, single-line entries like names, emails, passwords, and search queries. They offer a flexible approach for capturing information that doesn't fit into predefined options.
 
 ## Usage
 
@@ -555,8 +555,8 @@ Validate when the form is submitted.
   required
 />
 ```
-0:{"buildId":"XpbOM_4Oa-gZMDpsnnZik","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+0:{"buildId":"0f9U_oR7wObD11GRPsrx5","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
-5:["$","script","script-0",{"src":"/_next/static/chunks/d9a73eb4337ac1d3.js","async":true}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/c82410d115dbba57.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

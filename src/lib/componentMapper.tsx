@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Radio } from "@/components/ui/radio";
+import { Select } from "@/components/ui/select";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -29,6 +30,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Input,
   Checkbox,
   Radio,
+  Select,
 };
 
 // Icon mapping
@@ -53,11 +55,26 @@ export function parseMultipleComponents(code: string): Array<{
     children?: React.ReactNode;
   }> = [];
   
+  // First, check if there's a Select component - handle it specially to avoid parsing options
+  const selectMatch = code.match(/<Select([^>]*)>([\s\S]*?)<\/Select>/i);
+  if (selectMatch) {
+    // This is a Select component, don't parse its option children as separate components
+    const propsString = selectMatch[1];
+    const childrenContent = selectMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Select",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
+  
   // Skip wrapper divs, fieldset, etc. - extract only actual components
   // Match all self-closing components: <Component prop="value" />
   const selfClosingRegex = /<(\w+)([^>]*)\s*\/>/g;
   let match;
-  const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li'];
+  const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup'];
   
   while ((match = selfClosingRegex.exec(code)) !== null) {
     const componentName = match[1];
@@ -85,7 +102,7 @@ export function parseMultipleComponents(code: string): Array<{
   
   while ((match = tagRegex.exec(code)) !== null) {
     const componentName = match[1];
-    // Skip wrapper/container tags
+    // Skip wrapper/container tags and option/optgroup (they're children of Select)
     if (skipTags.includes(componentName.toLowerCase())) {
       // Extract components from inside wrappers by running regex on inner content
       const innerContent = match[3];
@@ -154,13 +171,58 @@ export function parseComponentCode(code: string): {
     };
   }
 
+  // For components with children, we need to handle nested tags properly
+  // Find the opening tag
+  const openingTagMatch = code.match(/<(\w+)([^>]*)>/);
+  if (!openingTagMatch) return null;
+
+  const componentName = openingTagMatch[1];
+  const propsString = openingTagMatch[2];
+  const openingTag = openingTagMatch[0];
+  const startIndex = code.indexOf(openingTag) + openingTag.length;
+
+  // For Select components (and other components that might have nested tags),
+  // we need to find the matching closing tag by counting opening/closing tags
+  if (componentName === "Select" || componentName === "select") {
+    let depth = 1;
+    let currentIndex = startIndex;
+    let closingIndex = -1;
+
+    while (currentIndex < code.length && depth > 0) {
+      const nextOpen = code.indexOf(`<${componentName}`, currentIndex);
+      const nextClose = code.indexOf(`</${componentName}>`, currentIndex);
+      
+      if (nextClose === -1) break;
+      
+      if (nextOpen !== -1 && nextOpen < nextClose) {
+        depth++;
+        currentIndex = nextOpen + componentName.length + 1;
+      } else {
+        depth--;
+        if (depth === 0) {
+          closingIndex = nextClose;
+          break;
+        }
+        currentIndex = nextClose + componentName.length + 3;
+      }
+    }
+
+    if (closingIndex !== -1) {
+      const childrenContent = code.substring(startIndex, closingIndex).trim();
+      const props = parseProps(propsString);
+      return {
+        component: componentName,
+        props,
+        children: childrenContent || undefined,
+      };
+    }
+  }
+
+  // For other components, use simple regex (non-greedy match)
   const componentMatch = code.match(/<(\w+)([^>]*)>(.*?)<\/\1>/);
   if (!componentMatch) return null;
 
-  const componentName = componentMatch[1];
-  const propsString = componentMatch[2];
   const childrenContent = componentMatch[3]?.trim();
-
   const props = parseProps(propsString);
 
   return {
@@ -403,6 +465,105 @@ export function renderComponent(parsed: {
         helperText={props.helperText}
         id={props.id}
       />
+    );
+  }
+
+  // Handle Select component
+  if (componentName === "Select") {
+    // Parse option children from the children string
+    // Children might be a string containing <option> tags or already parsed React nodes
+    let optionElements: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      // Parse options from string like "<option value='1'>Option 1</option><option value='2'>Option 2</option>"
+      // Handle options with or without attributes
+      const optionRegex = /<option\s*([^>]*)>([^<]*)<\/option>/g;
+      const optgroupRegex = /<optgroup\s+label="([^"]*)">([\s\S]*?)<\/optgroup>/g;
+      const options: React.ReactNode[] = [];
+      let match;
+      
+      // First check for optgroups
+      const optgroupMatches: Array<{ label: string; content: string }> = [];
+      let optgroupMatch;
+      let lastIndex = 0;
+      
+      while ((optgroupMatch = optgroupRegex.exec(children)) !== null) {
+        optgroupMatches.push({
+          label: optgroupMatch[1],
+          content: optgroupMatch[2],
+        });
+        lastIndex = optgroupRegex.lastIndex;
+      }
+      
+      // Process optgroups
+      optgroupMatches.forEach((group) => {
+        const groupOptions: React.ReactNode[] = [];
+        const groupOptionRegex = /<option\s*([^>]*)>([^<]*)<\/option>/g;
+        let groupMatch;
+        
+        while ((groupMatch = groupOptionRegex.exec(group.content)) !== null) {
+          const optionProps = parseProps(groupMatch[1]);
+          groupOptions.push(
+            <option key={`${group.label}-${groupMatch[2]}`} value={optionProps.value || groupMatch[2]} {...optionProps}>
+              {groupMatch[2]}
+            </option>
+          );
+        }
+        
+        if (groupOptions.length > 0) {
+          options.push(
+            <optgroup key={group.label} label={group.label}>
+              {groupOptions}
+            </optgroup>
+          );
+        }
+      });
+      
+      // Process standalone options (not in optgroups)
+      if (lastIndex === 0) {
+        // No optgroups found, parse all options
+        while ((match = optionRegex.exec(children)) !== null) {
+          const optionProps = parseProps(match[1]);
+          options.push(
+            <option key={match[2]} value={optionProps.value || match[2]} {...optionProps}>
+              {match[2]}
+            </option>
+          );
+        }
+      } else {
+        // Parse options outside of optgroups
+        const remainingContent = children.substring(lastIndex);
+        while ((match = optionRegex.exec(remainingContent)) !== null) {
+          const optionProps = parseProps(match[1]);
+          options.push(
+            <option key={match[2]} value={optionProps.value || match[2]} {...optionProps}>
+              {match[2]}
+            </option>
+          );
+        }
+      }
+      
+      optionElements = options.length > 0 ? options : null;
+    } else if (children) {
+      // Children are already React nodes
+      optionElements = children;
+    }
+    
+    return (
+      <Select
+        label={props.label}
+        placeholder={props.placeholder}
+        disabled={props.disabled === true || props.disabled === "true" || props.disabled === "disabled"}
+        required={props.required === true || props.required === "true" || props.required === "required"}
+        error={props.error === true || props.error === "true" || props.error === "error"}
+        helperText={props.helperText}
+        value={props.value}
+        defaultValue={props.defaultValue}
+        name={props.name}
+        id={props.id}
+      >
+        {optionElements}
+      </Select>
     );
   }
 
