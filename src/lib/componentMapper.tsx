@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Radio } from "@/components/ui/radio";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Toggle } from "@/components/ui/toggle";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -33,6 +34,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Radio,
   Select,
   Textarea,
+  Toggle,
 };
 
 // Icon mapping
@@ -438,6 +440,30 @@ export function renderComponent(parsed: {
         maxLength={props.maxLength ? parseInt(props.maxLength, 10) : undefined}
         minLength={props.minLength ? parseInt(props.minLength, 10) : undefined}
         name={props.name}
+        id={props.id}
+      />
+    );
+  }
+
+  // Handle Toggle component
+  if (componentName === "Toggle") {
+    // For live demos, use defaultChecked instead of checked so it's interactive
+    const hasCheckedProp = 
+      props.checked === true || 
+      props.checked === "true" || 
+      props.checked === "checked" ||
+      (typeof props.checked === "string" && props.checked.toLowerCase() === "true")
+    
+    return (
+      <Toggle
+        label={props.label || children}
+        defaultChecked={hasCheckedProp || (props.defaultChecked === true || props.defaultChecked === "true")}
+        disabled={props.disabled === true || props.disabled === "true" || props.disabled === "disabled"}
+        required={props.required === true || props.required === "true" || props.required === "required"}
+        error={props.error === true || props.error === "true" || props.error === "error"}
+        helperText={props.helperText}
+        name={props.name}
+        value={props.value}
         id={props.id}
       />
     );
