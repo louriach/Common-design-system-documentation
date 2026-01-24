@@ -297,20 +297,6 @@ Combobox components include these elements:
 - **Select** - For choosing from predefined options without search
 - **Autocomplete** - Similar to combobox but may allow custom values
 
-## Design System Examples
-
-### Material Design
-Material Design includes combobox components with autocomplete and filtering capabilities.
-
-### Ant Design
-Ant Design offers AutoComplete components with search functionality and customization options.
-
-### Chakra UI
-Chakra UI provides Combobox components with consistent styling and accessibility features.
-
-### Base UI
-Base UI includes Combobox components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

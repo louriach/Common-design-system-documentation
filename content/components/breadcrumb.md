@@ -202,20 +202,6 @@ Breadcrumb components include these elements:
 - **Tabs** - For horizontal section navigation
 - **Link** - Individual breadcrumb items use links
 
-## Design System Examples
-
-### Material Design
-Material Design includes breadcrumb components with clear hierarchy and navigation support.
-
-### Ant Design
-Ant Design offers Breadcrumb components with customization options and accessibility features.
-
-### Chakra UI
-Chakra UI includes Breadcrumb components with consistent styling and theme support.
-
-### Base UI
-Base UI includes Breadcrumb components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

@@ -223,20 +223,6 @@ Tab components include these elements:
 - **Accordion** - For vertically stacked expandable content
 - **Card** - Often contains tab content
 
-## Design System Examples
-
-### Material Design
-Material Design includes tabs with clear active states and smooth transitions.
-
-### Ant Design
-Ant Design offers Tabs components with various styles and customization options.
-
-### Chakra UI
-Chakra UI provides Tabs with consistent styling and accessibility features.
-
-### Base UI
-Base UI includes Tabs components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

@@ -2,7 +2,7 @@
 2:I[12740,["/_next/static/chunks/08acd877e6cb56b0.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/d48655202ee62c78.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T39f3,
+3:T36be,
 ## Overview
 
 Input fields let people enter free-form text. Text inputs collect short, single-line entries like names, emails, passwords, and search queries. They offer a flexible approach for capturing information that doesn't fit into predefined options.
@@ -460,35 +460,6 @@ Validate when the form is submitted.
 - **FileUpload**: For file selection
 - **Form**: Container for multiple inputs
 
-## Examples from Design Systems
-
-### Chakra UI Pattern
-- Supports variants: outline, subtle, flushed
-- Multiple sizes: 2xs, xs, sm, md, lg, xl, 2xl
-- Helper text and error text support
-- Start and end elements (icons, text, buttons)
-- Focus and error color customization
-
-### Carbon Design System Pattern
-- Default and fluid styles
-- Three height sizes: small (32px), medium (40px), large (48px)
-- Comprehensive state management
-- Password input variant
-- Character and word counters for textarea
-- Clear button support
-
-### Base Web Pattern
-- Clean, minimal design
-- Consistent spacing and typography
-- Clear focus states
-- Accessible color contrast
-
-### Skyscanner Pattern
-- Default, disabled, validation, and clearable variants
-- Multiple input types
-- Docked inputs for grouped fields
-- Multiline text input support
-
 ## Technical Considerations
 
 ### Performance
@@ -554,7 +525,7 @@ Validate when the form is submitted.
   required
 />
 ```
-0:{"buildId":"gBZPuGX9aPXcpwSOSRlCQ","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+0:{"buildId":"pfGOGnrl8cXku77Km3ROU","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
 5:["$","script","script-0",{"src":"/_next/static/chunks/d48655202ee62c78.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

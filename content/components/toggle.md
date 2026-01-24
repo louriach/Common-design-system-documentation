@@ -229,20 +229,6 @@ Toggle components include these elements:
 - **Radio** - For single choice from a group
 - **Button** - For actions that trigger immediately
 
-## Design System Examples
-
-### Material Design
-Material Design includes switch components with clear on/off states and smooth animations.
-
-### Ant Design
-Ant Design offers Switch components with customization options and accessibility features.
-
-### Chakra UI
-Chakra UI includes Switch components with consistent styling and theme support.
-
-### Base UI
-Base UI includes Switch components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

@@ -273,20 +273,6 @@ Select components include these elements:
 - **Checkbox** - For multiple selections
 - **Combobox** - For searchable dropdowns with many options
 
-## Design System Examples
-
-### Material Design
-Material Design provides select components with floating labels and clear visual hierarchy.
-
-### Ant Design
-Ant Design offers Select components with search functionality, tagging, and grouping options.
-
-### Chakra UI
-Chakra UI includes Select components with consistent styling and accessibility features.
-
-### Base UI
-Base UI provides Select components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

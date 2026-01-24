@@ -2,7 +2,7 @@
 2:I[12740,["/_next/static/chunks/08acd877e6cb56b0.js","/_next/static/chunks/85bff7a60fc7546a.js","/_next/static/chunks/d48655202ee62c78.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T246a,
+3:T21c3,
 ## Overview
 
 Badge components show small labels, status indicators, counts, or tags that add context about an item or action. Badges commonly appear for notifications, status information, categorization, or numerical counts. They let people quickly spot important attributes or states without cluttering the interface.
@@ -291,32 +291,6 @@ Optional icon that appears before the badge text to provide additional visual co
 - **Button**: For interactive actions
 - **Alert**: For important messages requiring user attention
 
-## Examples from Design Systems
-
-### Ant Design Pattern
-- Supports count badges with overflow handling
-- Status badges with dot indicators
-- Ribbon badges for special emphasis
-- Customizable colors and sizes
-
-### Base Web Pattern
-- Simple, clean badge design
-- Consistent spacing and typography
-- Clear variant differentiation
-- Accessible color contrast
-
-### Skyscanner Pattern
-- Variants: Normal, Strong, Success, Warning, Critical, Brand
-- Optional leading icons
-- Used sparingly to avoid overwhelming users
-- Clear hierarchy and purpose
-
-### Atlassian Pattern
-- Status-based variants
-- Count support
-- Consistent with design system tokens
-- Accessible and keyboard-friendly
-
 ## Technical Considerations
 
 ### Performance
@@ -373,7 +347,7 @@ Optional icon that appears before the badge text to provide additional visual co
   />
 </div>
 ```
-0:{"buildId":"gBZPuGX9aPXcpwSOSRlCQ","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Small label component for displaying status, counts, tags, or attributes"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+0:{"buildId":"pfGOGnrl8cXku77Km3ROU","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Small label component for displaying status, counts, tags, or attributes"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
 5:["$","script","script-0",{"src":"/_next/static/chunks/d48655202ee62c78.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

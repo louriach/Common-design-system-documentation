@@ -340,41 +340,6 @@ Used for navigation when only one section can be active:
 - **Button Group**: For action-based selections
 - **Form**: Container for multiple form controls
 
-## Examples from Design Systems
-
-### Chakra UI Pattern
-- RadioGroup component for managing groups
-- Supports variants and sizes
-- Composition with Field component
-- Keyboard navigation built-in
-- Accessible by default
-
-### Carbon Design System Pattern
-- Default and tile variants
-- Three states: unselected, selected, disabled
-- Group states: enabled, disabled, read-only, error, warning
-- Helper text and error messages
-- Comprehensive keyboard support
-
-### Base Web Pattern
-- Clean, minimal design
-- Consistent spacing and typography
-- Clear focus states
-- Accessible color contrast
-
-### Skyscanner Pattern
-- Default, disabled, and validation states
-- Group management
-- Clear visual feedback
-- Mobile-optimized
-
-### Ariakit Pattern
-- RadioGroup component
-- Native radio support
-- Custom radio rendering
-- Accessible by default
-- Keyboard navigation support
-
 ## Technical Considerations
 
 ### Group Management

@@ -246,20 +246,6 @@ Textarea components include these elements:
 - **Checkbox** - For boolean selections
 - **Radio** - For single-choice selections
 
-## Design System Examples
-
-### Material Design
-Material Design provides textarea components with floating labels and clear visual hierarchy.
-
-### Ant Design
-Ant Design offers Textarea components with character counting and auto-resize options.
-
-### Chakra UI
-Chakra UI includes Textarea components with consistent styling and accessibility features.
-
-### Base UI
-Base UI provides Textarea components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

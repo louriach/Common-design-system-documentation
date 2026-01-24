@@ -461,35 +461,6 @@ Validate when the form is submitted.
 - **FileUpload**: For file selection
 - **Form**: Container for multiple inputs
 
-## Examples from Design Systems
-
-### Chakra UI Pattern
-- Supports variants: outline, subtle, flushed
-- Multiple sizes: 2xs, xs, sm, md, lg, xl, 2xl
-- Helper text and error text support
-- Start and end elements (icons, text, buttons)
-- Focus and error color customization
-
-### Carbon Design System Pattern
-- Default and fluid styles
-- Three height sizes: small (32px), medium (40px), large (48px)
-- Comprehensive state management
-- Password input variant
-- Character and word counters for textarea
-- Clear button support
-
-### Base Web Pattern
-- Clean, minimal design
-- Consistent spacing and typography
-- Clear focus states
-- Accessible color contrast
-
-### Skyscanner Pattern
-- Default, disabled, validation, and clearable variants
-- Multiple input types
-- Docked inputs for grouped fields
-- Multiline text input support
-
 ## Technical Considerations
 
 ### Performance

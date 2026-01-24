@@ -235,20 +235,6 @@ Avatar components include these elements:
 - **Card** - Avatars commonly appear in user cards
 - **Button** - Avatars can be clickable buttons
 
-## Design System Examples
-
-### Material Design
-Material Design includes avatar components with support for images, initials, and icons.
-
-### Ant Design
-Ant Design offers Avatar components with size variants and badge support.
-
-### Chakra UI
-Chakra UI includes Avatar components with group support and status indicators.
-
-### Base UI
-Base UI includes Avatar components with customization options and accessibility features.
-
 ## Technical Considerations
 
 ### Implementation

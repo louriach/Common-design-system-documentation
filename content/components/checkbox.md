@@ -327,37 +327,6 @@ Used when there's a parent and child relationship:
 - **Input**: For text entry
 - **Form**: Container for multiple form controls
 
-## Examples from Design Systems
-
-### Chakra UI Pattern
-- Supports variants: outline, subtle, solid
-- Multiple color palettes
-- Sizes: xs, sm, md, lg
-- Composition with Field component
-- CheckboxGroup for grouping
-- Indeterminate state support
-
-### Carbon Design System Pattern
-- Default and fluid styles
-- Three states: unselected, selected, indeterminate
-- Group states: enabled, disabled, read-only, error, warning
-- Nesting support for parent/child relationships
-- Helper text and error messages
-- AI presence variant
-
-### Base Web Pattern
-- Clean, minimal design
-- Consistent spacing and typography
-- Clear focus states
-- Accessible color contrast
-
-### Ariakit Pattern
-- Native checkbox support
-- Custom checkbox rendering
-- CheckboxProvider for group management
-- Accessible by default
-- Keyboard navigation support
-
 ## Technical Considerations
 
 ### Indeterminate State

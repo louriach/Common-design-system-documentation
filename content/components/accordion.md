@@ -221,20 +221,6 @@ Accordion components include these elements:
 - **Card** - Often contains accordion content
 - **Collapsible** - Similar but simpler single-item version
 
-## Design System Examples
-
-### Material Design
-Material Design includes accordion components with smooth animations and clear states.
-
-### Ant Design
-Ant Design offers Collapse components with customization options and accessibility features.
-
-### Chakra UI
-Chakra UI provides Accordion components with consistent styling and theme support.
-
-### Base UI
-Base UI includes Accordion components with customization options and accessibility support.
-
 ## Technical Considerations
 
 ### Implementation

@@ -292,32 +292,6 @@ Optional icon that appears before the badge text to provide additional visual co
 - **Button**: For interactive actions
 - **Alert**: For important messages requiring user attention
 
-## Examples from Design Systems
-
-### Ant Design Pattern
-- Supports count badges with overflow handling
-- Status badges with dot indicators
-- Ribbon badges for special emphasis
-- Customizable colors and sizes
-
-### Base Web Pattern
-- Simple, clean badge design
-- Consistent spacing and typography
-- Clear variant differentiation
-- Accessible color contrast
-
-### Skyscanner Pattern
-- Variants: Normal, Strong, Success, Warning, Critical, Brand
-- Optional leading icons
-- Used sparingly to avoid overwhelming users
-- Clear hierarchy and purpose
-
-### Atlassian Pattern
-- Status-based variants
-- Count support
-- Consistent with design system tokens
-- Accessible and keyboard-friendly
-
 ## Technical Considerations
 
 ### Performance

@@ -215,20 +215,6 @@ Button groups include three main elements:
 - **Toolbar** - For organizing multiple action groups
 - **Card** - Frequently contains button groups for actions
 
-## Design System Examples
-
-### Material Design
-Material Design groups related actions together, usually with one primary action and supporting secondary actions.
-
-### Ant Design
-Ant Design offers a Button.Group component that supports size, orientation, and spacing customization.
-
-### Chakra UI
-Chakra UI includes a ButtonGroup component with properties for spacing, size, and maintaining consistent variants.
-
-### Base UI
-Base UI provides ButtonGroup with support for orientation, spacing, and handling disabled states.
-
 ## Technical Considerations
 
 ### Implementation
