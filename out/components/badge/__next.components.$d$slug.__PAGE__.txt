@@ -1,6 +1,48 @@
 1:"$Sreact.fragment"
-3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"EYxUi01P4q1DnFSQA3--Q","rsc":["$","$1","c",{"children":["$L2",[["$","script","script-0",{"src":"/_next/static/chunks/279a492353842ec1.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
-2:E{"digest":"NEXT_HTTP_ERROR_FALLBACK;404"}
+2:I[22016,["/_next/static/chunks/fbb2be81ea29ff5c.js","/_next/static/chunks/279a492353842ec1.js"],""]
+3:I[12740,["/_next/static/chunks/fbb2be81ea29ff5c.js","/_next/static/chunks/279a492353842ec1.js"],"MarkdownRenderer"]
+5:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+4:T542,
+## Overview
+Badge component for displaying status, counts, tags, or labels. Typically used for notifications, statuses, or categorization.
+
+## Usage
+```tsx
+<span class="badge">New</span>
+<span class="badge badge-success">Active</span>
+<span class="badge badge-error">Error</span>
+```
+
+## Props
+- `variant`: "default" | "success" | "error" | "warning" | "info"
+- `size`: "sm" | "md" | "lg"
+- `shape`: "rounded" | "square" | "pill"
+- `dot`: boolean - Show dot before text
+- `dismissible`: boolean - Show close button
+
+## Accessibility
+- Use semantic elements where appropriate
+- Ensure sufficient color contrast
+- Don't rely on color alone to convey meaning - use text or icons
+- For dismissible badges: provide clear label for close button
+- If badge conveys important status: use `aria-label` or `title` attribute
+- Consider screen reader announcements for dynamic badges
+
+## States
+- Default
+- Hover (if interactive)
+- Focus (if interactive)
+- Disabled
+
+## Best Practices
+- Keep text short and concise
+- Use color purposefully - establish a color scheme for meaning
+- Consider icon usage for common statuses
+- Don't overuse badges - they should highlight important information
+- Ensure text has sufficient contrast against background
+- Use badges to complement, not replace, descriptive text
+- Position badges consistently relative to content
+
+0:{"buildId":"OKXAi6DIYvGtA_9jFWOQ3","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","div",null,{"className":"flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6","children":[["$","$L2",null,{"href":"/","className":"hover:text-gray-900 dark:hover:text-gray-100","children":"Home"}],["$","span",null,{"children":"/"}],["$","span",null,{"children":"Badge"}]]}],["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Badge"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Data Display"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300 mt-2","children":"Small label component for displaying status, counts, or tags"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L3",null,{"content":"$4"}]}],["$","div",null,{"className":"mt-12 pt-8 border-t flex justify-between","children":[["$","$L2",null,{"href":"/","children":["$","button",null,{"data-slot":"button","data-variant":"outline","data-size":"default","className":"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3","children":"← Back to Components"}]}],["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/279a492353842ec1.js","async":true}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],"loading":null,"isPartial":false}
+7:null
