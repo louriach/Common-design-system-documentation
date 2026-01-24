@@ -15,6 +15,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Combobox } from "@/components/ui/combobox";
 import { Avatar } from "@/components/ui/avatar";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -49,6 +50,8 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
+  Breadcrumb,
+  BreadcrumbItem,
 };
 
 // Icon mapping
@@ -110,6 +113,20 @@ export function parseMultipleComponents(code: string): Array<{
     const props = parseProps(propsString);
     components.push({
       component: "Accordion",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
+
+  const breadcrumbMatch = code.match(/<Breadcrumb([^>]*)>([\s\S]*?)<\/Breadcrumb>/i);
+  if (breadcrumbMatch) {
+    // This is a Breadcrumb component, don't parse its nested children as separate components
+    const propsString = breadcrumbMatch[1];
+    const childrenContent = breadcrumbMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Breadcrumb",
       props,
       children: childrenContent || undefined,
     });
@@ -227,9 +244,9 @@ export function parseComponentCode(code: string): {
   const openingTag = openingTagMatch[0];
   const startIndex = code.indexOf(openingTag) + openingTag.length;
 
-  // For Select, Tabs, and Accordion components (and other components that might have nested tags),
+  // For Select, Tabs, Accordion, and Breadcrumb components (and other components that might have nested tags),
   // we need to find the matching closing tag by counting opening/closing tags
-  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion") {
+  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion" || componentName === "Breadcrumb") {
     let depth = 1;
     let currentIndex = startIndex;
     let closingIndex = -1;
@@ -758,6 +775,48 @@ export function renderComponent(parsed: {
       <AccordionContent className={props.className}>
         {children}
       </AccordionContent>
+    );
+  }
+
+  // Handle Breadcrumb components
+  if (componentName === "Breadcrumb") {
+    // Parse nested BreadcrumbItem components from children string
+    let breadcrumbChildren: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      const breadcrumbChildrenArray: React.ReactNode[] = [];
+      
+      // Parse BreadcrumbItem components
+      const itemRegex = /<BreadcrumbItem\s+([^>]*)>([^<]*)<\/BreadcrumbItem>/g;
+      let itemMatch;
+      while ((itemMatch = itemRegex.exec(children)) !== null) {
+        const itemProps = parseProps(itemMatch[1]);
+        const itemText = itemMatch[2].trim();
+        
+        breadcrumbChildrenArray.push(
+          <BreadcrumbItem key={itemProps.href || itemText} href={itemProps.href}>
+            {itemText}
+          </BreadcrumbItem>
+        );
+      }
+      
+      breadcrumbChildren = breadcrumbChildrenArray.length > 0 ? breadcrumbChildrenArray : null;
+    } else if (children) {
+      breadcrumbChildren = children;
+    }
+    
+    return (
+      <Breadcrumb separator={props.separator} className={props.className}>
+        {breadcrumbChildren}
+      </Breadcrumb>
+    );
+  }
+
+  if (componentName === "BreadcrumbItem") {
+    return (
+      <BreadcrumbItem href={props.href} className={props.className}>
+        {children}
+      </BreadcrumbItem>
     );
   }
 
