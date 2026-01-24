@@ -19,22 +19,16 @@ Your Design System Knowledge Base is ready to deploy! Here's how to set it up:
    - Ensure "GitHub Pages" is enabled
    - Note your Pages URL (usually `https://username.github.io/repo-name`)
 
-### Step 3: Update next.config.ts (if on subdirectory)
+### Step 3: BasePath Configuration (Automatic)
 
-If your GitHub Pages is on a subdirectory (not root):
+The GitHub Actions workflow automatically sets the `basePath` based on your repository name. No manual configuration needed!
 
-```typescript
-// next.config.ts
-const basePath = process.env.GITHUB_REPOSITORY 
-  ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}`
-  : '';
-
-const nextConfig: NextConfig = {
-  output: "export",
-  basePath: basePath,
-  trailingSlash: true,
-};
+The workflow sets:
+```yaml
+NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
 ```
+
+This ensures all routes work correctly on GitHub Pages subdirectories (e.g., `https://username.github.io/repo-name/`).
 
 ### Step 4: Push to GitHub
 

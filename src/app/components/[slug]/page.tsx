@@ -9,15 +9,22 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  const slugs = getAllComponentSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  try {
+    const slugs = getAllComponentSlugs();
+    return slugs.map((slug) => ({
+      slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
 }
 
 export default function ComponentPage({ params }: Props) {
+  const { slug } = params;
+
   try {
-    const component = getComponentData(params.slug);
+    const component = getComponentData(slug);
 
     return (
       <div className="max-w-4xl mx-auto">
@@ -67,6 +74,7 @@ export default function ComponentPage({ params }: Props) {
       </div>
     );
   } catch (error) {
+    console.error(`Error loading component ${slug}:`, error);
     notFound();
   }
 }
