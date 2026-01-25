@@ -17,6 +17,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { DatePicker } from "@/components/ui/date-picker";
+import { Fieldset } from "@/components/ui/fieldset";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -54,6 +55,7 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   Breadcrumb,
   BreadcrumbItem,
   DatePicker,
+  Fieldset,
 };
 
 // Icon mapping
@@ -134,14 +136,31 @@ export function parseMultipleComponents(code: string): Array<{
     });
     return components;
   }
+
+  const fieldsetMatch = code.match(/<Fieldset([^>]*)>([\s\S]*?)<\/Fieldset>/i);
+  if (fieldsetMatch) {
+    // This is a Fieldset component, don't parse its nested children as separate components
+    const propsString = fieldsetMatch[1];
+    const childrenContent = fieldsetMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Fieldset",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
   
   // Skip wrapper divs, fieldset, etc. - extract only actual components
   // Match all self-closing components: <Component prop="value" />
-  const selfClosingRegex = /<(\w+)([^>]*)\s*\/>/g;
-  let match;
+  // Use matchAll for more reliable matching of all occurrences
+  const selfClosingRegex = /<(\w+)([^>]*?)\s*\/>/g;
   const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup'];
   
-  while ((match = selfClosingRegex.exec(code)) !== null) {
+  // Use matchAll to get all matches at once
+  const matches = Array.from(code.matchAll(selfClosingRegex));
+  
+  for (const match of matches) {
     const componentName = match[1];
     // Skip wrapper/container tags, but extract actual components
     if (skipTags.includes(componentName.toLowerCase())) {
@@ -164,6 +183,7 @@ export function parseMultipleComponents(code: string): Array<{
   // Match opening/closing tags (but skip wrappers)
   const tagRegex = /<(\w+)([^>]*)>(.*?)<\/\1>/g;
   const processedComponents = new Set<string>();
+  let match;
   
   while ((match = tagRegex.exec(code)) !== null) {
     const componentName = match[1];
@@ -246,9 +266,9 @@ export function parseComponentCode(code: string): {
   const openingTag = openingTagMatch[0];
   const startIndex = code.indexOf(openingTag) + openingTag.length;
 
-  // For Select, Tabs, Accordion, and Breadcrumb components (and other components that might have nested tags),
+  // For Select, Tabs, Accordion, Breadcrumb, and Fieldset components (and other components that might have nested tags),
   // we need to find the matching closing tag by counting opening/closing tags
-  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion" || componentName === "Breadcrumb") {
+  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion" || componentName === "Breadcrumb" || componentName === "Fieldset") {
     let depth = 1;
     let currentIndex = startIndex;
     let closingIndex = -1;
@@ -838,6 +858,82 @@ export function renderComponent(parsed: {
       <BreadcrumbItem href={props.href} className={props.className}>
         {children}
       </BreadcrumbItem>
+    );
+  }
+
+  // Handle Fieldset component
+  if (componentName === "Fieldset") {
+    // Parse nested form components from children string
+    let fieldsetChildren: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      // Clean and normalize the children string
+      let cleanedChildren = children.trim();
+      // Normalize whitespace: replace newlines with spaces, then collapse multiple spaces
+      cleanedChildren = cleanedChildren.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+      
+      // Directly parse all self-closing components
+      const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup'];
+      const parsedComponents: Array<{
+        component: string;
+        props: ComponentProps;
+        children?: React.ReactNode;
+      }> = [];
+      
+      // Use a regex that handles whitespace properly
+      // Match: <ComponentName ...attributes... /> with any whitespace
+      const componentPattern = /<(\w+)([^>]*?)\s*\/>/g;
+      
+      // Use matchAll for more reliable matching
+      const allMatches = Array.from(cleanedChildren.matchAll(componentPattern));
+      
+      // Process all matches
+      for (const match of allMatches) {
+        const compName = match[1];
+        // Skip wrapper/HTML tags
+        if (!skipTags.includes(compName.toLowerCase())) {
+          const propsString = match[2]?.trim() || '';
+          const compProps = parseProps(propsString);
+          parsedComponents.push({
+            component: compName,
+            props: compProps,
+          });
+        }
+      }
+      
+      // If we found components, render them all
+      if (parsedComponents.length > 0) {
+        // Render each component individually to ensure all are rendered
+        const renderedComponents = parsedComponents.map((comp, index) => {
+          const rendered = renderComponent(comp);
+          return <div key={index}>{rendered}</div>;
+        });
+        fieldsetChildren = <div className="space-y-2">{renderedComponents}</div>;
+      } else {
+        // Fallback: try parseMultipleComponents
+        const fallbackParsed = parseMultipleComponents(cleanedChildren);
+        if (fallbackParsed.length > 0) {
+          fieldsetChildren = renderMultipleComponents(fallbackParsed);
+        } else {
+          // Last resort: render as plain text
+          fieldsetChildren = cleanedChildren;
+        }
+      }
+    } else if (children) {
+      fieldsetChildren = children;
+    }
+    
+    return (
+      <Fieldset
+        legend={props.legend}
+        disabled={props.disabled === true || props.disabled === "true"}
+        required={props.required === true || props.required === "true"}
+        error={props.error === true || props.error === "true"}
+        helperText={props.helperText}
+        className={props.className}
+      >
+        {fieldsetChildren}
+      </Fieldset>
     );
   }
 

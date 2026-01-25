@@ -8,9 +8,12 @@ export interface InputProps
   label?: string
 }
 
+// Counter for generating stable IDs during SSR
+let inputIdCounter = 0;
+
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, error, helperText, label, id, ...props }, ref) => {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`
+    const inputId = id || `input-${++inputIdCounter}`
     const helperId = helperText ? `${inputId}-helper` : undefined
     const errorId = error ? `${inputId}-error` : undefined
 

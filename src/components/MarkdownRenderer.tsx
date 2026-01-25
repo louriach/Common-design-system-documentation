@@ -81,6 +81,22 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
                 }
               }
               
+              // If we found exactly one component (like Fieldset), render it directly
+              if (multipleComponents.length === 1) {
+                try {
+                  const singleComponent = multipleComponents[0];
+                  const renderedComponent = renderComponent(singleComponent);
+                  return (
+                    <ComponentDemo code={codeString}>
+                      {renderedComponent}
+                    </ComponentDemo>
+                  );
+                } catch (error) {
+                  console.error("Error rendering single component:", error);
+                  // Fall through to parseComponentCode
+                }
+              }
+              
               // Otherwise, try single component parsing
               const parsed = parseComponentCode(codeString);
               if (parsed) {
