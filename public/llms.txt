@@ -1,0 +1,135 @@
+# Design System Knowledge Base - llms.txt
+
+## About This Site
+
+This is a public knowledge base for design system component documentation. The purpose is to provide comprehensive, reusable documentation for common web components that every design system needs, reducing the need for teams to write essentially the same documentation repeatedly.
+
+## Site Information
+
+- **Name**: Design System Knowledge Base
+- **Purpose**: Shared documentation for common design system components
+- **URL**: https://louriach.github.io/Common-design-system-documentation/
+- **License**: MIT Licensed
+- **Repository**: https://github.com/louriach/Common-design-system-documentation
+
+## Component Categories
+
+Components are organized into the following categories:
+
+### Actions
+- Button
+- Button Group
+- Icon Button
+
+### Forms
+- Checkbox
+- Combobox
+- Date Picker
+- Fieldset
+- Input
+- Radio
+- Select
+- Textarea
+- Toggle
+
+### Data Display
+- Avatar
+- Badge
+- Card
+- Table
+
+### Feedback
+- Alert
+- Modal
+- Progress
+- Spinner
+- Tooltip
+
+### Navigation
+- Breadcrumb
+- Link
+- Tabs
+
+### Layouts
+- Accordion
+
+## Available Components
+
+The following components are documented with examples, props, accessibility guidelines, and best practices:
+
+1. Accordion
+2. Alert
+3. Avatar
+4. Badge
+5. Breadcrumb
+6. Button
+7. Button Group
+8. Card
+9. Checkbox
+10. Combobox
+11. Date Picker
+12. Fieldset
+13. Icon Button
+14. Input
+15. Link
+16. Modal
+17. Progress
+18. Radio
+19. Select
+20. Spinner
+21. Table
+22. Tabs
+23. Textarea
+24. Toggle
+25. Tooltip
+
+## Documentation Structure
+
+Each component page includes:
+- Overview: Description and purpose
+- Usage: Live code examples with interactive demos
+- Props: Complete prop documentation
+- Accessibility: WCAG 2.1 AA compliance guidelines
+- States: Available component states (default, hover, focus, disabled, etc.)
+- Best Practices: When and how to use the component
+- Content Guidelines: Labeling and content recommendations
+
+## Navigation
+
+- Home page: Lists all available components organized by category
+- Component pages: `/components/[component-name]` (e.g., `/components/button`)
+- Sidebar navigation: Sticky sidebar with all components listed alphabetically
+
+## Technical Details
+
+- **Framework**: Next.js 16 with static export
+- **UI Library**: shadcn/ui (built on Radix UI)
+- **Styling**: Tailwind CSS v4
+- **Content Format**: Markdown files with frontmatter
+- **Live Demos**: Interactive component examples using tsx:live code blocks
+- **Theme**: Light/dark mode support
+
+## Key Principles
+
+1. **Accessibility First**: All components follow WCAG 2.1 AA guidelines
+2. **Unique Content**: All documentation is original, not copied from other sources
+3. **Practical Examples**: Real-world use cases and patterns
+4. **Comprehensive Coverage**: Props, states, accessibility, and best practices for each component
+
+## How to Use This Documentation
+
+- Browse components by category on the home page
+- Use the sidebar to quickly navigate to any component
+- View live, interactive examples for each component
+- Copy code snippets directly from examples
+- Reference accessibility guidelines and best practices
+
+## Contact & Contribution
+
+- **GitHub**: https://github.com/louriach/Common-design-system-documentation
+- **Issues**: Report issues or suggest improvements via GitHub Issues
+- **Contributions**: Contributions welcome via Pull Requests
+
+## Last Updated
+
+This documentation is actively maintained and updated regularly with new components and improvements.
