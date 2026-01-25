@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { ComponentDemo } from "./ComponentDemo";
-import { parseComponentCode, parseMultipleComponents, renderComponent, renderMultipleComponents } from "@/lib/componentMapper";
+import { parseComponentCode, parseMultipleComponents, renderComponent, renderMultipleComponents, componentMap } from "@/lib/componentMapper";
 
 interface MarkdownRendererProps {
   content: string;
@@ -66,6 +66,12 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               // First try to parse multiple components (for groups like Radio buttons)
               const multipleComponents = parseMultipleComponents(codeString);
               
+              // Debug logging
+              if (codeString.includes("Button")) {
+                console.log("[MarkdownRenderer] Button code:", codeString);
+                console.log("[MarkdownRenderer] multipleComponents:", multipleComponents);
+              }
+              
               // If we found multiple components, render them as a group
               if (multipleComponents.length > 1) {
                 try {
@@ -85,6 +91,9 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               if (multipleComponents.length === 1) {
                 try {
                   const singleComponent = multipleComponents[0];
+                  if (codeString.includes("Button")) {
+                    console.log("[MarkdownRenderer] Rendering single component:", singleComponent);
+                  }
                   const renderedComponent = renderComponent(singleComponent);
                   return (
                     <ComponentDemo code={codeString}>
@@ -99,6 +108,9 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               
               // Otherwise, try single component parsing
               const parsed = parseComponentCode(codeString);
+              if (codeString.includes("Button")) {
+                console.log("[MarkdownRenderer] parseComponentCode result:", parsed);
+              }
               if (parsed) {
                 try {
                   const renderedComponent = renderComponent(parsed);

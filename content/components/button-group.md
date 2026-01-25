@@ -13,54 +13,26 @@ Button groups bring together related action buttons in a single visual unit. The
 ### Basic Button Group
 ```tsx:live
 <div>
-  <Button variant="default">Save</Button>
-  <Button variant="outline">Cancel</Button>
   <Button variant="ghost">Reset</Button>
+  <Button variant="outline">Cancel</Button>
+  <Button variant="default">Save</Button>
 </div>
 ```
 
 ### Primary Action Group
 ```tsx:live
 <div>
-  <Button variant="default">Submit</Button>
   <Button variant="outline">Cancel</Button>
-</div>
-```
-
-### Multiple Variants
-```tsx:live
-<div>
-  <Button variant="default">Primary</Button>
-  <Button variant="secondary">Secondary</Button>
-  <Button variant="outline">Outline</Button>
-  <Button variant="ghost">Ghost</Button>
-</div>
-```
-
-### Button Group with Sizes
-```tsx:live
-<div>
-  <Button size="sm">Small</Button>
-  <Button size="md">Medium</Button>
-  <Button size="lg">Large</Button>
-</div>
-```
-
-### Button Group with Disabled State
-```tsx:live
-<div>
-  <Button variant="default">Save</Button>
-  <Button variant="outline" disabled>Cancel</Button>
-  <Button variant="ghost">Reset</Button>
+  <Button variant="default">Submit</Button>
 </div>
 ```
 
 ### Form Actions
 ```tsx:live
 <div>
-  <Button variant="default">Save Changes</Button>
-  <Button variant="outline">Discard</Button>
   <Button variant="ghost">Preview</Button>
+  <Button variant="outline">Discard</Button>
+  <Button variant="default">Save Changes</Button>
 </div>
 ```
 
@@ -185,6 +157,12 @@ Button groups include three main elements:
 - Don't group buttons just because they're positioned nearby
 - Think about how users will move through the workflow
 
+### Action Ordering
+- Place primary actions on the right in LTR interfaces (left in RTL)
+- Place secondary actions (like Cancel) on the left in LTR interfaces (right in RTL)
+- This follows natural reading flow and matches user expectations
+- The most important action should be in the position where users naturally finish reading
+
 ## Best Practices
 
 ### When to Use
@@ -207,6 +185,7 @@ Button groups include three main elements:
 - Align buttons consistently (top, center, or bottom edges)
 - Plan for smaller screens (buttons may wrap to new lines)
 - Keep visual weight balanced across the group
+- **Primary action placement**: In left-to-right (LTR) interfaces, place the primary action on the right side of the button group. In right-to-left (RTL) interfaces, place the primary action on the left side. This follows natural reading flow and user expectations.
 
 ## Related Components
 
@@ -237,23 +216,23 @@ Button groups include three main elements:
 ## Common Patterns
 
 ### Form Actions Pattern
-The most frequent pattern: Primary action (Save/Submit) paired with secondary actions (Cancel/Reset).
+The most frequent pattern: Primary action (Save/Submit) paired with secondary actions (Cancel/Reset). Primary action is placed on the right in LTR interfaces.
 
 ```tsx:live
 <div>
-  <Button variant="default">Save Changes</Button>
   <Button variant="outline">Cancel</Button>
+  <Button variant="default">Save Changes</Button>
 </div>
 ```
 
 ### Three-Action Pattern
-Primary, secondary, and tertiary actions presented together.
+Primary, secondary, and tertiary actions presented together. Primary action is placed on the right in LTR interfaces.
 
 ```tsx:live
 <div>
-  <Button variant="default">Publish</Button>
-  <Button variant="secondary">Save Draft</Button>
   <Button variant="ghost">Delete</Button>
+  <Button variant="secondary">Save Draft</Button>
+  <Button variant="default">Publish</Button>
 </div>
 ```
 

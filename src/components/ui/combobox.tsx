@@ -42,7 +42,8 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
     },
     ref
   ) => {
-    const comboboxId = id || `combobox-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const comboboxId = id || generatedId
     const helperId = helperText ? `${comboboxId}-helper` : undefined
     const errorId = error ? `${comboboxId}-error` : undefined
     const listboxId = `${comboboxId}-listbox`

@@ -20,6 +20,10 @@ Button component for user interactions.
 ```
 
 ```tsx:live
+<Button variant="destructive">Destructive</Button>
+```
+
+```tsx:live
 <Button variant="secondary">Secondary</Button>
 ```
 

@@ -15,7 +15,8 @@ export interface DatePickerProps
 
 const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
   ({ className, error, helperText, label, id, ...props }, ref) => {
-    const inputId = id || `date-picker-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const inputId = id || generatedId
     const helperId = helperText ? `${inputId}-helper` : undefined
     const errorId = error ? `${inputId}-error` : undefined
 

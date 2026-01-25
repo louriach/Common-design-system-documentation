@@ -18,6 +18,13 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Fieldset } from "@/components/ui/fieldset";
+import { Link } from "@/components/ui/link";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { Modal } from "@/components/ui/modal";
+import { Tooltip } from "@/components/ui/tooltip";
+import { Progress } from "@/components/ui/progress";
+import { Spinner } from "@/components/ui/spinner";
+import { IconButton } from "@/components/ui/icon-button";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
@@ -56,6 +63,18 @@ export const componentMap: Record<string, React.ComponentType<any>> = {
   BreadcrumbItem,
   DatePicker,
   Fieldset,
+  Link,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Modal,
+  Tooltip,
+  Progress,
+  Spinner,
+  IconButton,
 };
 
 // Icon mapping
@@ -150,12 +169,40 @@ export function parseMultipleComponents(code: string): Array<{
     });
     return components;
   }
+
+  const tableMatch = code.match(/<Table([^>]*)>([\s\S]*?)<\/Table>/i);
+  if (tableMatch) {
+    // This is a Table component, don't parse its nested children as separate components
+    const propsString = tableMatch[1];
+    const childrenContent = tableMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Table",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
+
+  const modalMatch = code.match(/<Modal([^>]*)>([\s\S]*?)<\/Modal>/i);
+  if (modalMatch) {
+    // This is a Modal component, don't parse its nested children as separate components
+    const propsString = modalMatch[1];
+    const childrenContent = modalMatch[2]?.trim();
+    const props = parseProps(propsString);
+    components.push({
+      component: "Modal",
+      props,
+      children: childrenContent || undefined,
+    });
+    return components;
+  }
   
   // Skip wrapper divs, fieldset, etc. - extract only actual components
   // Match all self-closing components: <Component prop="value" />
   // Use matchAll for more reliable matching of all occurrences
   const selfClosingRegex = /<(\w+)([^>]*?)\s*\/>/g;
-  const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup'];
+  const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup', 'button', 'svg', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon', 'g', 'a', 'img', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   
   // Use matchAll to get all matches at once
   const matches = Array.from(code.matchAll(selfClosingRegex));
@@ -181,50 +228,107 @@ export function parseMultipleComponents(code: string): Array<{
   
   // If we found one, also check for opening/closing tags
   // Match opening/closing tags (but skip wrappers)
-  const tagRegex = /<(\w+)([^>]*)>(.*?)<\/\1>/g;
+  const tagRegex = /<(\w+)([^>]*)>([\s\S]*?)<\/\1>/g;
   const processedComponents = new Set<string>();
   let match;
   
-  while ((match = tagRegex.exec(code)) !== null) {
-    const componentName = match[1];
-    // Skip wrapper/container tags and option/optgroup (they're children of Select)
-    if (skipTags.includes(componentName.toLowerCase())) {
-      // Extract components from inside wrappers by running regex on inner content
-      const innerContent = match[3];
-      if (innerContent) {
-        // Find all component tags in inner content
-        const innerSelfClosing = /<(\w+)([^>]*)\s*\/>/g;
-        let innerMatch;
-        while ((innerMatch = innerSelfClosing.exec(innerContent)) !== null) {
-          const innerComponentName = innerMatch[1];
-          if (!skipTags.includes(innerComponentName.toLowerCase())) {
-            const innerPropsString = innerMatch[2];
-            const innerProps = parseProps(innerPropsString);
-            const componentKey = `${innerComponentName}-${JSON.stringify(innerProps)}`;
-            if (!processedComponents.has(componentKey)) {
-              processedComponents.add(componentKey);
-              components.push({
-                component: innerComponentName,
-                props: innerProps,
-              });
-            }
-          }
-        }
-      }
-      continue;
+  // First pass: find all wrapper tags and extract their inner content
+  const wrapperContents: string[] = [];
+  let wrapperMatch;
+  const wrapperRegex = /<(\w+)([^>]*)>([\s\S]*?)<\/\1>/g;
+  
+  while ((wrapperMatch = wrapperRegex.exec(code)) !== null) {
+    const wrapperName = wrapperMatch[1];
+    if (skipTags.includes(wrapperName.toLowerCase())) {
+      wrapperContents.push(wrapperMatch[3]);
     }
-    // Not a wrapper, it's an actual component
-    const propsString = match[2];
-    const childrenContent = match[3]?.trim();
-    const props = parseProps(propsString);
-    const componentKey = `${componentName}-${JSON.stringify(props)}`;
+  }
+  
+  // If we found wrapper content, search for components in it
+  const searchContent = wrapperContents.length > 0 ? wrapperContents.join('') : code;
+  
+  // Now find all top-level component tags in the content (excluding nested ones)
+  // We need to find components that are at the same level, not nested inside each other
+  const componentNames = Object.keys(componentMap);
+  let searchIndex = 0;
+  const foundRanges: Array<{ start: number; end: number }> = [];
+  
+  // First, find all component instances and their positions
+  const allComponentMatches: Array<{
+    name: string;
+    start: number;
+    end: number;
+    props: ComponentProps;
+    children: string;
+  }> = [];
+  
+  for (const compName of componentNames) {
+    const compRegex = new RegExp(`<${compName}([^>]*)>([\\s\\S]*?)<\\/${compName}>`, 'g');
+    let compMatch;
+    while ((compMatch = compRegex.exec(searchContent)) !== null) {
+      const propsString = compMatch[1];
+      const childrenContent = compMatch[2]?.trim();
+      const props = parseProps(propsString);
+      allComponentMatches.push({
+        name: compName,
+        start: compMatch.index,
+        end: compMatch.index + compMatch[0].length,
+        props,
+        children: childrenContent,
+      });
+    }
+  }
+  
+  // Sort by start position
+  allComponentMatches.sort((a, b) => a.start - b.start);
+  
+  // Filter out nested components (components that are inside other components)
+  const topLevelComponents = allComponentMatches.filter((comp, index) => {
+    // Check if this component is nested inside any previous component
+    for (let i = 0; i < index; i++) {
+      const prevComp = allComponentMatches[i];
+      if (comp.start > prevComp.start && comp.end < prevComp.end) {
+        // This component is nested inside a previous one, skip it
+        return false;
+      }
+    }
+    return true;
+  });
+  
+  // Add top-level components to the results
+  for (const comp of topLevelComponents) {
+    const componentKey = `${comp.name}-${JSON.stringify(comp.props)}-${comp.start}`;
     if (!processedComponents.has(componentKey)) {
       processedComponents.add(componentKey);
       components.push({
-        component: componentName,
-        props,
-        children: childrenContent || undefined,
+        component: comp.name,
+        props: comp.props,
+        children: comp.children || undefined,
       });
+    }
+  }
+  
+  // Also handle components that might be at the top level (not in wrappers)
+  while ((match = tagRegex.exec(code)) !== null) {
+    const componentName = match[1];
+    // Skip wrapper/container tags
+    if (skipTags.includes(componentName.toLowerCase())) {
+      continue;
+    }
+    // If it's a component we haven't already processed
+    if (componentMap[componentName]) {
+      const propsString = match[2];
+      const childrenContent = match[3]?.trim();
+      const props = parseProps(propsString);
+      const componentKey = `${componentName}-${JSON.stringify(props)}-${match.index}`;
+      if (!processedComponents.has(componentKey)) {
+        processedComponents.add(componentKey);
+        components.push({
+          component: componentName,
+          props,
+          children: childrenContent || undefined,
+        });
+      }
     }
   }
   
@@ -241,13 +345,32 @@ export function parseComponentCode(code: string): {
   icon?: string;
 } | null {
   // Remove leading/trailing whitespace and normalize
+  const originalCode = code;
   code = code.trim().replace(/\n/g, " ").replace(/\s+/g, " ");
+
+  // Debug logging for Button
+  if (originalCode.includes("Button")) {
+    console.log("[parseComponentCode] Input:", originalCode);
+    console.log("[parseComponentCode] Normalized:", code);
+  }
+
+  // Skip tags that are HTML elements, not React components
+  const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup', 'button', 'svg', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon', 'g', 'a', 'img', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'nav', 'article', 'section', 'header', 'footer', 'aside', 'main'];
 
   // Match component opening tag: <ComponentName prop="value">content</ComponentName>
   // or self-closing: <ComponentName prop="value" />
   const selfClosingMatch = code.match(/<(\w+)([^>]*)\s*\/>/);
   if (selfClosingMatch) {
     const componentName = selfClosingMatch[1];
+    // Check if it's a React component first (PascalCase and in componentMap)
+    // Only skip if it's actually an HTML element (lowercase) AND not a React component
+    const isReactComponent = componentName[0] === componentName[0].toUpperCase() && componentMap[componentName];
+    const isHTMLElement = componentName[0] === componentName[0].toLowerCase() && skipTags.includes(componentName.toLowerCase());
+    
+    // Skip HTML elements (but not React components)
+    if (isHTMLElement && !isReactComponent) {
+      return null;
+    }
     const propsString = selfClosingMatch[2];
     const props = parseProps(propsString);
     return {
@@ -262,13 +385,38 @@ export function parseComponentCode(code: string): {
   if (!openingTagMatch) return null;
 
   const componentName = openingTagMatch[1];
+  
+  // Check if it's a React component first (PascalCase and in componentMap)
+  // Only skip if it's actually an HTML element (lowercase) AND not a React component
+  const isReactComponent = componentName[0] === componentName[0].toUpperCase() && componentMap[componentName];
+  const isHTMLElement = componentName[0] === componentName[0].toLowerCase() && skipTags.includes(componentName.toLowerCase());
+  
+  // Skip HTML elements - if the outer tag is an HTML element, try to find components inside it
+  if (isHTMLElement && !isReactComponent) {
+    // Extract the inner content and try to find components there
+    const innerMatch = code.match(/<(\w+)([^>]*)>(.*?)<\/\1>/);
+    if (innerMatch) {
+      const innerContent = innerMatch[3];
+      // Try to find components in the inner content using parseMultipleComponents
+      const innerComponents = parseMultipleComponents(innerContent);
+      if (innerComponents.length > 0) {
+        // If we found components, return the first one (we'll handle the wrapper separately)
+        // For now, just return the first component found
+        return innerComponents[0];
+      }
+      // If no components found, return null
+      return null;
+    }
+    return null;
+  }
+
   const propsString = openingTagMatch[2];
   const openingTag = openingTagMatch[0];
   const startIndex = code.indexOf(openingTag) + openingTag.length;
 
-  // For Select, Tabs, Accordion, Breadcrumb, and Fieldset components (and other components that might have nested tags),
+  // For Select, Tabs, Accordion, Breadcrumb, Fieldset, Table, Modal, and IconButton components (and other components that might have nested tags),
   // we need to find the matching closing tag by counting opening/closing tags
-  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion" || componentName === "Breadcrumb" || componentName === "Fieldset") {
+  if (componentName === "Select" || componentName === "select" || componentName === "Tabs" || componentName === "Accordion" || componentName === "Breadcrumb" || componentName === "Fieldset" || componentName === "Table" || componentName === "Modal" || componentName === "IconButton") {
     let depth = 1;
     let currentIndex = startIndex;
     let closingIndex = -1;
@@ -305,10 +453,27 @@ export function parseComponentCode(code: string): {
 
   // For other components, use simple regex (non-greedy match)
   const componentMatch = code.match(/<(\w+)([^>]*)>(.*?)<\/\1>/);
-  if (!componentMatch) return null;
+  
+  // Debug logging for Button
+  if (originalCode.includes("Button")) {
+    console.log("[parseComponentCode] componentMatch:", componentMatch);
+    console.log("[parseComponentCode] componentName:", componentName);
+    console.log("[parseComponentCode] componentMap has Button:", !!componentMap[componentName]);
+  }
+  
+  if (!componentMatch) {
+    if (originalCode.includes("Button")) {
+      console.log("[parseComponentCode] No match found for:", code);
+    }
+    return null;
+  }
 
   const childrenContent = componentMatch[3]?.trim();
   const props = parseProps(propsString);
+
+  if (originalCode.includes("Button")) {
+    console.log("[parseComponentCode] Returning:", { component: componentName, props, children: childrenContent });
+  }
 
   return {
     component: componentName,
@@ -460,14 +625,45 @@ export function renderComponent(parsed: {
 
   // Handle Button component
   if (componentName === "Button") {
+    // Ensure variant is always set - default to "default" if not provided
+    const buttonVariant = props.variant ? props.variant : "default";
+    // Map "md" size to "default" since Button component uses "default" not "md"
+    const buttonSize = props.size === "md" ? "default" : (props.size || "default");
+    
     return (
       <Button
-        variant={props.variant || "default"}
-        size={props.size}
+        variant={buttonVariant as "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"}
+        size={buttonSize as "default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"}
         disabled={props.disabled === true || props.disabled === "true"}
+        {...(props.className && { className: props.className })}
       >
         {children || props.children || "Button"}
       </Button>
+    );
+  }
+
+  // Handle IconButton component
+  if (componentName === "IconButton") {
+    // Parse children if they're a string (like SVG markup)
+    let iconChildren: React.ReactNode = children || props.children;
+    
+    if (typeof iconChildren === "string") {
+      // If children is SVG markup, render it as HTML
+      iconChildren = (
+        <span dangerouslySetInnerHTML={{ __html: iconChildren.trim() }} />
+      );
+    }
+    
+    return (
+      <IconButton
+        variant={props.variant || "default"}
+        size={props.size || "md"}
+        disabled={props.disabled === true || props.disabled === "true"}
+        aria-label={props["aria-label"] || props.ariaLabel || "Icon button"}
+        className={props.className}
+      >
+        {iconChildren}
+      </IconButton>
     );
   }
 
@@ -1107,6 +1303,285 @@ export function renderComponent(parsed: {
       >
         {optionElements}
       </Select>
+    );
+  }
+
+  // Handle Link component
+  if (componentName === "Link") {
+    return (
+      <Link
+        href={props.href}
+        variant={props.variant || "default"}
+        external={props.external === true || props.external === "true"}
+        className={props.className}
+      >
+        {children}
+      </Link>
+    );
+  }
+
+  // Handle Table components
+  if (componentName === "Table") {
+    // Parse nested Table components from children string
+    let tableChildren: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      const cleanedChildren = children.trim().replace(/\n/g, " ").replace(/\s+/g, " ");
+      
+      // Parse TableHeader, TableBody, TableRow, TableHead, TableCell
+      const parsedComponents: React.ReactNode[] = [];
+      
+      // Parse TableHeader
+      const headerMatch = cleanedChildren.match(/<TableHeader([^>]*)>([\s\S]*?)<\/TableHeader>/i);
+      if (headerMatch) {
+        const headerProps = parseProps(headerMatch[1]);
+        const headerContent = headerMatch[2];
+        // Parse rows within header
+        const rowMatches = Array.from(headerContent.matchAll(/<TableRow([^>]*)>([\s\S]*?)<\/TableRow>/gi));
+        const headerRows = rowMatches.map((rowMatch, idx) => {
+          const rowProps = parseProps(rowMatch[1]);
+          const rowContent = rowMatch[2];
+          const headMatches = Array.from(rowContent.matchAll(/<TableHead([^>]*)>([^<]*)<\/TableHead>/gi));
+          const heads = headMatches.map((headMatch, hIdx) => {
+            const headProps = parseProps(headMatch[1]);
+            return <TableHead key={hIdx} {...headProps}>{headMatch[2].trim()}</TableHead>;
+          });
+          return <TableRow key={idx} {...rowProps}>{heads}</TableRow>;
+        });
+        parsedComponents.push(<TableHeader key="header" {...headerProps}>{headerRows}</TableHeader>);
+      }
+      
+      // Parse TableBody
+      const bodyMatch = cleanedChildren.match(/<TableBody([^>]*)>([\s\S]*?)<\/TableBody>/i);
+      if (bodyMatch) {
+        const bodyProps = parseProps(bodyMatch[1]);
+        const bodyContent = bodyMatch[2];
+        // Parse rows within body
+        const rowMatches = Array.from(bodyContent.matchAll(/<TableRow([^>]*)>([\s\S]*?)<\/TableRow>/gi));
+        const bodyRows = rowMatches.map((rowMatch, idx) => {
+          const rowProps = parseProps(rowMatch[1]);
+          const rowContent = rowMatch[2];
+          const cellMatches = Array.from(rowContent.matchAll(/<TableCell([^>]*)>([^<]*)<\/TableCell>/gi));
+          const cells = cellMatches.map((cellMatch, cIdx) => {
+            const cellProps = parseProps(cellMatch[1]);
+            return <TableCell key={cIdx} {...cellProps}>{cellMatch[2].trim()}</TableCell>;
+          });
+          return <TableRow key={idx} {...rowProps}>{cells}</TableRow>;
+        });
+        parsedComponents.push(<TableBody key="body" {...bodyProps}>{bodyRows}</TableBody>);
+      }
+      
+      tableChildren = parsedComponents.length > 0 ? parsedComponents : null;
+    } else if (children) {
+      tableChildren = children;
+    }
+    
+    return (
+      <Table
+        striped={props.striped === true || props.striped === "true"}
+        bordered={props.bordered === true || props.bordered === "true"}
+        className={props.className}
+      >
+        {tableChildren}
+      </Table>
+    );
+  }
+
+  if (componentName === "TableHeader" || componentName === "TableBody" || componentName === "TableRow" || componentName === "TableHead" || componentName === "TableCell") {
+    // These are handled within Table parsing, but provide fallback
+    const Component = componentMap[componentName];
+    if (Component) {
+      return <Component {...props}>{children}</Component>;
+    }
+  }
+
+  // Handle Modal component
+  if (componentName === "Modal") {
+    // For live demos, always show modal by default (unless explicitly closed)
+    const isOpen = props.open === false || props.open === "false" ? false : true;
+    
+    return (
+      <Modal
+        open={isOpen}
+        title={props.title}
+        description={props.description}
+        size={props.size || "md"}
+        closable={props.closable !== false && props.closable !== "false"}
+      >
+        {typeof children === "string" ? (
+          // Try to parse children as components
+          (() => {
+            const parsed = parseMultipleComponents(children.trim());
+            if (parsed.length > 0) {
+              return renderMultipleComponents(parsed);
+            }
+            return children;
+          })()
+        ) : children}
+      </Modal>
+    );
+  }
+
+  // Handle Tooltip component
+  if (componentName === "Tooltip") {
+    // Parse the wrapped child component
+    let tooltipChild: React.ReactNode = null;
+    
+    if (typeof children === "string") {
+      const trimmedChildren = children.trim();
+      
+      // First check if it's a valid React component
+      const parsed = parseComponentCode(trimmedChildren);
+      if (parsed && componentMap[parsed.component]) {
+        tooltipChild = renderComponent(parsed);
+      } else {
+        // Try parseMultipleComponents in case there are multiple components
+        const multipleParsed = parseMultipleComponents(trimmedChildren);
+        if (multipleParsed.length > 0 && componentMap[multipleParsed[0].component]) {
+          tooltipChild = renderComponent(multipleParsed[0]);
+        } else {
+          // Check if it's a Button component specifically (common case)
+          const buttonMatch = trimmedChildren.match(/<Button([^>]*)>(.*?)<\/Button>/);
+          if (buttonMatch) {
+            const buttonProps = parseProps(buttonMatch[1]);
+            const buttonChildren = buttonMatch[2]?.trim();
+            tooltipChild = (
+              <Button {...buttonProps}>
+                {buttonChildren}
+              </Button>
+            );
+          } else {
+            // If it's HTML elements (like <button> with <svg>), render as HTML
+            // Parse the outer tag to get the element type and props
+            // Use a more robust regex that handles multiline and nested content
+            const outerTagMatch = trimmedChildren.match(/^<(\w+)([^>]*?)>([\s\S]*?)<\/\1>$/);
+            
+            if (outerTagMatch) {
+              const originalTagName = outerTagMatch[1];
+              // Check if it's a React component (PascalCase) - if so, try to parse it as a component
+              if (originalTagName[0] === originalTagName[0].toUpperCase() && componentMap[originalTagName]) {
+                // It's a React component, parse it properly
+                const componentParsed = parseComponentCode(trimmedChildren);
+                if (componentParsed) {
+                  tooltipChild = renderComponent(componentParsed);
+                } else {
+                  // Fallback to HTML rendering
+                  const tagName = originalTagName.toLowerCase();
+                  const propsString = outerTagMatch[2];
+                  const innerHTML = outerTagMatch[3];
+                  const htmlProps: any = {};
+                  if (propsString) {
+                    const classNameMatch = propsString.match(/className="([^"]*)"/);
+                    if (classNameMatch) htmlProps.className = classNameMatch[1];
+                    const ariaLabelMatch = propsString.match(/aria-label="([^"]*)"/);
+                    if (ariaLabelMatch) htmlProps['aria-label'] = ariaLabelMatch[1];
+                    const styleMatch = propsString.match(/style="([^"]*)"/);
+                    if (styleMatch) htmlProps.style = styleMatch[1];
+                  }
+                  const HtmlTag = tagName as keyof React.JSX.IntrinsicElements;
+                  tooltipChild = React.createElement(
+                    HtmlTag,
+                    { ...htmlProps, dangerouslySetInnerHTML: { __html: innerHTML } }
+                  );
+                }
+              } else {
+                // It's an HTML element (lowercase), render as HTML
+                const tagName = originalTagName.toLowerCase();
+                const propsString = outerTagMatch[2];
+                const innerHTML = outerTagMatch[3];
+                
+                // Parse props from the props string
+                const htmlProps: any = {};
+                if (propsString) {
+                  // Extract className
+                  const classNameMatch = propsString.match(/className="([^"]*)"/);
+                  if (classNameMatch) htmlProps.className = classNameMatch[1];
+                  
+                  // Extract aria-label
+                  const ariaLabelMatch = propsString.match(/aria-label="([^"]*)"/);
+                  if (ariaLabelMatch) htmlProps['aria-label'] = ariaLabelMatch[1];
+                  
+                  // Extract other common attributes
+                  const styleMatch = propsString.match(/style="([^"]*)"/);
+                  if (styleMatch) htmlProps.style = styleMatch[1];
+                }
+                
+                // For button elements, ensure they have proper flexbox styling for icon buttons
+                if (tagName === 'button') {
+                  const existingClasses = htmlProps.className || '';
+                  // Add inline-flex and items-center if not already present (for proper icon centering)
+                  if (!existingClasses.includes('inline-flex') && !existingClasses.includes('flex')) {
+                    htmlProps.className = `inline-flex items-center justify-center ${existingClasses}`.trim();
+                  }
+                  // If it looks like an icon button (has SVG), ensure it's square
+                  if (innerHTML.includes('<svg') && !existingClasses.includes('aspect-square') && !existingClasses.includes('size-')) {
+                    htmlProps.className = `${htmlProps.className} aspect-square`.trim();
+                  }
+                  // Ensure button has proper text color (for SVG icons and text)
+                  if (!existingClasses.includes('text-') && !existingClasses.includes('text-gray-') && !existingClasses.includes('text-black') && !existingClasses.includes('text-white')) {
+                    htmlProps.className = `${htmlProps.className} text-gray-900 dark:text-gray-100`.trim();
+                  }
+                }
+                
+                // Create the React element with the proper tag (lowercase for HTML elements)
+                const HtmlTag = tagName as keyof React.JSX.IntrinsicElements;
+                tooltipChild = React.createElement(
+                  HtmlTag,
+                  { ...htmlProps, dangerouslySetInnerHTML: { __html: innerHTML } }
+                );
+              }
+            } else {
+              // Fallback: render the entire HTML string directly
+              // This handles cases where the regex didn't match (e.g., complex nested structures)
+              tooltipChild = (
+                <div 
+                  dangerouslySetInnerHTML={{ __html: trimmedChildren }} 
+                  style={{ display: 'inline-block' }}
+                  className="text-gray-900 dark:text-gray-100"
+                />
+              );
+            }
+          }
+        }
+      }
+    } else {
+      tooltipChild = children;
+    }
+    
+    return (
+      <Tooltip
+        content={props.content}
+        placement={props.placement || "top"}
+        delay={props.delay ? parseInt(props.delay, 10) : 200}
+        disabled={props.disabled === true || props.disabled === "true"}
+      >
+        {tooltipChild}
+      </Tooltip>
+    );
+  }
+
+  // Handle Progress component
+  if (componentName === "Progress") {
+    return (
+      <Progress
+        value={props.value !== undefined ? (typeof props.value === "string" ? parseFloat(props.value) : props.value) : 0}
+        max={props.max !== undefined ? (typeof props.max === "string" ? parseFloat(props.max) : props.max) : 100}
+        showLabel={props.showLabel === true || props.showLabel === "true"}
+        size={props.size || "md"}
+        variant={props.variant || "default"}
+        className={props.className}
+      />
+    );
+  }
+
+  // Handle Spinner component
+  if (componentName === "Spinner") {
+    return (
+      <Spinner
+        size={props.size || "md"}
+        variant={props.variant || "default"}
+        className={props.className}
+      />
     );
   }
 

@@ -10,7 +10,8 @@ export interface TextareaProps
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, error, helperText, label, id, rows, ...props }, ref) => {
-    const textareaId = id || `textarea-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const textareaId = id || generatedId
     const helperId = helperText ? `${textareaId}-helper` : undefined
     const errorId = error ? `${textareaId}-error` : undefined
 

@@ -25,7 +25,8 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) => {
-    const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const selectId = id || generatedId
     const helperId = helperText ? `${selectId}-helper` : undefined
     const errorId = error ? `${selectId}-error` : undefined
 

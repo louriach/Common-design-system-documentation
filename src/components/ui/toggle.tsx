@@ -24,7 +24,8 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     },
     ref
   ) => {
-    const toggleId = id || `toggle-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const toggleId = id || generatedId
     const helperId = helperText ? `${toggleId}-helper` : undefined
     const errorId = error ? `${toggleId}-error` : undefined
 

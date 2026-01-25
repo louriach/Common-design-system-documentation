@@ -12,7 +12,8 @@ export interface FieldsetProps extends React.FieldsetHTMLAttributes<HTMLFieldSet
 
 const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
   ({ className, legend, error, helperText, required, disabled, children, id, ...props }, ref) => {
-    const fieldsetId = id || `fieldset-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const fieldsetId = id || generatedId
     const helperId = helperText ? `${fieldsetId}-helper` : undefined
     const errorId = error ? `${fieldsetId}-error` : undefined
 

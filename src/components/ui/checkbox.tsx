@@ -26,7 +26,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const checkboxId = id || generatedId
     const helperId = helperText ? `${checkboxId}-helper` : undefined
     const errorId = error ? `${checkboxId}-error` : undefined
 

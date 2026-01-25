@@ -26,7 +26,8 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     },
     ref
   ) => {
-    const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`
+    const generatedId = React.useId()
+    const radioId = id || generatedId
     const helperId = helperText ? `${radioId}-helper` : undefined
     const errorId = error ? `${radioId}-error` : undefined
 
