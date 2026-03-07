@@ -442,13 +442,16 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 
 /* ========== Component: Accordion (Radix) ========== */
 .ds-accordion-root { width: 100%; }
-.ds-accordion-item { border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; }
-.ds-accordion-item + .ds-accordion-item { margin-top: 0.25rem; }
-.ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; font-size: 0.875rem; font-weight: 500; color: var(--color-foreground); background: none; border: none; cursor: pointer; }
+/* Radix AccordionHeader renders as h3; reset .docs-prose h3 margins so trigger spacing is controlled by .ds-accordion-trigger padding only (selector must beat .docs-prose h3) */
+.docs-prose .ds-accordion-item > h3 { margin: 0; }
+.ds-accordion-item { border: 2px solid var(--color-border); border-radius: var(--radius); overflow: hidden; background: var(--color-card); }
+.ds-accordion-item + .ds-accordion-item { margin-top: 0.5rem; }
+.ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 0.5rem 1.25rem; font-size: 1rem; font-weight: 600; color: var(--color-foreground); background: var(--color-card); border: none; cursor: pointer; transition: background 0.15s ease; text-align: left; min-height: 2.5rem; }
 .ds-accordion-trigger:hover { background: var(--color-muted); }
+.ds-accordion-trigger[data-state="open"] { background: var(--color-muted); }
 .ds-accordion-trigger:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-ring); outline-offset: 2px; }
-.ds-accordion-content { padding: 0.75rem 1rem; font-size: 0.875rem; color: var(--color-foreground); border-top: 1px solid var(--color-border); }
-.ds-accordion-chevron { color: var(--color-muted-foreground); transition: transform 0.2s; flex-shrink: 0; }
+.ds-accordion-content { padding: 0.75rem 1.25rem; font-size: 0.9375rem; line-height: 1.6; color: var(--color-foreground); border-top: 2px solid var(--color-border); background: var(--color-background); }
+.ds-accordion-chevron { color: var(--color-foreground); opacity: 0.7; transition: transform 0.2s ease; flex-shrink: 0; }
 .ds-accordion-trigger[data-state="open"] .ds-accordion-chevron { transform: rotate(180deg); }
 
 /* ========== Component: Badge ========== */
