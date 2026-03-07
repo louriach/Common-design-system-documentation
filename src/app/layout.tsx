@@ -24,8 +24,15 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem("theme");if(t==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");})();`,
+          }}
+        />
+      </head>
       <body className="antialiased flex flex-col min-h-screen bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
           <div className="flex flex-1 bg-background">
             <Sidebar components={components} />
             <div className="flex flex-col flex-1 min-w-0 bg-background">

@@ -37,8 +37,9 @@
   --radius: 0.25rem;
 }
 
-@layer base {
-  .dark {
+/* Dark mode: unlayered so it overrides :root when html has class="dark". */
+html.dark,
+.dark {
     --color-background: oklch(8% 0 0);
     --color-foreground: oklch(96% 0 0);
     --color-card: oklch(8% 0 0);
@@ -65,8 +66,9 @@
     --color-destructive-bg: oklch(22% 0.04 25);
     --color-success-bg: oklch(22% 0.05 145);
     --color-warning-bg: oklch(26% 0.05 85);
-  }
+}
 
+@layer base {
   html {
     color-scheme: light;
   }

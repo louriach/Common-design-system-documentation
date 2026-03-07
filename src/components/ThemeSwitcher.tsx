@@ -1,33 +1,11 @@
 "use client";
 
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "./ui/button";
 import { Sun, Moon } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <Button
-        variant="ghost"
-        size="icon"
-        className="w-9 h-9"
-        aria-label="Toggle theme"
-        disabled
-      >
-        <Sun className="h-4 w-4" />
-      </Button>
-    );
-  }
-
   const isDark = theme === "dark";
 
   return (
