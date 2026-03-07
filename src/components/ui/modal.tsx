@@ -112,7 +112,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           )}
 
           {/* Content */}
-          <div className="p-6">
+          <div className="p-6 text-gray-700 dark:text-gray-300">
             {children}
           </div>
         </div>

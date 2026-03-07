@@ -37,12 +37,12 @@ Textarea components let people enter multiple lines of text. They're ideal for l
 
 ### Disabled Textarea
 ```tsx:live
-<Textarea label="Notes" disabled value="This field cannot be edited" />
+<Textarea label="Notes" disabled defaultValue="This field cannot be edited" />
 ```
 
 ### Read-only Textarea
 ```tsx:live
-<Textarea label="Terms and Conditions" readOnly value="These are the terms and conditions that apply to your use of this service." />
+<Textarea label="Terms and Conditions" readOnly defaultValue="These are the terms and conditions that apply to your use of this service." />
 ```
 
 ## Props

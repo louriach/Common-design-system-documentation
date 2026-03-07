@@ -86,6 +86,43 @@ export const iconMap: Record<string, React.ComponentType<any>> = {
 };
 
 /**
+ * Wrapper for live demos: shows a trigger button and controls modal open state
+ * so the modal is previewed on the docs page instead of opening immediately.
+ */
+function ModalWithTrigger({
+  title,
+  description,
+  size,
+  closable,
+  children,
+}: {
+  title?: string;
+  description?: string;
+  size?: "sm" | "md" | "lg" | "xl";
+  closable?: boolean;
+  children?: React.ReactNode;
+}) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <Button type="button" onClick={() => setOpen(true)}>
+        Open modal
+      </Button>
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title={title}
+        description={description}
+        size={size ?? "md"}
+        closable={closable !== false}
+      >
+        {children}
+      </Modal>
+    </>
+  );
+}
+
+/**
  * Parse multiple components from code (for groups like Radio buttons)
  */
 export function parseMultipleComponents(code: string): Array<{
@@ -1395,30 +1432,39 @@ export function renderComponent(parsed: {
     }
   }
 
-  // Handle Modal component
+  // Handle Modal component: in live demos show a trigger button so the modal
+  // is previewed on the docs page instead of opening as a separate experience.
   if (componentName === "Modal") {
-    // For live demos, always show modal by default (unless explicitly closed)
-    const isOpen = props.open === false || props.open === "false" ? false : true;
-    
+    const modalChildren =
+      typeof children === "string"
+        ? (() => {
+            const trimmed = children.trim();
+            const parsed = parseMultipleComponents(trimmed);
+            if (parsed.length > 0) {
+              return renderMultipleComponents(parsed);
+            }
+            // Plain HTML (e.g. <p>, <div>) — render as HTML so tags display
+            if (trimmed.startsWith("<")) {
+              return (
+                <div
+                  className="modal-demo-html prose dark:prose-invert max-w-none prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-700 dark:text-gray-300"
+                  dangerouslySetInnerHTML={{ __html: trimmed }}
+                />
+              );
+            }
+            return trimmed;
+          })()
+        : children;
+
     return (
-      <Modal
-        open={isOpen}
+      <ModalWithTrigger
         title={props.title}
         description={props.description}
         size={props.size || "md"}
         closable={props.closable !== false && props.closable !== "false"}
       >
-        {typeof children === "string" ? (
-          // Try to parse children as components
-          (() => {
-            const parsed = parseMultipleComponents(children.trim());
-            if (parsed.length > 0) {
-              return renderMultipleComponents(parsed);
-            }
-            return children;
-          })()
-        ) : children}
-      </Modal>
+        {modalChildren}
+      </ModalWithTrigger>
     );
   }
 
