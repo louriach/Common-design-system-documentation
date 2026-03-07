@@ -14,12 +14,12 @@ export default function ChangelogPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Changelog</h1>
-        <p className="text-muted-foreground">
+      <header className="docs-page-header">
+        <h1 className="docs-page-title">Changelog</h1>
+        <p className="docs-page-meta">
           All notable changes to the design system documentation and components.
         </p>
-      </div>
+      </header>
       <div className="prose-container">
         <MarkdownRenderer content={content} />
       </div>

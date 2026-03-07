@@ -18,10 +18,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full">
         {label && (
-          <label
-            htmlFor={textareaId}
-            className="block text-sm font-medium text-foreground mb-1.5"
-          >
+          <label htmlFor={textareaId} className="ds-label">
             {label}
             {props.required && (
               <span className="text-destructive ml-1" aria-label="required">
@@ -34,13 +31,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={textareaId}
           rows={rows || 4}
           className={cn(
-            "flex w-full rounded border border-input bg-background px-3 py-2 text-sm text-foreground",
-            "placeholder:text-muted-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-            "read-only:bg-muted read-only:cursor-default",
-            "resize-y",
-            error && "border-destructive focus-visible:ring-destructive",
+            "ds-input ds-input--textarea resize-y",
+            error && "ds-input--error",
             className
           )}
           ref={ref}
@@ -49,18 +41,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {error && (
-          <p
-            id={errorId}
-            className="mt-1.5 text-sm text-destructive"
-            role="alert"
-          >
+          <p id={errorId} className="ds-error" role="alert">
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
-            {helperText}
-          </p>
+          <p id={helperId} className="ds-helper">{helperText}</p>
         )}
       </div>
     )

@@ -22,7 +22,7 @@ const Accordion = React.forwardRef<
   <AccordionPrimitive.Root
     ref={ref}
     type={type}
-    collapsible={collapsible}
+    {...(collapsible && { collapsible: "true" })}
     className={cn("ds-accordion-root", className)}
     {...(props as any)}
   >

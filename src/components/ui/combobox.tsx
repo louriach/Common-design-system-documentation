@@ -155,10 +155,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
     return (
       <div className="w-full relative">
         {label && (
-          <label
-            htmlFor={comboboxId}
-            className="block text-sm font-medium text-foreground mb-1.5"
-          >
+          <label htmlFor={comboboxId} className="ds-label">
             {label}
             {required && (
               <span className="text-destructive ml-1" aria-label="required">
@@ -191,12 +188,8 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
             aria-invalid={error ? "true" : undefined}
             aria-describedby={errorId || helperId}
             className={cn(
-              "flex h-10 w-full rounded border border-input bg-background px-3 py-2 text-sm text-foreground",
-              "placeholder:text-muted-foreground",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-              error &&
-                "border-destructive focus-visible:ring-destructive",
+              "ds-input",
+              error && "ds-input--error",
               className
             )}
             {...props}
@@ -248,7 +241,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
                     focusedIndex === index &&
                       "bg-muted",
                     option.value === value &&
-                      "bg-primary/10 text-primary",
+                      "bg-primary-soft text-primary",
                     option.disabled &&
                       "opacity-50 cursor-not-allowed pointer-events-none"
                   )}
@@ -260,18 +253,12 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
           )}
         </div>
         {error && (
-          <p
-            id={errorId}
-            className="mt-1.5 text-sm text-destructive"
-            role="alert"
-          >
+          <p id={errorId} className="ds-error" role="alert">
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
-            {helperText}
-          </p>
+          <p id={helperId} className="ds-helper">{helperText}</p>
         )}
       </div>
     )

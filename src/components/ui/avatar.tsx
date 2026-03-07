@@ -25,10 +25,10 @@ const statusSizeClasses = {
 }
 
 const statusColorClasses = {
-  online: "bg-green-500",
+  online: "bg-success",
   offline: "bg-muted-foreground",
-  away: "bg-yellow-500",
-  busy: "bg-red-500",
+  away: "bg-warning",
+  busy: "bg-destructive",
 }
 
 const getInitials = (name: string): string => {

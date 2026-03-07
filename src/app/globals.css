@@ -2,8 +2,9 @@
 
 /* Class-based dark mode */
 
-/* Single source of truth: brutalist black/white base + semantic variants (destructive, success, warning) */
-@theme {
+/* Design tokens: brutalist black/white base + semantic variants (destructive, success, warning).
+   Defined on :root so var(--color-*) and var(--radius) work without Tailwind. */
+:root {
   /* Base wireframe */
   --color-background: oklch(100% 0 0);
   --color-foreground: oklch(12% 0 0);
@@ -29,6 +30,10 @@
   --color-success-foreground: oklch(98% 0 0);
   --color-warning: oklch(75% 0.18 85);
   --color-warning-foreground: oklch(20% 0 0);
+  /* Soft background tints for alerts and status surfaces */
+  --color-destructive-bg: oklch(97% 0.04 25);
+  --color-success-bg: oklch(96% 0.05 145);
+  --color-warning-bg: oklch(97% 0.06 85);
   --radius: 0.25rem;
 }
 
@@ -57,6 +62,9 @@
     --color-success-foreground: oklch(98% 0 0);
     --color-warning: oklch(75% 0.18 85);
     --color-warning-foreground: oklch(12% 0 0);
+    --color-destructive-bg: oklch(22% 0.04 25);
+    --color-success-bg: oklch(22% 0.05 145);
+    --color-warning-bg: oklch(26% 0.05 85);
   }
 
   html {

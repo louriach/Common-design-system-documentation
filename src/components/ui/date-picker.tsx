@@ -23,10 +23,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     return (
       <div className="w-full">
         {label && (
-          <label
-            htmlFor={inputId}
-            className="block text-sm font-medium text-foreground mb-1.5"
-          >
+          <label htmlFor={inputId} className="ds-label">
             {label}
             {props.required && (
               <span className="text-destructive ml-1" aria-label="required">
@@ -43,14 +40,8 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             type="date"
             id={inputId}
             className={cn(
-              "flex h-10 w-full rounded border border-input bg-background pl-10 pr-3 py-2 text-sm text-foreground",
-              "placeholder:text-muted-foreground",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-              "read-only:bg-muted read-only:cursor-default",
-              "[&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:cursor-pointer",
-              error &&
-                "border-destructive focus-visible:ring-destructive",
+              "ds-input input-date-native-hidden pl-10",
+              error && "ds-input--error",
               className
             )}
             ref={ref}
@@ -60,18 +51,12 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           />
         </div>
         {error && (
-          <p
-            id={errorId}
-            className="mt-1.5 text-sm text-destructive"
-            role="alert"
-          >
+          <p id={errorId} className="ds-error" role="alert">
             {helperText || "Please select a valid date"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
-            {helperText}
-          </p>
+          <p id={helperId} className="ds-helper">{helperText}</p>
         )}
       </div>
     )

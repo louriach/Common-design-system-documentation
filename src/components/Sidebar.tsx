@@ -66,25 +66,18 @@ export function Sidebar({ components }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
-        className={`
-          fixed md:sticky md:top-0 left-0 h-screen md:h-screen w-64 bg-background border-r border-border
-          z-40 transform transition-transform duration-300 ease-in-out
-          ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-          overflow-y-auto md:overflow-y-auto
-        `}
+        className={`docs-sidebar ${isOpen ? "is-open" : ""}`}
       >
         <div className="p-4">
-          {/* Sidebar header */}
           <div className="mb-6 pt-12 md:pt-4">
             <div className="flex items-center justify-between mb-4">
               <Link
                 href="/"
-                className="text-xl font-bold hover:text-primary"
+                className="text-xl font-bold text-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
                 Design System KB
               </Link>
-              {/* Close button for mobile */}
               <Button
                 variant="ghost"
                 size="icon"
@@ -92,59 +85,35 @@ export function Sidebar({ components }: SidebarProps) {
                 onClick={() => setIsOpen(false)}
                 aria-label="Close sidebar"
               >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </Button>
             </div>
-            {/* Theme switcher */}
             <div className="flex items-center gap-2">
               <ThemeSwitcher />
             </div>
           </div>
 
-          {/* Navigation */}
           <nav className="space-y-6">
             <div>
               <Link
                 href="/"
-                className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  pathname === "/"
-                    ? "bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
+                className={`docs-nav-link ${pathname === "/" ? "docs-nav-link--home-active" : ""}`}
                 onClick={() => setIsOpen(false)}
               >
                 Home
               </Link>
             </div>
-
-            {/* Components by category */}
             {Object.entries(grouped).map(([category, categoryComponents]) => (
               <div key={category}>
-                <h3 className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                  {category}
-                </h3>
+                <h3 className="docs-nav-category">{category}</h3>
                 <ul className="space-y-1">
                   {categoryComponents.map((component) => (
                     <li key={component.slug}>
                       <Link
                         href={`/components/${component.slug}/`}
-                        className={`block px-3 py-2 rounded-md text-sm transition-colors ${
-                          isActive(component.slug)
-                            ? "bg-muted text-primary font-medium"
-                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                        }`}
+                        className={`docs-nav-link ${isActive(component.slug) ? "docs-nav-link--active" : ""}`}
                         onClick={() => setIsOpen(false)}
                       >
                         {component.title}

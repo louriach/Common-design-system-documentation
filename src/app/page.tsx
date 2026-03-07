@@ -4,52 +4,49 @@ export default function Home() {
   const components = getAllComponents();
 
   return (
-    <div className="space-y-8">
-      {/* Hero Section */}
-      <div className="space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold">
+    <div className="docs-home space-y-8">
+      <section className="docs-home-hero space-y-4">
+        <h1 className="docs-home-title">
           Design System Knowledge Base
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="docs-home-lead">
           A shared knowledge base for design system component documentation. 
           Reduce the need for every team to write the same documentation.
         </p>
-        <p className="text-base text-muted-foreground">
+        <p className="docs-home-sub">
           Each component includes accessibility guidelines, state management, props,
           and best practices to help you build accessible, inclusive user interfaces.
         </p>
-      </div>
+      </section>
 
-      {/* Stats Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-6 border-y border-border">
+      <section className="docs-home-stats">
         <div>
-          <div className="text-3xl font-bold">{components.length}</div>
-          <p className="text-sm text-muted-foreground">Components</p>
+          <div className="docs-home-stat-value">{components.length}</div>
+          <p className="docs-home-stat-label">Components</p>
         </div>
         <div>
-          <div className="text-3xl font-bold">WCAG 2.1</div>
-          <p className="text-sm text-muted-foreground">Accessibility Standard</p>
+          <div className="docs-home-stat-value">WCAG 2.1</div>
+          <p className="docs-home-stat-label">Accessibility Standard</p>
         </div>
         <div>
-          <div className="text-3xl font-bold">Open Source</div>
-          <p className="text-sm text-muted-foreground">MIT Licensed</p>
+          <div className="docs-home-stat-value">Open Source</div>
+          <p className="docs-home-stat-label">MIT Licensed</p>
         </div>
-      </div>
+      </section>
 
-      {/* Getting Started */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold">Getting Started</h2>
-        <p className="text-muted-foreground">
+      <section className="docs-home-section space-y-4">
+        <h2 className="docs-home-section-title">Getting Started</h2>
+        <p>
           Browse components using the sidebar on the left. Each component page includes:
         </p>
-        <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
+        <ul className="docs-home-list">
           <li>Overview and usage examples</li>
           <li>Props and configuration options</li>
           <li>Accessibility guidelines (WCAG 2.1 AA)</li>
           <li>State management patterns</li>
           <li>Best practices and common patterns</li>
         </ul>
-      </div>
+      </section>
     </div>
   );
 }
