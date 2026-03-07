@@ -1,7 +1,6 @@
-@import "tailwindcss";
+@import "./semantic.css";
 
-/* Enable class-based dark mode for Tailwind v4 */
-@custom-variant dark (&&:where(.dark, .dark *));
+/* Class-based dark mode */
 
 /* Single source of truth: brutalist black/white base + semantic variants (destructive, success, warning) */
 @theme {
@@ -79,5 +78,9 @@
   code,
   pre {
     font-family: ui-monospace, "Cascadia Mono", "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+  }
+
+  .dark .bg-neutral-100 {
+    background-color: #171717;
   }
 }

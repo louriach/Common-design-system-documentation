@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import * as Dialog from "@radix-ui/react-dialog"
 import { cn } from "@/lib/utils"
 import { X } from "lucide-react"
 
@@ -14,101 +15,67 @@ export interface ModalProps {
   closable?: boolean
 }
 
+const sizeClasses = {
+  sm: "max-w-md",
+  md: "max-w-lg",
+  lg: "max-w-2xl",
+  xl: "max-w-4xl",
+}
+
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ open, onOpenChange, title, description, children, size = "md", closable = true, ...props }, ref) => {
-    const isOpen = open !== undefined ? open : true
-    const [mounted, setMounted] = React.useState(false)
+    const isControlled = open !== undefined
+    const [openState, setOpenState] = React.useState(true)
+    const isOpen = isControlled ? open ?? false : openState
 
-    React.useEffect(() => {
-      setMounted(true)
-    }, [])
-
-    const handleClose = React.useCallback(() => {
-      onOpenChange?.(false)
-    }, [onOpenChange])
-
-    const handleBackdropClick = React.useCallback((e: React.MouseEvent) => {
-      if (e.target === e.currentTarget && closable) {
-        handleClose()
-      }
-    }, [closable, handleClose])
-
-    React.useEffect(() => {
-      if (mounted && isOpen) {
-        document.body.style.overflow = "hidden"
-      } else {
-        document.body.style.overflow = ""
-      }
-      return () => {
-        document.body.style.overflow = ""
-      }
-    }, [mounted, isOpen])
-
-    if (!mounted) {
-      return null
-    }
-
-    if (!isOpen) return null
-
-    const sizeClasses = {
-      sm: "max-w-md",
-      md: "max-w-lg",
-      lg: "max-w-2xl",
-      xl: "max-w-4xl"
-    }
+    const handleOpenChange = React.useCallback(
+      (next: boolean) => {
+        if (!isControlled) setOpenState(next)
+        onOpenChange?.(next)
+      },
+      [isControlled, onOpenChange]
+    )
 
     return (
-      <div
-        className="fixed inset-0 z-50 flex items-center justify-center"
-        onClick={handleBackdropClick}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={title ? "modal-title" : undefined}
-        aria-describedby={description ? "modal-description" : undefined}
-      >
-        <div className="fixed inset-0 bg-foreground/50" />
-        
-        <div
-          ref={ref}
-          className={cn(
-            "relative z-50 w-full bg-background rounded border border-border",
-            sizeClasses[size],
-            "max-h-[90vh] overflow-y-auto"
-          )}
-          onClick={(e) => e.stopPropagation()}
-          {...props}
-        >
-          {(title || closable) && (
-            <div className="flex items-center justify-between p-6 border-b border-border">
-              <div className="flex-1">
-                {title && (
-                  <h2 id="modal-title" className="text-lg font-semibold text-foreground">
-                    {title}
-                  </h2>
-                )}
-                {description && (
-                  <p id="modal-description" className="mt-1 text-sm text-muted-foreground">
-                    {description}
-                  </p>
+      <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="ds-dialog-backdrop fixed inset-0 z-50" />
+          <Dialog.Content
+            ref={ref}
+            className={cn("ds-dialog-content fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2", sizeClasses[size])}
+            aria-labelledby={title ? "modal-title" : undefined}
+            aria-describedby={description ? "modal-description" : undefined}
+            onClick={(e) => e.stopPropagation()}
+            {...props}
+          >
+            {(title || closable) && (
+              <div className="ds-dialog-header">
+                <div className="flex flex-1 flex-col">
+                  {title && (
+                    <Dialog.Title id="modal-title" className="ds-dialog-title">
+                      {title}
+                    </Dialog.Title>
+                  )}
+                  {description && (
+                    <Dialog.Description id="modal-description" className="ds-dialog-description">
+                      {description}
+                    </Dialog.Description>
+                  )}
+                </div>
+                {closable && (
+                  <Dialog.Close
+                    className="ds-dialog-close inline-flex"
+                    aria-label="Close modal"
+                  >
+                    <X className="h-5 w-5" />
+                  </Dialog.Close>
                 )}
               </div>
-              {closable && (
-                <button
-                  onClick={handleClose}
-                  className="ml-4 p-2 rounded text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  aria-label="Close modal"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              )}
-            </div>
-          )}
-
-          <div className="p-6 text-foreground">
-            {children}
-          </div>
-        </div>
-      </div>
+            )}
+            <div className="ds-dialog-body">{children}</div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     )
   }
 )
