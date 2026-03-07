@@ -25,7 +25,7 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
   return (
     <div className="my-6 space-y-4">
       {/* Demo Preview */}
-      <div className="relative rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+      <div className="relative rounded border border-border bg-background p-6">
         <div className="flex items-center justify-center min-h-[100px]">
           {children}
         </div>
@@ -57,7 +57,7 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
             )}
           </Button>
         </div>
-        <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
+        <pre className="bg-foreground text-background p-4 rounded overflow-x-auto text-sm">
           <code>{code.trim()}</code>
         </pre>
       </div>

@@ -16,7 +16,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
           ref={ref}
           className={cn(
             "w-full border-collapse text-sm",
-            bordered && "border border-gray-300 dark:border-gray-700",
+            bordered && "border border-border",
             className
           )}
           {...props}
@@ -33,7 +33,7 @@ const TableHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={cn("bg-gray-50 dark:bg-gray-900", className)}
+    className={cn("bg-muted", className)}
     {...props}
   />
 ))
@@ -60,9 +60,9 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b border-gray-200 dark:border-gray-800",
-      striped && "even:bg-gray-50 dark:even:bg-gray-900/50",
-      "hover:bg-gray-50 dark:hover:bg-gray-900/50",
+      "border-b border-border",
+      striped && "even:bg-muted",
+      "hover:bg-muted",
       className
     )}
     {...props}
@@ -77,7 +77,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider",
+      "px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider",
       className
     )}
     {...props}
@@ -92,7 +92,7 @@ const TableCell = React.forwardRef<
   <td
     ref={ref}
     className={cn(
-      "px-4 py-3 text-gray-900 dark:text-gray-100",
+      "px-4 py-3 text-foreground",
       className
     )}
     {...props}

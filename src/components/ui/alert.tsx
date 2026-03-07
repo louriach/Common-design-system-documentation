@@ -3,19 +3,15 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-gray-900 dark:[&>svg]:text-gray-100",
+  "relative w-full rounded border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
   {
     variants: {
       variant: {
-        default: "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-gray-800",
-        destructive:
-          "border-red-500/50 dark:border-red-500 text-red-700 dark:text-red-400 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
-        success:
-          "border-green-500/50 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-950/20 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
-        warning:
-          "border-yellow-500/50 text-yellow-700 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950/20 [&>svg]:text-yellow-600 dark:[&>svg]:text-yellow-400",
-        info:
-          "border-blue-500/50 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/20 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400",
+        default: "bg-background text-foreground border-border",
+        destructive: "border-destructive/50 text-destructive bg-destructive/10 [&>svg]:text-destructive",
+        success: "border-success/50 text-success bg-success/10 [&>svg]:text-success",
+        warning: "border-warning/50 text-warning-foreground bg-warning/20 [&>svg]:text-warning",
+        info: "border-border bg-muted text-foreground [&>svg]:text-muted-foreground",
       },
     },
     defaultVariants: {

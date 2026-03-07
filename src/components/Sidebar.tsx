@@ -67,7 +67,7 @@ export function Sidebar({ components }: SidebarProps) {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:sticky md:top-0 left-0 h-screen md:h-screen w-64 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800
+          fixed md:sticky md:top-0 left-0 h-screen md:h-screen w-64 bg-background border-r border-border
           z-40 transform transition-transform duration-300 ease-in-out
           ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           overflow-y-auto md:overflow-y-auto
@@ -79,7 +79,7 @@ export function Sidebar({ components }: SidebarProps) {
             <div className="flex items-center justify-between mb-4">
               <Link
                 href="/"
-                className="text-xl font-bold hover:text-blue-600 dark:hover:text-blue-400"
+                className="text-xl font-bold hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
                 Design System KB
@@ -132,7 +132,7 @@ export function Sidebar({ components }: SidebarProps) {
             {/* Components by category */}
             {Object.entries(grouped).map(([category, categoryComponents]) => (
               <div key={category}>
-                <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                <h3 className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {category}
                 </h3>
                 <ul className="space-y-1">
@@ -142,8 +142,8 @@ export function Sidebar({ components }: SidebarProps) {
                         href={`/components/${component.slug}/`}
                         className={`block px-3 py-2 rounded-md text-sm transition-colors ${
                           isActive(component.slug)
-                            ? "bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-medium"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                            ? "bg-muted text-primary font-medium"
+                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
                         }`}
                         onClick={() => setIsOpen(false)}
                       >

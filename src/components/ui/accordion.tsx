@@ -108,7 +108,7 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
       <div
         ref={ref}
         className={cn(
-          "border border-gray-200 dark:border-gray-800 rounded-md overflow-hidden",
+          "border border-border rounded overflow-hidden",
           className
         )}
         {...props}
@@ -165,9 +165,9 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
         onClick={handleClick}
         aria-expanded={isOpen}
         className={cn(
-          "flex w-full items-center justify-between px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-100",
-          "hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2",
+          "flex w-full items-center justify-between px-4 py-3 text-sm font-medium text-foreground",
+          "hover:bg-muted transition-colors",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           className
         )}
         {...props}
@@ -175,7 +175,7 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
         <span>{children}</span>
         <ChevronDown
           className={cn(
-            "h-4 w-4 text-gray-500 dark:text-gray-400 transition-transform duration-200",
+            "h-4 w-4 text-muted-foreground transition-transform duration-200",
             isOpen && "transform rotate-180"
           )}
         />
@@ -201,7 +201,7 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
         ref={ref}
         role="region"
         className={cn(
-          "px-4 py-3 text-sm text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800",
+          "px-4 py-3 text-sm text-foreground border-t border-border",
           className
         )}
         {...props}

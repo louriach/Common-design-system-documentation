@@ -26,7 +26,7 @@ const statusSizeClasses = {
 
 const statusColorClasses = {
   online: "bg-green-500",
-  offline: "bg-gray-400",
+  offline: "bg-muted-foreground",
   away: "bg-yellow-500",
   busy: "bg-red-500",
 }
@@ -68,7 +68,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
       >
         <div
           className={cn(
-            "relative flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-medium overflow-hidden",
+            "relative flex items-center justify-center rounded-full bg-muted text-muted-foreground font-medium overflow-hidden",
             sizeClass
           )}
         >
@@ -89,7 +89,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             </span>
           ) : (
             <svg
-              className="h-full w-full text-gray-400 dark:text-gray-500"
+              className="h-full w-full text-muted-foreground"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -104,7 +104,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         {status && (
           <span
             className={cn(
-              "absolute bottom-0 right-0 rounded-full border-2 border-white dark:border-gray-900",
+              "absolute bottom-0 right-0 rounded-full border-2 border-background",
               statusSizeClass,
               statusColorClass
             )}

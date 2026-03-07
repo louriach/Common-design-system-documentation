@@ -24,10 +24,9 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
           ref={ref}
           disabled={disabled}
           className={cn(
-            "w-full rounded-md border border-gray-300 dark:border-gray-700 p-4 space-y-3",
+            "w-full rounded border border-input p-4 space-y-3",
             "disabled:opacity-50 disabled:cursor-not-allowed",
-            error &&
-              "border-red-500 dark:border-red-500",
+            error && "border-destructive",
             className
           )}
           aria-invalid={error ? "true" : undefined}
@@ -37,13 +36,13 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
           {legend && (
             <legend
               className={cn(
-                "text-sm font-medium text-gray-700 dark:text-gray-300 px-1",
-                error && "text-red-600 dark:text-red-400"
+                "text-sm font-medium text-foreground px-1",
+                error && "text-destructive"
               )}
             >
               {legend}
               {required && (
-                <span className="text-red-500 ml-1" aria-label="required">
+                <span className="text-destructive ml-1" aria-label="required">
                   *
                 </span>
               )}
@@ -54,14 +53,14 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
         {error && (
           <p
             id={errorId}
-            className="mt-1.5 text-sm text-red-600 dark:text-red-400"
+            className="mt-1.5 text-sm text-destructive"
             role="alert"
           >
             {helperText || "Please correct the errors in this field group"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-gray-600 dark:text-gray-400">
+          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
             {helperText}
           </p>
         )}

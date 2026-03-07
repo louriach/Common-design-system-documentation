@@ -22,23 +22,23 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     const variantClasses = {
-      default: "bg-blue-600 dark:bg-blue-500",
-      success: "bg-green-600 dark:bg-green-500",
-      warning: "bg-yellow-600 dark:bg-yellow-500",
-      error: "bg-red-600 dark:bg-red-500"
+      default: "bg-primary",
+      success: "bg-success",
+      warning: "bg-warning",
+      error: "bg-destructive"
     }
 
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
         {showLabel && (
           <div className="flex justify-between items-center mb-1">
-            <span className="text-sm text-gray-700 dark:text-gray-300">Progress</span>
-            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{Math.round(percentage)}%</span>
+            <span className="text-sm text-muted-foreground">Progress</span>
+            <span className="text-sm font-medium text-foreground">{Math.round(percentage)}%</span>
           </div>
         )}
         <div
           className={cn(
-            "w-full bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden",
+            "w-full bg-muted rounded-full overflow-hidden",
             sizeClasses[size]
           )}
           role="progressbar"

@@ -72,12 +72,12 @@ export default async function ComponentPage({ params }: Props) {
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">{component.title}</h1>
           {component.category && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <p className="text-sm text-muted-foreground mb-2">
               Category: <span className="font-medium">{component.category}</span>
             </p>
           )}
           {component.description && (
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-foreground">
               {component.description}
             </p>
           )}
@@ -89,10 +89,10 @@ export default async function ComponentPage({ params }: Props) {
         </div>
 
         {/* Footer Navigation */}
-        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end">
+        <div className="mt-12 pt-8 border-t border-border flex justify-end">
           <a
             href="https://github.com"
-            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-sm text-primary hover:underline"
             target="_blank"
             rel="noopener noreferrer"
           >

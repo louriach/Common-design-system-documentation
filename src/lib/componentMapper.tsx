@@ -382,14 +382,7 @@ export function parseComponentCode(code: string): {
   icon?: string;
 } | null {
   // Remove leading/trailing whitespace and normalize
-  const originalCode = code;
   code = code.trim().replace(/\n/g, " ").replace(/\s+/g, " ");
-
-  // Debug logging for Button
-  if (originalCode.includes("Button")) {
-    console.log("[parseComponentCode] Input:", originalCode);
-    console.log("[parseComponentCode] Normalized:", code);
-  }
 
   // Skip tags that are HTML elements, not React components
   const skipTags = ['div', 'fieldset', 'legend', 'span', 'p', 'ul', 'ol', 'li', 'option', 'optgroup', 'button', 'svg', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon', 'g', 'a', 'img', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'nav', 'article', 'section', 'header', 'footer', 'aside', 'main'];
@@ -491,26 +484,12 @@ export function parseComponentCode(code: string): {
   // For other components, use simple regex (non-greedy match)
   const componentMatch = code.match(/<(\w+)([^>]*)>(.*?)<\/\1>/);
   
-  // Debug logging for Button
-  if (originalCode.includes("Button")) {
-    console.log("[parseComponentCode] componentMatch:", componentMatch);
-    console.log("[parseComponentCode] componentName:", componentName);
-    console.log("[parseComponentCode] componentMap has Button:", !!componentMap[componentName]);
-  }
-  
   if (!componentMatch) {
-    if (originalCode.includes("Button")) {
-      console.log("[parseComponentCode] No match found for:", code);
-    }
     return null;
   }
 
   const childrenContent = componentMatch[3]?.trim();
   const props = parseProps(propsString);
-
-  if (originalCode.includes("Button")) {
-    console.log("[parseComponentCode] Returning:", { component: componentName, props, children: childrenContent });
-  }
 
   return {
     component: componentName,
@@ -1447,7 +1426,7 @@ export function renderComponent(parsed: {
             if (trimmed.startsWith("<")) {
               return (
                 <div
-                  className="modal-demo-html prose dark:prose-invert max-w-none prose-p:text-gray-700 dark:prose-p:text-gray-300 text-gray-700 dark:text-gray-300"
+                  className="modal-demo-html prose dark:prose-invert max-w-none prose-p:text-foreground text-foreground"
                   dangerouslySetInnerHTML={{ __html: trimmed }}
                 />
               );

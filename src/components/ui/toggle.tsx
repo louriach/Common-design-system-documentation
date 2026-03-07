@@ -67,16 +67,14 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               htmlFor={toggleId}
               className={cn(
                 "relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer",
-                "focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 dark:focus-within:ring-blue-400 focus-within:ring-offset-2",
-                actualChecked
-                  ? "bg-blue-600 dark:bg-blue-500"
-                  : "bg-gray-300 dark:bg-gray-700",
+                "focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+                actualChecked ? "bg-primary" : "bg-muted",
                 disabled && "opacity-50 cursor-not-allowed"
               )}
             >
               <span
                 className={cn(
-                  "inline-block h-5 w-5 transform rounded-full bg-white transition-transform",
+                  "inline-block h-5 w-5 transform rounded-full bg-primary-foreground transition-transform",
                   actualChecked ? "translate-x-6" : "translate-x-0.5"
                 )}
               />
@@ -86,14 +84,14 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             <label
               htmlFor={toggleId}
               className={cn(
-                "text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer flex-1",
+                "text-sm font-medium text-foreground cursor-pointer flex-1",
                 "select-none",
                 disabled && "cursor-not-allowed opacity-50"
               )}
             >
               {label}
               {props.required && (
-                <span className="text-red-500 ml-1" aria-label="required">
+                <span className="text-destructive ml-1" aria-label="required">
                   *
                 </span>
               )}
@@ -103,14 +101,14 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
         {error && (
           <p
             id={errorId}
-            className="mt-1.5 text-sm text-red-600 dark:text-red-400 ml-13"
+            className="mt-1.5 text-sm text-destructive ml-13"
             role="alert"
           >
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-gray-600 dark:text-gray-400 ml-13">
+          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground ml-13">
             {helperText}
           </p>
         )}

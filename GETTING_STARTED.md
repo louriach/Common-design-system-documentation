@@ -72,9 +72,19 @@ out/                      # Generated static site (ready to deploy)
 
 ## Add a New Component
 
-Super easy - just add a markdown file!
+Use the template so every component doc follows the same structure:
 
-1. Create `content/components/breadcrumb.md`:
+1. **Copy the template:** Duplicate `content/components/_template.md` and rename the copy to `content/components/your-component-name.md` (e.g. `content/components/my-widget.md`). The template is excluded from the sidebar so it never appears as a component.
+
+2. **Fill in the doc:** Replace all placeholders in the new file:
+   - Frontmatter: `title`, `description`, `category` (one of: Actions, Forms, Feedback, Navigation, Data Display, Layouts)
+   - Overview, Usage (with `tsx:live` code blocks for live demos), Props table, and any other sections you need. Remove sections that don't apply.
+
+3. **Add the UI component (if new):** If this is a new component, add it under `src/components/ui/` and register it in `src/lib/componentMapper.tsx` (in `componentMap` and in the parsing/rendering logic if it has nested structure) so live demos work.
+
+4. **Verify:** Run `npm run dev` and open `/components/your-component-name/` to confirm the page and live demos render.
+
+Example: create `content/components/breadcrumb.md`:
 
 ```markdown
 ---

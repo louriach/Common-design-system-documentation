@@ -108,10 +108,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               aria-checked={indeterminate ? "mixed" : undefined}
               className={cn(
                 "h-4 w-4 cursor-pointer",
-                "focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none",
+                "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
                 "focus:outline-none",
                 "disabled:cursor-not-allowed disabled:opacity-50",
-                error && "border-red-500",
+                error && "border-destructive",
                 className
               )}
               {...props}
@@ -121,14 +121,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             <label
               htmlFor={checkboxId}
               className={cn(
-                "text-sm font-medium text-gray-900 dark:text-gray-100 cursor-pointer",
+                "text-sm font-medium text-foreground cursor-pointer",
                 "select-none",
                 disabled && "cursor-not-allowed opacity-50"
               )}
             >
               {label}
               {props.required && (
-                <span className="text-red-500 ml-1" aria-label="required">
+                <span className="text-destructive ml-1" aria-label="required">
                   *
                 </span>
               )}
@@ -138,14 +138,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         {error && (
           <p
             id={errorId}
-            className="mt-1.5 text-sm text-red-600 dark:text-red-400 ml-6"
+            className="mt-1.5 text-sm text-destructive ml-6"
             role="alert"
           >
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-gray-600 dark:text-gray-400 ml-6">
+          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground ml-6">
             {helperText}
           </p>
         )}

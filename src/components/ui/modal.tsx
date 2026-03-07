@@ -16,8 +16,6 @@ export interface ModalProps {
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ open, onOpenChange, title, description, children, size = "md", closable = true, ...props }, ref) => {
-    // Use the open prop directly, defaulting to true for live demos
-    // This ensures consistent server/client rendering
     const isOpen = open !== undefined ? open : true
     const [mounted, setMounted] = React.useState(false)
 
@@ -46,7 +44,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       }
     }, [mounted, isOpen])
 
-    // Don't render until mounted to avoid hydration mismatch
     if (!mounted) {
       return null
     }
@@ -69,32 +66,28 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         aria-labelledby={title ? "modal-title" : undefined}
         aria-describedby={description ? "modal-description" : undefined}
       >
-        {/* Backdrop */}
-        <div className="fixed inset-0 bg-black/50 dark:bg-black/70" />
+        <div className="fixed inset-0 bg-foreground/50" />
         
-        {/* Modal Content */}
         <div
           ref={ref}
           className={cn(
-            "relative z-50 w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg",
-            "border border-gray-200 dark:border-gray-800",
+            "relative z-50 w-full bg-background rounded border border-border",
             sizeClasses[size],
             "max-h-[90vh] overflow-y-auto"
           )}
           onClick={(e) => e.stopPropagation()}
           {...props}
         >
-          {/* Header */}
           {(title || closable) && (
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
+            <div className="flex items-center justify-between p-6 border-b border-border">
               <div className="flex-1">
                 {title && (
-                  <h2 id="modal-title" className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  <h2 id="modal-title" className="text-lg font-semibold text-foreground">
                     {title}
                   </h2>
                 )}
                 {description && (
-                  <p id="modal-description" className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p id="modal-description" className="mt-1 text-sm text-muted-foreground">
                     {description}
                   </p>
                 )}
@@ -102,7 +95,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               {closable && (
                 <button
                   onClick={handleClose}
-                  className="ml-4 p-2 rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400"
+                  className="ml-4 p-2 rounded text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   aria-label="Close modal"
                 >
                   <X className="h-5 w-5" />
@@ -111,8 +104,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             </div>
           )}
 
-          {/* Content */}
-          <div className="p-6 text-gray-700 dark:text-gray-300">
+          <div className="p-6 text-foreground">
             {children}
           </div>
         </div>

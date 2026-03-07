@@ -1,11 +1,13 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950">
+    <footer className="border-t border-border bg-muted">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="font-bold mb-3">Design System KB</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-muted-foreground">
               A shared knowledge base for design system component documentation.
             </p>
           </div>
@@ -13,9 +15,14 @@ export function Footer() {
             <h4 className="font-semibold mb-3 text-sm">Resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/changelog/" className="text-primary hover:underline">
+                  Changelog
+                </Link>
+              </li>
+              <li>
                 <a
                   href="https://www.w3.org/WAI/WCAG21/quickref/"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -25,7 +32,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://www.radix-ui.com/"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -35,7 +42,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://ui.shadcn.com/"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -50,7 +57,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://github.com"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -60,7 +67,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://discord.com"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -70,12 +77,12 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t pt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+        <div className="border-t border-border pt-6 text-center text-sm text-muted-foreground">
           <p>
             Made by{" "}
             <a
               href="https://twitter.com/disco_lu"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-primary hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >

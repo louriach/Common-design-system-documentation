@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/f5d6de45cb33a8ef.js","/_next/static/chunks/3a5a54ca0899115e.js","/_next/static/chunks/159b3bc432bed061.js"],"MarkdownRenderer"]
+2:I[12740,["/_next/static/chunks/36ce258c0b999245.js","/_next/static/chunks/b0d8f357dd5135fb.js","/_next/static/chunks/38dc232e481815c7.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T36be,
+3:T374a,
 ## Overview
 
 Input fields let people enter free-form text. Text inputs collect short, single-line entries like names, emails, passwords, and search queries. They offer a flexible approach for capturing information that doesn't fit into predefined options.
@@ -41,27 +41,29 @@ Input fields let people enter free-form text. Text inputs collect short, single-
 
 ## Props
 
-- `type`: "text" | "email" | "password" | "number" | "tel" | "url" | "search" - Input type (default: "text")
-- `label`: string - Label text displayed above the input
-- `placeholder`: string - Placeholder text when input is empty
-- `value`: string - Controlled input value
-- `defaultValue`: string - Uncontrolled default value
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `disabled`: boolean - Disables the input (default: false)
-- `readOnly`: boolean - Makes the input read-only (default: false)
-- `required`: boolean - Marks the input as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below input
-- `maxLength`: number - Maximum character limit
-- `minLength`: number - Minimum character limit
-- `pattern`: string - HTML5 pattern for validation
-- `autoComplete`: string - Autocomplete hint for browsers
-- `name`: string - Name attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the input
+| Prop | Type | Description |
+| --- | --- | --- |
+| type | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search"` | Input type (default: "text"). |
+| label | `string` | Label text displayed above the input. |
+| placeholder | `string` | Placeholder text when input is empty. |
+| value | `string` | Controlled input value. |
+| defaultValue | `string` | Uncontrolled default value. |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| disabled | `boolean` | Disables the input (default: false). |
+| readOnly | `boolean` | Makes the input read-only (default: false). |
+| required | `boolean` | Marks the input as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below input. |
+| maxLength | `number` | Maximum character limit. |
+| minLength | `number` | Minimum character limit. |
+| pattern | `string` | HTML5 pattern for validation. |
+| autoComplete | `string` | Autocomplete hint for browsers. |
+| name | `string` | Name attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the input. |
 
 ## Input Types
 
@@ -525,8 +527,8 @@ Validate when the form is submitted.
   required
 />
 ```
-0:{"buildId":"a-Z6SPKSg18FwqOy_0Xxq","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-gray-600 dark:text-gray-400 mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-gray-700 dark:text-gray-300","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
-4:["$","div",null,{"className":"mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-blue-600 dark:text-blue-400 hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
-5:["$","script","script-0",{"src":"/_next/static/chunks/159b3bc432bed061.js","async":true}]
+0:{"buildId":"HRC6bfCsxxAF0e4ClYG4T","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-muted-foreground mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-foreground","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-12 pt-8 border-t border-border flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-primary hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/38dc232e481815c7.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

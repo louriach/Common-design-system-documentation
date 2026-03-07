@@ -43,6 +43,14 @@ jobs:
           ls -la out/components/ || echo "No components directory found"
           find out/components -name "index.html" | wc -l || echo "No component pages found"
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run accessibility tests
+        run: npx playwright test tests/a11y.spec.ts
+        env:
+          CI: true
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -35,11 +35,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+            className="block text-sm font-medium text-foreground mb-1.5"
           >
             {label}
             {required && (
-              <span className="text-red-500 ml-1" aria-label="required">
+              <span className="text-destructive ml-1" aria-label="required">
                 *
               </span>
             )}
@@ -54,12 +54,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             aria-invalid={error ? "true" : undefined}
             aria-describedby={errorId || helperId}
             className={cn(
-              "flex h-10 w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100",
+              "flex h-10 w-full rounded border border-input bg-background px-3 py-2 text-sm text-foreground",
               "appearance-none cursor-pointer",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-50 dark:disabled:bg-gray-800",
-              error &&
-                "border-red-500 dark:border-red-500 focus-visible:ring-red-500 dark:focus-visible:ring-red-400",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
+              error && "border-destructive focus-visible:ring-destructive",
               className
             )}
             {...props}
@@ -74,7 +73,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           <div
             className={cn(
               "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2",
-              "text-gray-400 dark:text-gray-500"
+              "text-muted-foreground"
             )}
           >
             <svg
@@ -97,14 +96,14 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         {error && (
           <p
             id={errorId}
-            className="mt-1.5 text-sm text-red-600 dark:text-red-400"
+            className="mt-1.5 text-sm text-destructive"
             role="alert"
           >
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-gray-600 dark:text-gray-400">
+          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
             {helperText}
           </p>
         )}

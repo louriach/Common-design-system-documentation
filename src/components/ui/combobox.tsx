@@ -157,11 +157,11 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
         {label && (
           <label
             htmlFor={comboboxId}
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+            className="block text-sm font-medium text-foreground mb-1.5"
           >
             {label}
             {required && (
-              <span className="text-red-500 ml-1" aria-label="required">
+              <span className="text-destructive ml-1" aria-label="required">
                 *
               </span>
             )}
@@ -191,12 +191,12 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
             aria-invalid={error ? "true" : undefined}
             aria-describedby={errorId || helperId}
             className={cn(
-              "flex h-10 w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100",
-              "placeholder:text-gray-400 dark:placeholder:text-gray-500",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-50 dark:disabled:bg-gray-800",
+              "flex h-10 w-full rounded border border-input bg-background px-3 py-2 text-sm text-foreground",
+              "placeholder:text-muted-foreground",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
               error &&
-                "border-red-500 dark:border-red-500 focus-visible:ring-red-500 dark:focus-visible:ring-red-400",
+                "border-destructive focus-visible:ring-destructive",
               className
             )}
             {...props}
@@ -204,7 +204,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
           <div
             className={cn(
               "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2",
-              "text-gray-400 dark:text-gray-500"
+              "text-muted-foreground"
             )}
           >
             <svg
@@ -229,8 +229,8 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
               id={listboxId}
               role="listbox"
               className={cn(
-                "absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 dark:border-gray-800",
-                "bg-white dark:bg-gray-900 shadow-lg",
+                "absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded border border-border",
+                "bg-background",
                 "py-1 text-sm"
               )}
             >
@@ -243,12 +243,12 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
                   onClick={() => handleOptionSelect(option)}
                   className={cn(
                     "relative cursor-pointer select-none px-3 py-2",
-                    "text-gray-900 dark:text-gray-100",
-                    "hover:bg-gray-100 dark:hover:bg-gray-800",
+                    "text-foreground",
+                    "hover:bg-muted",
                     focusedIndex === index &&
-                      "bg-gray-100 dark:bg-gray-800",
+                      "bg-muted",
                     option.value === value &&
-                      "bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100",
+                      "bg-primary/10 text-primary",
                     option.disabled &&
                       "opacity-50 cursor-not-allowed pointer-events-none"
                   )}
@@ -262,14 +262,14 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
         {error && (
           <p
             id={errorId}
-            className="mt-1.5 text-sm text-red-600 dark:text-red-400"
+            className="mt-1.5 text-sm text-destructive"
             role="alert"
           >
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-gray-600 dark:text-gray-400">
+          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
             {helperText}
           </p>
         )}

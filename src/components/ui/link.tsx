@@ -13,12 +13,12 @@ const LinkComponent = React.forwardRef<
   React.ElementRef<typeof Link>,
   LinkProps
 >(({ className, variant = "default", external, href, children, ...props }, ref) => {
-  const baseStyles = "text-blue-600 dark:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2 rounded"
+  const baseStyles = "text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
   
   const variantStyles = {
-    default: "hover:text-blue-700 dark:hover:text-blue-300",
-    underline: "hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4",
-    subtle: "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+    default: "hover:opacity-80",
+    underline: "hover:opacity-80 underline underline-offset-4",
+    subtle: "text-muted-foreground hover:text-foreground"
   }
 
   const linkHref = typeof href === "string" ? href : href

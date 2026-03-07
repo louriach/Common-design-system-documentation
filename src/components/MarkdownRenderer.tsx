@@ -54,7 +54,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             if (inline) {
               return (
                 <code
-                  className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono"
+                  className="bg-muted px-2 py-1 rounded text-sm font-mono"
                   {...props}
                 >
                   {children}
@@ -67,12 +67,6 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             if (isLive && (language === "tsx" || language === "jsx")) {
               // First try to parse multiple components (for groups like Radio buttons)
               const multipleComponents = parseMultipleComponents(codeString);
-              
-              // Debug logging
-              if (codeString.includes("Button")) {
-                console.log("[MarkdownRenderer] Button code:", codeString);
-                console.log("[MarkdownRenderer] multipleComponents:", multipleComponents);
-              }
               
               // If we found multiple components, render them as a group
               if (multipleComponents.length > 1) {
@@ -93,9 +87,6 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               if (multipleComponents.length === 1) {
                 try {
                   const singleComponent = multipleComponents[0];
-                  if (codeString.includes("Button")) {
-                    console.log("[MarkdownRenderer] Rendering single component:", singleComponent);
-                  }
                   const renderedComponent = renderComponent(singleComponent);
                   return (
                     <ComponentDemo code={codeString}>
@@ -110,9 +101,6 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
               
               // Otherwise, try single component parsing
               const parsed = parseComponentCode(codeString);
-              if (codeString.includes("Button")) {
-                console.log("[MarkdownRenderer] parseComponentCode result:", parsed);
-              }
               if (parsed) {
                 try {
                   const renderedComponent = renderComponent(parsed);
@@ -131,7 +119,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             // Regular code block
             return (
               <code
-                className={`${className} block bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 rounded-lg overflow-x-auto my-3 text-sm`}
+                className={`${className} block bg-muted text-foreground p-4 rounded overflow-x-auto my-3 text-sm`}
                 {...props}
               >
                 {children}
@@ -148,33 +136,33 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             }
             // Regular code block - apply pre styling
             return (
-              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-3" {...props}>
+              <pre className="bg-foreground text-background p-4 rounded overflow-x-auto my-3" {...props}>
                 {children}
               </pre>
             );
           },
           blockquote: ({ node, ...props }) => (
             <blockquote
-              className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-3"
+              className="border-l-4 border-border pl-4 italic my-3"
               {...props}
             />
           ),
           table: ({ node, ...props }) => (
-            <div className="overflow-x-auto my-4 rounded-lg border border-gray-200 dark:border-gray-700">
+            <div className="overflow-x-auto my-4 rounded border border-border">
               <table className="w-full min-w-[320px] border-collapse text-sm" {...props} />
             </div>
           ),
           thead: ({ node, ...props }) => (
-            <thead className="bg-gray-100 dark:bg-gray-800" {...props} />
+            <thead className="bg-muted" {...props} />
           ),
           th: ({ node, ...props }) => (
-            <th className="border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 text-left font-semibold text-gray-900 dark:text-gray-100" {...props} />
+            <th className="border-b border-border px-3 py-2.5 text-left font-semibold text-foreground" {...props} />
           ),
           td: ({ node, ...props }) => (
-            <td className="border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 text-gray-700 dark:text-gray-300 first:font-mono first:text-sm" {...props} />
+            <td className="border-b border-border px-3 py-2.5 text-foreground first:font-mono first:text-sm" {...props} />
           ),
           a: ({ node, ...props }) => (
-            <a className="text-blue-600 dark:text-blue-400 hover:underline" {...props} />
+            <a className="text-primary hover:underline" {...props} />
           ),
         }}
       >

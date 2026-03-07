@@ -5,15 +5,15 @@ import { cn } from "@/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
 const iconButtonVariants = cva(
-  "inline-flex items-center justify-center rounded-md font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 [&_svg]:pointer-events-none shrink-0",
+  "inline-flex items-center justify-center rounded font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring [&_svg]:pointer-events-none shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
-        destructive: "bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 focus-visible:ring-red-500 dark:focus-visible:ring-red-400",
-        outline: "border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800",
-        secondary: "bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-700",
-        ghost: "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100",
+        default: "bg-primary text-primary-foreground hover:opacity-90",
+        destructive: "bg-destructive text-destructive-foreground hover:opacity-90 focus-visible:ring-destructive",
+        outline: "border border-border bg-background text-foreground hover:bg-muted",
+        secondary: "bg-secondary text-secondary-foreground hover:opacity-90",
+        ghost: "hover:bg-muted text-foreground",
       },
       size: {
         sm: "h-8 w-8 [&_svg]:w-4 [&_svg]:h-4",
@@ -31,7 +31,7 @@ const iconButtonVariants = cva(
 export interface IconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof iconButtonVariants> {
-  "aria-label": string // Required for accessibility
+  "aria-label": string
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(

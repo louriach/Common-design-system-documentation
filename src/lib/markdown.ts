@@ -36,7 +36,8 @@ export function getAllComponentSlugs(): string[] {
     const fileNames = fs.readdirSync(componentsDirectory);
     const slugs = fileNames
       .filter((fileName) => fileName.endsWith(".md"))
-      .map((fileName) => fileName.replace(/\.md$/, ""));
+      .map((fileName) => fileName.replace(/\.md$/, ""))
+      .filter((slug) => slug !== "_template" && slug !== "template");
     
     if (slugs.length === 0) {
       console.warn(`No markdown files found in: ${componentsDirectory}`);

@@ -26,7 +26,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                     separator: separator,
                   })}
                   {index < React.Children.count(children) - 1 && (
-                    <span className="mx-2 text-gray-400 dark:text-gray-500">
+                    <span className="mx-2 text-muted-foreground">
                       {separator || <ChevronRight className="h-4 w-4" />}
                     </span>
                   )}
@@ -56,8 +56,8 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
         className={cn(
           "transition-colors",
           isLast
-            ? "text-gray-900 dark:text-gray-100 font-medium"
-            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+            ? "text-foreground font-medium"
+            : "text-muted-foreground hover:text-foreground"
         )}
       >
         {children}

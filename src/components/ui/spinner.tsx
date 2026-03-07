@@ -17,9 +17,9 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
     }
 
     const variantClasses = {
-      default: "border-gray-300 dark:border-gray-700 border-t-gray-900 dark:border-t-gray-100",
-      primary: "border-blue-200 dark:border-blue-900 border-t-blue-600 dark:border-t-blue-400",
-      secondary: "border-gray-200 dark:border-gray-800 border-t-gray-600 dark:border-t-gray-400"
+      default: "border-muted border-t-foreground",
+      primary: "border-muted border-t-primary",
+      secondary: "border-muted border-t-muted-foreground"
     }
 
     return (
