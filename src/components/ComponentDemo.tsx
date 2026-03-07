@@ -57,7 +57,7 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
             )}
           </Button>
         </div>
-        <pre className="bg-foreground text-background p-4 rounded overflow-x-auto text-sm">
+        <pre className="bg-neutral-100 dark:bg-neutral-900 text-foreground border border-foreground px-4 py-3 rounded overflow-x-auto text-sm">
           <code>{code.trim()}</code>
         </pre>
       </div>

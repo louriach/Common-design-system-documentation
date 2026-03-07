@@ -119,7 +119,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             // Regular code block
             return (
               <code
-                className={`${className} block bg-muted text-foreground p-4 rounded overflow-x-auto my-3 text-sm`}
+                className={`${className} block px-4 py-3 rounded overflow-x-auto my-3 text-sm bg-neutral-100 dark:bg-neutral-900 text-foreground border border-foreground`}
                 {...props}
               >
                 {children}
@@ -136,7 +136,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             }
             // Regular code block - apply pre styling
             return (
-              <pre className="bg-foreground text-background p-4 rounded overflow-x-auto my-3" {...props}>
+              <pre className="bg-neutral-100 dark:bg-neutral-900 text-foreground border border-foreground px-4 rounded overflow-x-auto my-3" {...props}>
                 {children}
               </pre>
             );
