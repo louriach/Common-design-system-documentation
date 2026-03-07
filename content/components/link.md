@@ -37,14 +37,16 @@ Link components let people navigate to other pages, sections, or external websit
 
 ## Props
 
-- `href`: string - Destination URL or path
-- `variant`: "default" | "underline" | "subtle" - Visual style variant (default: "default")
-- `external`: boolean - Marks link as external (opens in new tab with security attributes)
-- `className`: string - Additional CSS classes
-- `target`: string - Link target (auto-set for external links)
-- `rel`: string - Link relationship (auto-set for external links)
-- `aria-label`: string - Accessible label for screen readers
-- `onClick`: function - Click event handler
+| Prop | Type | Description |
+| --- | --- | --- |
+| href | `string` | Destination URL or path. |
+| variant | `"default" \| "underline" \| "subtle"` | Visual style variant (default: "default"). |
+| external | `boolean` | Marks link as external (opens in new tab with security attributes). |
+| className | `string` | Additional CSS classes. |
+| target | `string` | Link target (auto-set for external links). |
+| rel | `string` | Link relationship (auto-set for external links). |
+| aria-label | `string` | Accessible label for screen readers. |
+| onClick | `function` | Click event handler. |
 
 ## States
 

@@ -61,12 +61,14 @@ Avatar components show user profile pictures, initials, or icons in a circular f
 
 ## Props
 
-- `src`: string - Image source URL for the avatar
-- `alt`: string - Alternative text for the image (defaults to name if provided)
-- `name`: string - User name used to generate initials when no image is available
-- `size`: "sm" | "md" | "lg" | "xl" - Avatar size (default: "md")
-- `status`: "online" | "offline" | "away" | "busy" - Status indicator to show
-- `fallback`: ReactNode - Custom fallback content when image fails or is not provided
+| Prop | Type | Description |
+| --- | --- | --- |
+| src | `string` | Image source URL for the avatar. |
+| alt | `string` | Alternative text for the image (defaults to name if provided). |
+| name | `string` | User name used to generate initials when no image is available. |
+| size | `"sm" \| "md" \| "lg" \| "xl"` | Avatar size (default: "md"). |
+| status | `"online" \| "offline" \| "away" \| "busy"` | Status indicator to show. |
+| fallback | `ReactNode` | Custom fallback content when image fails or is not provided. |
 
 ## States
 

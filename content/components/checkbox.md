@@ -47,22 +47,24 @@ Checkboxes let people choose one or more options from a list. While radio button
 
 ## Props
 
-- `label`: string - Label text displayed next to the checkbox
-- `checked`: boolean - Controlled checked state
-- `defaultChecked`: boolean - Uncontrolled initial checked state
-- `indeterminate`: boolean - Shows indeterminate state (partially selected)
-- `disabled`: boolean - Disables the checkbox (default: false)
-- `required`: boolean - Marks the checkbox as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below checkbox
-- `name`: string - Name attribute for form submission
-- `value`: string - Value attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the checkbox
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | `string` | Label text displayed next to the checkbox. |
+| checked | `boolean` | Controlled checked state. |
+| defaultChecked | `boolean` | Uncontrolled initial checked state. |
+| indeterminate | `boolean` | Shows indeterminate state (partially selected). |
+| disabled | `boolean` | Disables the checkbox (default: false). |
+| required | `boolean` | Marks the checkbox as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below checkbox. |
+| name | `string` | Name attribute for form submission. |
+| value | `string` | Value attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the checkbox. |
 
 ## States
 

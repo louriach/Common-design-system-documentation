@@ -42,27 +42,29 @@ Input fields let people enter free-form text. Text inputs collect short, single-
 
 ## Props
 
-- `type`: "text" | "email" | "password" | "number" | "tel" | "url" | "search" - Input type (default: "text")
-- `label`: string - Label text displayed above the input
-- `placeholder`: string - Placeholder text when input is empty
-- `value`: string - Controlled input value
-- `defaultValue`: string - Uncontrolled default value
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `disabled`: boolean - Disables the input (default: false)
-- `readOnly`: boolean - Makes the input read-only (default: false)
-- `required`: boolean - Marks the input as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below input
-- `maxLength`: number - Maximum character limit
-- `minLength`: number - Minimum character limit
-- `pattern`: string - HTML5 pattern for validation
-- `autoComplete`: string - Autocomplete hint for browsers
-- `name`: string - Name attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the input
+| Prop | Type | Description |
+| --- | --- | --- |
+| type | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search"` | Input type (default: "text"). |
+| label | `string` | Label text displayed above the input. |
+| placeholder | `string` | Placeholder text when input is empty. |
+| value | `string` | Controlled input value. |
+| defaultValue | `string` | Uncontrolled default value. |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| disabled | `boolean` | Disables the input (default: false). |
+| readOnly | `boolean` | Makes the input read-only (default: false). |
+| required | `boolean` | Marks the input as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below input. |
+| maxLength | `number` | Maximum character limit. |
+| minLength | `number` | Minimum character limit. |
+| pattern | `string` | HTML5 pattern for validation. |
+| autoComplete | `string` | Autocomplete hint for browsers. |
+| name | `string` | Name attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the input. |
 
 ## Input Types
 

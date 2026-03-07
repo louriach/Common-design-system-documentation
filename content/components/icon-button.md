@@ -97,12 +97,14 @@ Icon buttons provide a compact way to trigger actions using visual symbols inste
 
 ## Props
 
-- `variant`: "default" | "destructive" | "secondary" | "outline" | "ghost" - Visual style variant (default: "default")
-- `size`: "sm" | "md" | "lg" - Button size (default: "md")
-- `aria-label`: string - **Required** - Accessible label describing the button's action
-- `disabled`: boolean - Disables the button (default: false)
-- `onClick`: function - Click event handler
-- `className`: string - Additional CSS classes
+| Prop | Type | Description |
+| --- | --- | --- |
+| variant | `"default" \| "destructive" \| "secondary" \| "outline" \| "ghost"` | Visual style variant (default: "default"). |
+| size | `"sm" \| "md" \| "lg"` | Button size (default: "md"). |
+| aria-label | `string` | **Required.** Accessible label describing the button's action. |
+| disabled | `boolean` | Disables the button (default: false). |
+| onClick | `function` | Click event handler. |
+| className | `string` | Additional CSS classes. |
 
 ## States
 

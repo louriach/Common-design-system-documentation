@@ -36,9 +36,12 @@ Button component for user interactions.
 ```
 
 ## Props
-- `variant`: "default" | "secondary" | "outline" | "ghost"
-- `size`: "sm" | "md" | "lg"
-- `disabled`: boolean
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| variant | `"default" \| "secondary" \| "outline" \| "ghost"` | Visual style of the button. |
+| size | `"sm" \| "md" \| "lg"` | Size of the button. |
+| disabled | `boolean` | Disables the button. |
 
 ## Accessibility
 - ARIA labels required for icon-only buttons

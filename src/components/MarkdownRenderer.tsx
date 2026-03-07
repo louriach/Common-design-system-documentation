@@ -37,12 +37,14 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           ),
           p: ({ node, ...props }) => <p className="my-3 leading-7" {...props} />,
           ul: ({ node, ...props }) => (
-            <ul className="list-disc list-inside my-3 space-y-1" {...props} />
+            <ul className="list-disc list-outside pl-6 my-3 space-y-2 [&>li]:pl-1" {...props} />
           ),
           ol: ({ node, ...props }) => (
-            <ol className="list-decimal list-inside my-3 space-y-1" {...props} />
+            <ol className="list-decimal list-outside pl-6 my-3 space-y-2 [&>li]:pl-1" {...props} />
           ),
-          li: ({ node, ...props }) => <li className="ml-2" {...props} />,
+          li: ({ node, ...props }) => (
+            <li className="leading-7 [&>p]:my-0" {...props} />
+          ),
           code: ({ node, inline, className, children, ...props }: any) => {
             const match = /language-(\w+)(?::live)?/.exec(className || "");
             const language = match ? match[1] : "";
@@ -129,7 +131,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             // Regular code block
             return (
               <code
-                className={`${className} block bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-3 text-sm`}
+                className={`${className} block bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 rounded-lg overflow-x-auto my-3 text-sm`}
                 {...props}
               >
                 {children}
@@ -158,18 +160,18 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             />
           ),
           table: ({ node, ...props }) => (
-            <div className="overflow-x-auto my-3">
-              <table className="w-full border-collapse border border-gray-300 dark:border-gray-600" {...props} />
+            <div className="overflow-x-auto my-4 rounded-lg border border-gray-200 dark:border-gray-700">
+              <table className="w-full min-w-[320px] border-collapse text-sm" {...props} />
             </div>
           ),
           thead: ({ node, ...props }) => (
             <thead className="bg-gray-100 dark:bg-gray-800" {...props} />
           ),
           th: ({ node, ...props }) => (
-            <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left font-semibold" {...props} />
+            <th className="border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 text-left font-semibold text-gray-900 dark:text-gray-100" {...props} />
           ),
           td: ({ node, ...props }) => (
-            <td className="border border-gray-300 dark:border-gray-600 px-3 py-2" {...props} />
+            <td className="border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 text-gray-700 dark:text-gray-300 first:font-mono first:text-sm" {...props} />
           ),
           a: ({ node, ...props }) => (
             <a className="text-blue-600 dark:text-blue-400 hover:underline" {...props} />

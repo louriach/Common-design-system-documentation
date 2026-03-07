@@ -24,10 +24,13 @@ Card component serves as a flexible container for grouping related information. 
 ```
 
 ## Props
-- `variant`: "default" | "elevated" | "outlined"
-- `padding`: "sm" | "md" | "lg"
-- `interactive`: boolean - Adds hover effects
-- `clickable`: boolean - Adds pointer cursor and click handler
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| variant | `"default" \| "elevated" \| "outlined"` | Card visual style. |
+| padding | `"sm" \| "md" \| "lg"` | Internal padding. |
+| interactive | `boolean` | Adds hover effects. |
+| clickable | `boolean` | Adds pointer cursor and click handler. |
 
 ## Accessibility
 - Use semantic HTML: `<article>`, `<section>`, or `<div>` depending on content

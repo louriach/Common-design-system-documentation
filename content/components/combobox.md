@@ -98,20 +98,22 @@ Combobox components blend text input with dropdown selection, letting people typ
 
 ## Props
 
-- `options`: Array<{value: string, label: string, disabled?: boolean}> - **Required** - Array of selectable options
-- `value`: string - Controlled selected value
-- `onChange`: function - Callback when selection changes (receives value)
-- `onInputChange`: function - Callback when input text changes (receives input value)
-- `label`: string - Label text shown above the combobox
-- `placeholder`: string - Placeholder text when input is empty
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message shown below combobox
-- `disabled`: boolean - Disables the combobox (default: false)
-- `required`: boolean - Marks the combobox as required (default: false)
-- `filterFunction`: function - Custom function to filter options (default: case-insensitive label matching)
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the combobox
+| Prop | Type | Description |
+| --- | --- | --- |
+| options | `Array<{value: string, label: string, disabled?: boolean}>` | **Required.** Array of selectable options. |
+| value | `string` | Controlled selected value. |
+| onChange | `function` | Callback when selection changes (receives value). |
+| onInputChange | `function` | Callback when input text changes (receives input value). |
+| label | `string` | Label text shown above the combobox. |
+| placeholder | `string` | Placeholder text when input is empty. |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message shown below combobox. |
+| disabled | `boolean` | Disables the combobox (default: false). |
+| required | `boolean` | Marks the combobox as required (default: false). |
+| filterFunction | `function` | Custom function to filter options (default: case-insensitive label matching). |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the combobox. |
 
 ## States
 

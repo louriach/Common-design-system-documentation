@@ -47,22 +47,24 @@ Date picker components let people choose dates from a calendar interface. They p
 
 ## Props
 
-- `label`: string - Label text displayed above the date picker
-- `value`: string - Controlled date value (YYYY-MM-DD format)
-- `defaultValue`: string - Uncontrolled initial date value (YYYY-MM-DD format)
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `disabled`: boolean - Disables the date picker (default: false)
-- `required`: boolean - Marks the date picker as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below date picker
-- `min`: string - Minimum selectable date (YYYY-MM-DD format)
-- `max`: string - Maximum selectable date (YYYY-MM-DD format)
-- `name`: string - Name attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the date picker
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | `string` | Label text displayed above the date picker. |
+| value | `string` | Controlled date value (YYYY-MM-DD format). |
+| defaultValue | `string` | Uncontrolled initial date value (YYYY-MM-DD format). |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| disabled | `boolean` | Disables the date picker (default: false). |
+| required | `boolean` | Marks the date picker as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below date picker. |
+| min | `string` | Minimum selectable date (YYYY-MM-DD format). |
+| max | `string` | Maximum selectable date (YYYY-MM-DD format). |
+| name | `string` | Name attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the date picker. |
 
 ## States
 

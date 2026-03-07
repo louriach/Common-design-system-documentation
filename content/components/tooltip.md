@@ -55,11 +55,13 @@ Tooltip components show helpful information when people hover over or focus on a
 
 ## Props
 
-- `content`: string - **Required** - Text content displayed in the tooltip
-- `children`: ReactNode - **Required** - Element that triggers the tooltip
-- `placement`: "top" | "bottom" | "left" | "right" - Position relative to trigger (default: "top")
-- `delay`: number - Delay in milliseconds before showing tooltip (default: 200)
-- `disabled`: boolean - Disables the tooltip (default: false)
+| Prop | Type | Description |
+| --- | --- | --- |
+| content | `string` | **Required.** Text content displayed in the tooltip. |
+| children | `ReactNode` | **Required.** Element that triggers the tooltip. |
+| placement | `"top" \| "bottom" \| "left" \| "right"` | Position relative to trigger (default: "top"). |
+| delay | `number` | Delay in milliseconds before showing tooltip (default: 200). |
+| disabled | `boolean` | Disables the tooltip (default: false). |
 
 ## States
 

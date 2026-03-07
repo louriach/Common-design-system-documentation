@@ -41,13 +41,19 @@ Breadcrumb components show where people are in a site's structure by displaying 
 ## Props
 
 ### Breadcrumb
-- `separator`: ReactNode - Custom separator between items (default: chevron icon)
-- `aria-label`: string - Accessible label (default: "Breadcrumb")
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| separator | `ReactNode` | Custom separator between items (default: chevron icon). |
+| aria-label | `string` | Accessible label (default: "Breadcrumb"). |
 
 ### BreadcrumbItem
-- `href`: string - Link destination (not required for last item)
-- `isLast`: boolean - Whether this is the last item (auto-set by Breadcrumb)
-- `separator`: ReactNode - Custom separator (inherited from Breadcrumb)
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| href | `string` | Link destination (not required for last item). |
+| isLast | `boolean` | Whether this is the last item (auto-set by Breadcrumb). |
+| separator | `ReactNode` | Custom separator (inherited from Breadcrumb). |
 
 ## States
 

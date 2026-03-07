@@ -46,12 +46,14 @@ Progress components show how far along a process has completed, giving people a 
 
 ## Props
 
-- `value`: number - Current progress value (0 to max, default: 0)
-- `max`: number - Maximum value representing 100% (default: 100)
-- `showLabel`: boolean - Shows percentage label above progress bar (default: false)
-- `size`: "sm" | "md" | "lg" - Height of the progress bar (default: "md")
-- `variant`: "default" | "success" | "warning" | "error" - Color variant (default: "default")
-- `className`: string - Additional CSS classes
+| Prop | Type | Description |
+| --- | --- | --- |
+| value | `number` | Current progress value (0 to max, default: 0). |
+| max | `number` | Maximum value representing 100% (default: 100). |
+| showLabel | `boolean` | Shows percentage label above progress bar (default: false). |
+| size | `"sm" \| "md" \| "lg"` | Height of the progress bar (default: "md"). |
+| variant | `"default" \| "success" \| "warning" \| "error"` | Color variant (default: "default"). |
+| className | `string` | Additional CSS classes. |
 
 ## States
 

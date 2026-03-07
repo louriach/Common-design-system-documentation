@@ -93,25 +93,43 @@ Table components organize information into rows and columns, making it easy to c
 ## Props
 
 ### Table
-- `striped`: boolean - Applies alternating row colors (default: false)
-- `bordered`: boolean - Adds border around table (default: false)
-- `className`: string - Additional CSS classes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| striped | `boolean` | Applies alternating row colors (default: false). |
+| bordered | `boolean` | Adds border around table (default: false). |
+| className | `string` | Additional CSS classes. |
 
 ### TableHeader
-- `className`: string - Additional CSS classes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| className | `string` | Additional CSS classes. |
 
 ### TableBody
-- `className`: string - Additional CSS classes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| className | `string` | Additional CSS classes. |
 
 ### TableRow
-- `striped`: boolean - Applies background color to even rows
-- `className`: string - Additional CSS classes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| striped | `boolean` | Applies background color to even rows. |
+| className | `string` | Additional CSS classes. |
 
 ### TableHead
-- `className`: string - Additional CSS classes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| className | `string` | Additional CSS classes. |
 
 ### TableCell
-- `className`: string - Additional CSS classes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| className | `string` | Additional CSS classes. |
 
 ## States
 

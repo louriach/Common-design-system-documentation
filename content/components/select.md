@@ -83,23 +83,25 @@ Select components let people pick one option from a dropdown list of predefined 
 
 ## Props
 
-- `label`: string - Label text displayed above the select
-- `placeholder`: string - Placeholder option text (shown when no value is selected)
-- `value`: string - Controlled selected value
-- `defaultValue`: string - Uncontrolled initial selected value
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `disabled`: boolean - Disables the select (default: false)
-- `required`: boolean - Marks the select as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below select
-- `name`: string - Name attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the select
-- `multiple`: boolean - Allows multiple selections (default: false)
-- `size`: number - Number of visible options in the list
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | `string` | Label text displayed above the select. |
+| placeholder | `string` | Placeholder option text (shown when no value is selected). |
+| value | `string` | Controlled selected value. |
+| defaultValue | `string` | Uncontrolled initial selected value. |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| disabled | `boolean` | Disables the select (default: false). |
+| required | `boolean` | Marks the select as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below select. |
+| name | `string` | Name attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the select. |
+| multiple | `boolean` | Allows multiple selections (default: false). |
+| size | `number` | Number of visible options in the list. |
 
 ## States
 

@@ -47,26 +47,28 @@ Textarea components let people enter multiple lines of text. They're ideal for l
 
 ## Props
 
-- `label`: string - Label text shown above the textarea
-- `placeholder`: string - Placeholder text when textarea is empty
-- `value`: string - Controlled textarea value
-- `defaultValue`: string - Uncontrolled default value
-- `rows`: number - Number of visible text lines (default: 4)
-- `cols`: number - Number of visible character columns (rarely used)
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `disabled`: boolean - Disables the textarea (default: false)
-- `readOnly`: boolean - Makes the textarea read-only (default: false)
-- `required`: boolean - Marks the textarea as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message shown below textarea
-- `maxLength`: number - Maximum character limit
-- `minLength`: number - Minimum character limit
-- `name`: string - Name attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the textarea
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | `string` | Label text shown above the textarea. |
+| placeholder | `string` | Placeholder text when textarea is empty. |
+| value | `string` | Controlled textarea value. |
+| defaultValue | `string` | Uncontrolled default value. |
+| rows | `number` | Number of visible text lines (default: 4). |
+| cols | `number` | Number of visible character columns (rarely used). |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| disabled | `boolean` | Disables the textarea (default: false). |
+| readOnly | `boolean` | Makes the textarea read-only (default: false). |
+| required | `boolean` | Marks the textarea as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message shown below textarea. |
+| maxLength | `number` | Maximum character limit. |
+| minLength | `number` | Minimum character limit. |
+| name | `string` | Name attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the textarea. |
 
 ## States
 

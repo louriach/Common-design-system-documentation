@@ -52,15 +52,17 @@ Badge components show small labels, status indicators, counts, or tags that add 
 
 ## Props
 
-- `variant`: "default" | "success" | "warning" | "error" | "info" | "secondary" - Visual style variant
-- `size`: "sm" | "md" | "lg" - Badge size (default: "md")
-- `shape`: "rounded" | "square" | "pill" - Border radius style (default: "rounded")
-- `dot`: boolean - Show dot indicator instead of text (default: false)
-- `count`: number | ReactNode - Numeric count or custom content to display
-- `overflowCount`: number - Maximum count to display before showing "+" (default: 99)
-- `showZero`: boolean - Show badge when count is zero (default: false)
-- `status`: "success" | "processing" | "default" | "error" | "warning" - Status indicator style
-- `text`: ReactNode - Text content for status badges
+| Prop | Type | Description |
+| --- | --- | --- |
+| variant | `"default" \| "success" \| "warning" \| "error" \| "info" \| "secondary"` | Visual style variant. |
+| size | `"sm" \| "md" \| "lg"` | Badge size (default: "md"). |
+| shape | `"rounded" \| "square" \| "pill"` | Border radius style (default: "rounded"). |
+| dot | `boolean` | Show dot indicator instead of text (default: false). |
+| count | `number \| ReactNode` | Numeric count or custom content to display. |
+| overflowCount | `number` | Maximum count to display before showing "+" (default: 99). |
+| showZero | `boolean` | Show badge when count is zero (default: false). |
+| status | `"success" \| "processing" \| "default" \| "error" \| "warning"` | Status indicator style. |
+| text | `ReactNode` | Text content for status badges. |
 
 ## Variants
 

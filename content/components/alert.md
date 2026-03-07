@@ -38,14 +38,17 @@ Alert components show contextual feedback messages that need attention. Alerts p
 ```
 
 ## Props
-- `type`: "info" | "success" | "warning" | "error" - Alert status type
-- `title`: string - Alert title/heading (required)
-- `description`: string - Additional detailed content (optional)
-- `closable`: boolean - Show close button (default: false)
-- `icon`: ReactNode - Custom icon (optional, defaults to type-specific icon)
-- `onClose`: function - Callback when alert is dismissed
-- `variant`: "default" | "banner" | "inline" - Visual style variant
-- `action`: ReactNode - Action button or link (optional)
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| type | `"info" \| "success" \| "warning" \| "error"` | Alert status type. |
+| title | `string` | Alert title/heading (required). |
+| description | `string` | Additional detailed content (optional). |
+| closable | `boolean` | Show close button (default: false). |
+| icon | `ReactNode` | Custom icon (optional, defaults to type-specific icon). |
+| onClose | `function` | Callback when alert is dismissed. |
+| variant | `"default" \| "banner" \| "inline"` | Visual style variant. |
+| action | `ReactNode` | Action button or link (optional). |
 
 ## Variants
 

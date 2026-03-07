@@ -40,10 +40,12 @@ Button groups bring together related action buttons in a single visual unit. The
 
 Button groups contain individual Button components. Each button supports these standard properties:
 
-- `variant`: "default" | "secondary" | "outline" | "ghost" - Visual style of the button
-- `size`: "sm" | "md" | "lg" - Size of the button
-- `disabled`: boolean - Disables the button
-- `children`: React.ReactNode - Button label text or content
+| Prop | Type | Description |
+| --- | --- | --- |
+| variant | `"default" \| "secondary" \| "outline" \| "ghost"` | Visual style of the button. |
+| size | `"sm" \| "md" \| "lg"` | Size of the button. |
+| disabled | `boolean` | Disables the button. |
+| children | `React.ReactNode` | Button label text or content. |
 
 ## States
 

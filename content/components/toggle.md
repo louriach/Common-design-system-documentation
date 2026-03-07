@@ -42,21 +42,23 @@ Toggle components let people turn options on or off with a single action. They p
 
 ## Props
 
-- `label`: string - Label text shown next to the toggle
-- `checked`: boolean - Controlled checked state
-- `defaultChecked`: boolean - Uncontrolled initial checked state
-- `disabled`: boolean - Disables the toggle (default: false)
-- `required`: boolean - Marks the toggle as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message shown below toggle
-- `name`: string - Name attribute for form submission
-- `value`: string - Value attribute for form submission
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the toggle
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | `string` | Label text shown next to the toggle. |
+| checked | `boolean` | Controlled checked state. |
+| defaultChecked | `boolean` | Uncontrolled initial checked state. |
+| disabled | `boolean` | Disables the toggle (default: false). |
+| required | `boolean` | Marks the toggle as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message shown below toggle. |
+| name | `string` | Name attribute for form submission. |
+| value | `string` | Value attribute for form submission. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the toggle. |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
 
 ## States
 

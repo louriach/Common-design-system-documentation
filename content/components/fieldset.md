@@ -73,15 +73,17 @@ Fieldset components group related form controls together, creating visual and se
 
 ## Props
 
-- `legend`: string - Text displayed as the fieldset's legend (title)
-- `disabled`: boolean - Disables all form controls within the fieldset (default: false)
-- `required`: boolean - Marks the fieldset as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below fieldset
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `className`: string - Additional CSS classes
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the fieldset
+| Prop | Type | Description |
+| --- | --- | --- |
+| legend | `string` | Text displayed as the fieldset's legend (title). |
+| disabled | `boolean` | Disables all form controls within the fieldset (default: false). |
+| required | `boolean` | Marks the fieldset as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below fieldset. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| className | `string` | Additional CSS classes. |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the fieldset. |
 
 ## States
 

@@ -39,19 +39,29 @@ Tabs organize content into separate sections that people can switch between. The
 ## Props
 
 ### Tabs
-- `defaultValue`: string - Initial active tab value
-- `value`: string - Controlled active tab value
-- `onValueChange`: function - Callback when active tab changes
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| defaultValue | `string` | Initial active tab value. |
+| value | `string` | Controlled active tab value. |
+| onValueChange | `function` | Callback when active tab changes. |
 
 ### TabsList
-(No additional props beyond standard HTML div attributes)
+
+(No additional props beyond standard HTML div attributes.)
 
 ### TabsTrigger
-- `value`: string - **Required** - Unique identifier for this tab
-- `disabled`: boolean - Disables the tab trigger
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| value | `string` | **Required.** Unique identifier for this tab. |
+| disabled | `boolean` | Disables the tab trigger. |
 
 ### TabsContent
-- `value`: string - **Required** - Unique identifier matching a TabsTrigger
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| value | `string` | **Required.** Unique identifier matching a TabsTrigger. |
 
 ## States
 

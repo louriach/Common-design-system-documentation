@@ -50,9 +50,11 @@ Spinner components indicate that a process is ongoing when completion time or pr
 
 ## Props
 
-- `size`: "sm" | "md" | "lg" - Size of the spinner (default: "md")
-- `variant`: "default" | "primary" | "secondary" - Color variant (default: "default")
-- `className`: string - Additional CSS classes
+| Prop | Type | Description |
+| --- | --- | --- |
+| size | `"sm" \| "md" \| "lg"` | Size of the spinner (default: "md"). |
+| variant | `"default" \| "primary" \| "secondary"` | Color variant (default: "default"). |
+| className | `string` | Additional CSS classes. |
 
 ## States
 

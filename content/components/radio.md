@@ -59,21 +59,23 @@ Radio buttons let people choose a single option from a set of mutually exclusive
 
 ## Props
 
-- `name`: string - **Required** - Name attribute that groups radio buttons together
-- `value`: string - **Required** - Value submitted when this option is selected
-- `label`: string - Label text displayed next to the radio button
-- `checked`: boolean - Controlled checked state
-- `defaultChecked`: boolean - Uncontrolled initial checked state
-- `disabled`: boolean - Disables the radio button (default: false)
-- `required`: boolean - Marks the radio group as required (default: false)
-- `error`: boolean - Shows error state styling and message (default: false)
-- `helperText`: string - Helper text or error message displayed below radio button
-- `onChange`: function - Change event handler
-- `onBlur`: function - Blur event handler
-- `onFocus`: function - Focus event handler
-- `id`: string - Unique identifier (auto-generated if not provided)
-- `aria-label`: string - Accessible label for screen readers
-- `aria-describedby`: string - ID of element describing the radio button
+| Prop | Type | Description |
+| --- | --- | --- |
+| name | `string` | **Required.** Name attribute that groups radio buttons together. |
+| value | `string` | **Required.** Value submitted when this option is selected. |
+| label | `string` | Label text displayed next to the radio button. |
+| checked | `boolean` | Controlled checked state. |
+| defaultChecked | `boolean` | Uncontrolled initial checked state. |
+| disabled | `boolean` | Disables the radio button (default: false). |
+| required | `boolean` | Marks the radio group as required (default: false). |
+| error | `boolean` | Shows error state styling and message (default: false). |
+| helperText | `string` | Helper text or error message displayed below radio button. |
+| onChange | `function` | Change event handler. |
+| onBlur | `function` | Blur event handler. |
+| onFocus | `function` | Focus event handler. |
+| id | `string` | Unique identifier (auto-generated if not provided). |
+| aria-label | `string` | Accessible label for screen readers. |
+| aria-describedby | `string` | ID of element describing the radio button. |
 
 ## States
 

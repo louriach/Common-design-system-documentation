@@ -53,14 +53,16 @@ Modal components display content in an overlay that requires user attention befo
 
 ## Props
 
-- `open`: boolean - Controls whether the modal is visible (default: false)
-- `onOpenChange`: function - Callback when modal open state changes
-- `title`: string - Title text displayed in the modal header
-- `description`: string - Optional description text below the title
-- `children`: ReactNode - Content displayed in the modal body
-- `size`: "sm" | "md" | "lg" | "xl" - Modal width size (default: "md")
-- `closable`: boolean - Whether the modal can be closed (default: true)
-- `className`: string - Additional CSS classes
+| Prop | Type | Description |
+| --- | --- | --- |
+| open | `boolean` | Controls whether the modal is visible (default: false). |
+| onOpenChange | `function` | Callback when modal open state changes. |
+| title | `string` | Title text displayed in the modal header. |
+| description | `string` | Optional description text below the title. |
+| children | `ReactNode` | Content displayed in the modal body. |
+| size | `"sm" \| "md" \| "lg" \| "xl"` | Modal width size (default: "md"). |
+| closable | `boolean` | Whether the modal can be closed (default: true). |
+| className | `string` | Additional CSS classes. |
 
 ## States
 
