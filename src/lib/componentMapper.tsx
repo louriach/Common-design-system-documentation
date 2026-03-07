@@ -628,13 +628,15 @@ export function renderComponent(parsed: {
 
     return (
       <Alert variant={variant as any}>
-        <IconComponent className="h-4 w-4" />
-        {props.title && <AlertTitle>{props.title}</AlertTitle>}
-        {(children || props.description) && (
-          <AlertDescription>
-            {children || props.description}
-          </AlertDescription>
-        )}
+        <IconComponent className="h-5 w-5" />
+        <div className="flex flex-col gap-1">
+          {props.title && <AlertTitle>{props.title}</AlertTitle>}
+          {(children || props.description) && (
+            <AlertDescription>
+              {children || props.description}
+            </AlertDescription>
+          )}
+        </div>
       </Alert>
     );
   }
