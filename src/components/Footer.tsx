@@ -71,7 +71,17 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t pt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-          <p>&copy; 2026 Design System Knowledge Base. MIT Licensed.</p>
+          <p>
+            Made by{" "}
+            <a
+              href="https://twitter.com/disco_lu"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @disco_lu
+            </a>
+          </p>
         </div>
       </div>
     </footer>
