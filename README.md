@@ -4,13 +4,15 @@ A public static website providing a shared knowledge base for design system comp
 
 ## 🎯 Features
 
-- **📚 4 Core Components**: Comprehensive documentation for Button, Input, Card, and Badge
+- **📚 25 Components**: Comprehensive documentation across Actions, Forms, Data Display, Feedback, Navigation, and Layouts (Button, Input, Card, Badge, Checkbox, Radio, Select, Textarea, Toggle, Combobox, Date Picker, Fieldset, Button Group, Icon Button, Alert, Avatar, Breadcrumb, Tabs, Accordion, Link, Modal, Progress, Spinner, Table, Tooltip)
+- **🖼 Live Demos**: Interactive component examples with `tsx:live` code blocks rendered in the browser
 - **♿ Accessibility First**: Built on Radix UI and shadcn/ui with WCAG 2.1 AA compliance
 - **📱 Responsive Design**: Mobile-first approach with Tailwind CSS utilities
 - **🌙 Dark Mode**: Full dark mode support out of the box
 - **⚡ Fast Performance**: Static site generation with Next.js for instant load times
 - **🔗 Version Controlled**: All documentation in Git-friendly Markdown files
 - **🚀 Auto-Deployed**: GitHub Actions automatically deploys on push to main
+- **🤖 llms.txt**: Machine-readable site description for LLMs at `/llms.txt`
 
 ## 🛠 Tech Stack
 
@@ -27,28 +29,32 @@ A public static website providing a shared knowledge base for design system comp
 ```
 .
 ├── content/components/        # Markdown documentation for each component
-│   ├── button.md
-│   ├── input.md
-│   ├── card.md
-│   └── badge.md
+│   ├── accordion.md, alert.md, avatar.md, badge.md, breadcrumb.md
+│   ├── button.md, button-group.md, card.md, checkbox.md, combobox.md
+│   ├── date-picker.md, fieldset.md, icon-button.md, input.md, link.md
+│   ├── modal.md, progress.md, radio.md, select.md, spinner.md
+│   ├── table.md, tabs.md, textarea.md, toggle.md, tooltip.md
+├── public/
+│   └── llms.txt               # Site description for LLMs
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx          # Homepage with component grid
+│   │   ├── page.tsx           # Homepage with component grid
 │   │   ├── components/[slug]/ # Dynamic component detail pages
 │   │   └── layout.tsx         # Root layout
 │   ├── components/
 │   │   ├── Header.tsx         # Navigation header
-│   │   ├── Footer.tsx         # Site footer
-│   │   ├── ComponentGrid.tsx  # Grid display of components
-│   │   ├── MarkdownRenderer.tsx # Renders markdown with syntax highlighting
-│   │   └── ui/               # shadcn/ui components (Button, Card, etc.)
+│   │   ├── Sidebar.tsx        # Sticky sidebar with component list by category
+│   │   ├── ComponentGrid.tsx   # Grid display of components on homepage
+│   │   ├── ComponentDemo.tsx  # Wrapper for live demos with code + preview
+│   │   ├── MarkdownRenderer.tsx # Renders markdown + tsx:live code blocks
+│   │   └── ui/                # shadcn/ui and custom components (25 components)
 │   └── lib/
-│       └── markdown.ts       # Utilities for parsing markdown files
+│       ├── markdown.ts        # Utilities for parsing markdown files
+│       └── componentMapper.tsx # Parses and renders live component demos
 ├── .github/workflows/
-│   └── deploy.yml            # GitHub Actions deployment workflow
-├── next.config.ts            # Next.js configuration (static export)
-├── tailwind.config.ts        # Tailwind CSS configuration
-└── package.json              # Project dependencies
+│   └── deploy.yml             # GitHub Actions deployment workflow
+├── next.config.ts             # Next.js configuration (static export)
+└── package.json                # Project dependencies
 ```
 
 ## 🚀 Quick Start
@@ -79,8 +85,8 @@ Static output is generated in the `out/` directory.
 
 To add a new component:
 
-1. Create a new Markdown file in `content/components/` (e.g., `alert.md`)
-2. Add frontmatter with metadata:
+1. Create the UI component in `src/components/ui/` (e.g., `alert.tsx`) if it doesn't exist.
+2. Create a Markdown file in `content/components/` (e.g., `alert.md`) with frontmatter:
 
 ```markdown
 ---
@@ -93,13 +99,18 @@ category: Feedback
 Your content here...
 
 ## Usage
+```tsx:live
+<Alert>Message</Alert>
+```
+
 ## Props
 ## Accessibility
 ## States
 ## Best Practices
 ```
 
-3. Run `npm run build` - the component page will be automatically generated at `/components/alert/`
+3. For **live demos** to work, register the component in `src/lib/componentMapper.tsx` (import, add to `componentMap`, and add a render handler in `renderComponent` if needed).
+4. Run `npm run build` — the component page will be generated at `/components/alert/`.
 
 ## ♿ Accessibility Features
 
@@ -132,16 +143,17 @@ npm run build
 
 ### Homepage
 - Hero section with project description
-- Statistics section (component count, accessibility standard, license)
-- Component grid grouped by category with search capability
+- Component grid grouped by category (Actions, Forms, Data Display, Feedback, Navigation, Layouts)
+- Links to each component’s documentation page
 
 ### Component Pages
+- Sticky sidebar navigation with components grouped by category
 - Breadcrumb navigation
 - Metadata display (title, category, description)
+- Live interactive demos: code blocks with `tsx:live` are rendered as real components
 - Full markdown content with syntax highlighting
-- Table of contents (automatic from markdown headers)
-- Links to edit on GitHub
-- Back to components navigation
+- Props, accessibility, states, and best practices per component
+- Copy code button on each demo
 
 ### Responsive Design
 - Mobile: 1 column layout
@@ -153,10 +165,10 @@ npm run build
 ## 🎨 Customization
 
 ### Styling
-All styling uses Tailwind CSS classes. Modify `tailwind.config.ts` to customize colors, spacing, etc.
+All styling uses Tailwind CSS (v4). Customize theme and tokens in `src/app/globals.css` and component files.
 
 ### Theme
-Dark/light mode is automatic based on OS preference. Configure theme in Tailwind config.
+Light/dark mode via the header toggle (next-themes). Class-based dark mode in `globals.css`.
 
 ### Components
 shadcn/ui components are copied into `src/components/ui/`. Customize them directly.
