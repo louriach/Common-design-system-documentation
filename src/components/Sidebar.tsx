@@ -8,10 +8,9 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 interface SidebarProps {
   components: ComponentMetadata[];
   isOpen: boolean;
-  onClose: () => void;
 }
 
-export function Sidebar({ components, isOpen, onClose }: SidebarProps) {
+export function Sidebar({ components, isOpen }: SidebarProps) {
   const pathname = usePathname();
 
   // Group components by category
@@ -41,7 +40,6 @@ export function Sidebar({ components, isOpen, onClose }: SidebarProps) {
             <Link
               href="/"
               className="text-xl font-bold text-foreground hover:text-primary block mb-4"
-              onClick={onClose}
             >
               Design System KB
             </Link>
@@ -55,7 +53,6 @@ export function Sidebar({ components, isOpen, onClose }: SidebarProps) {
               <Link
                 href="/"
                 className={`docs-nav-link ${pathname === "/" ? "docs-nav-link--home-active" : ""}`}
-                onClick={onClose}
               >
                 Home
               </Link>
@@ -69,7 +66,6 @@ export function Sidebar({ components, isOpen, onClose }: SidebarProps) {
                       <Link
                         href={`/components/${component.slug}/`}
                         className={`docs-nav-link ${isActive(component.slug) ? "docs-nav-link--active" : ""}`}
-                        onClick={onClose}
                       >
                         {component.title}
                       </Link>

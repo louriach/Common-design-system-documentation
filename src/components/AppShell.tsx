@@ -43,7 +43,6 @@ export function AppShell({ components, children }: AppShellProps) {
       <Sidebar
         components={components}
         isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
       />
 
       <div
