@@ -360,6 +360,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   gap: 0.5rem;
   white-space: nowrap;
   border-radius: var(--radius, 0.25rem);
+  border: 1px solid;
   font-size: 0.875rem;
   font-weight: 500;
   transition: opacity 0.15s;
@@ -367,7 +368,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 }
 .ds-btn:disabled { pointer-events: none; opacity: 0.5; }
 .ds-btn:focus-visible { box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-ring); outline-offset: 2px; }
-.ds-btn--default { background: var(--color-primary); color: var(--color-primary-foreground); }
+.ds-btn--default { background: var(--color-primary); color: var(--color-primary-foreground); border-color: var(--color-primary); }
 .ds-btn--default:hover { opacity: 0.9; }
 .ds-btn--destructive { background: var(--color-destructive); color: var(--color-destructive-foreground); }
 .ds-btn--destructive:hover { opacity: 0.9; }
@@ -453,13 +454,13 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-accordion-root { width: 100%; }
 /* Radix AccordionHeader renders as h3; reset .docs-prose h3 margins so trigger spacing is controlled by .ds-accordion-trigger padding only (selector must beat .docs-prose h3) */
 .docs-prose .ds-accordion-item > h3 { margin: 0; }
-.ds-accordion-item { border: 2px solid var(--color-border); border-radius: var(--radius); overflow: hidden; background: var(--color-card); }
+.ds-accordion-item { border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; background: var(--color-card); }
 .ds-accordion-item + .ds-accordion-item { margin-top: 0.5rem; }
-.ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 0.5rem 1.25rem; font-size: 1.25rem; font-weight: 600; color: var(--color-foreground); background: var(--color-card); border: none; cursor: pointer; transition: background 0.15s ease; text-align: left; min-height: 2.5rem; }
+.ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 0.5rem 1rem; font-weight: 500; color: var(--color-foreground); background: var(--color-card); border: none; cursor: pointer; transition: background 0.15s ease; text-align: left; min-height: 2.5rem; }
 .ds-accordion-trigger:hover { background: var(--color-muted); }
 .ds-accordion-trigger[data-state="open"] { background: var(--color-muted); }
 .ds-accordion-trigger:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-ring); outline-offset: 2px; }
-.ds-accordion-content { padding: 0.75rem 1.25rem; font-size: 0.9375rem; line-height: 1.6; color: var(--color-foreground); border-top: 2px solid var(--color-border); background: var(--color-background); }
+.ds-accordion-content { padding: 0.75rem 1rem; font-size: 0.9375rem; line-height: 1.6; color: var(--color-foreground); border-top: 1px solid var(--color-border); background: var(--color-background); }
 .ds-accordion-chevron { color: var(--color-foreground); opacity: 0.7; transition: transform 0.2s ease; flex-shrink: 0; }
 .ds-accordion-trigger[data-state="open"] .ds-accordion-chevron { transform: rotate(180deg); }
 
@@ -529,8 +530,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   scroll-margin-top: 5rem;
 }
 .docs-prose h3 {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
@@ -587,13 +587,9 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   border-radius: var(--radius);
 }
 .docs-prose pre {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
   padding: 1rem 1.25rem;
   overflow-x: auto;
   font-size: 0.875rem;
-  line-height: 1.5;
-  background: var(--color-muted);
   color: var(--color-foreground);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -603,7 +599,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   padding: 0;
   font-size: inherit;
 }
-.docs-prose table { width: 100%; min-width: 320px; border-collapse: collapse; font-size: 0.875rem; margin-top: 1rem; margin-bottom: 1rem; }
+.docs-prose table { width: 100%; min-width: 320px; border-collapse: collapse; font-size: 0.875rem; }
 .docs-prose thead { background: var(--color-muted); }
 .docs-prose th {
   text-align: left;
@@ -645,8 +641,6 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 
 /* ========== Docs: Component demo block ========== */
 .docs-demo {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 .docs-demo-preview {
   position: relative;
