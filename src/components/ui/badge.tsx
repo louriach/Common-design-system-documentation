@@ -15,9 +15,9 @@ const badgeVariants = cva("ds-badge", {
       info: "ds-badge--info",
     },
     size: {
-      sm: "px-2 py-0.5 text-xs",
-      md: "px-2.5 py-0.5 text-xs",
-      lg: "px-3 py-1 text-sm",
+      sm: "ds-badge--sm",
+      md: "ds-badge--md",
+      lg: "ds-badge--lg",
     },
     shape: {
       rounded: "ds-badge--rounded",

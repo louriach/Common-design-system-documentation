@@ -27,11 +27,6 @@ export function Footer() {
                   Radix UI
                 </a>
               </li>
-              <li>
-                <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">
-                  shadcn/ui
-                </a>
-              </li>
             </ul>
           </div>
           <div>
