@@ -699,6 +699,12 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .docs-page-footer a:hover { text-decoration: underline; }
 
 /* ========== Docs: Sidebar / nav ========== */
+.docs-sidebar-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+}
 .docs-sidebar {
   position: fixed;
   left: 0;
@@ -713,16 +719,18 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   transition: transform 300ms ease-in-out;
 }
 .docs-sidebar.is-open { transform: translateX(0); }
-@media (min-width: 768px) {
-  .docs-sidebar { position: sticky; transform: translateX(0); }
+.docs-main-content {
+  transition: margin-left 300ms ease-in-out;
+  padding-left: 3.5rem; /* room for fixed hamburger */
 }
-.docs-nav-list { border-top: 1px solid var(--color-border); }
+.docs-main-content--sidebar-open { margin-left: 16rem; padding-left: 0; }
+.docs-nav-list { border-top: 1px solid var(--color-border); margin: 0; padding: 0; }
 .docs-nav-list .docs-nav-link { border-bottom: 1px solid var(--color-border); }
 .docs-nav-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem .5rem;
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--color-foreground);
@@ -744,10 +752,10 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .docs-nav-link--active { background: var(--color-muted); color: var(--color-primary); }
 .docs-nav-link--home-active { background: var(--color-muted); color: var(--color-primary); }
 .docs-nav-category {
-  padding: 0.75rem 1rem 0.25rem;
   font-size: 0.6875rem;
   font-weight: 600;
   color: var(--color-muted-foreground);
+  margin: 0 .5rem .5rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
