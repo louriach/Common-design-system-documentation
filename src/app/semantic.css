@@ -57,6 +57,8 @@
 .max-w-lg { max-width: 32rem; }
 .max-w-2xl { max-width: 42rem; }
 .max-w-4xl { max-width: 56rem; }
+.max-w-65ch { max-width: 65ch; }
+.max-w-80ch { max-width: 80ch; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 .shrink-0 { flex-shrink: 0; }
 
@@ -258,7 +260,7 @@
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 
 /* ========== Code / prose ========== */
-.prose-container { max-width: 65ch; }
+.prose-container { }
 .bg-neutral-100 { background-color: #f5f5f5; }
 .text-gray-600 { color: #525252; }
 .dark .text-gray-600 { color: #a3a3a3; }

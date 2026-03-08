@@ -49,7 +49,7 @@ export function AppShell({ components, children }: AppShellProps) {
         className={`flex flex-col flex-1 min-w-0 bg-background docs-main-content ${sidebarOpen ? "docs-main-content--sidebar-open" : ""}`}
       >
         <main className="flex-1 overflow-y-auto bg-background">
-          <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <div className="container mx-auto px-4 py-8 max-w-80ch">
             <div className="docs-content-panel">{children}</div>
           </div>
         </main>
