@@ -87,6 +87,14 @@ html.dark,
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Form elements don't inherit font-family; they use browser default (e.g. Arial). */
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
   code,
   pre {
     font-family: ui-monospace, "Cascadia Mono", "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
