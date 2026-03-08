@@ -8,9 +8,9 @@
 .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
 .docs-content-panel {
   background: var(--color-card);
-  border: 1px solid var(--color-border);
+  box-shadow: 0 0 0 8px rgba(255,255,255,.5);
   border-radius: var(--radius-card, 0.75rem);
-  padding: 2rem 1.5rem;
+  padding: 1.5rem;
   min-height: 0;
 }
 .flex { display: flex; }
@@ -415,7 +415,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 /* ========== Component: Card ========== */
 .ds-card { background: var(--color-card); color: var(--color-card-foreground); display: flex; flex-direction: column; gap: 1.5rem; border-radius: var(--radius); border: 1px solid var(--color-border); padding: 1.5rem 0; }
 .ds-card-header { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; align-items: start; gap: 0.5rem; padding: 0 1.5rem; }
-.ds-card-title { line-height: 1; font-weight: 600; }
+.ds-card-title { font-size: 1.25rem; line-height: 1; font-weight: 600; }
 .ds-card-description { color: var(--color-muted-foreground); font-size: 0.875rem; }
 .ds-card-content { padding: 0 1.5rem; }
 .ds-card-footer { display: flex; align-items: center; padding: 0 1.5rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; }
@@ -426,7 +426,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-dialog-backdrop { position: fixed; inset: 0; background: color-mix(in oklch, var(--color-foreground) 50%, transparent); }
 .ds-dialog-content { position: relative; z-index: 50; width: 100%; max-height: 90vh; overflow-y: auto; background: var(--color-background); border-radius: var(--radius); border: 1px solid var(--color-border); }
 .ds-dialog-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; border-bottom: 1px solid var(--color-border); }
-.ds-dialog-title { font-size: 1.125rem; font-weight: 600; color: var(--color-foreground); }
+.ds-dialog-title { font-size: 1.25rem; font-weight: 600; color: var(--color-foreground); }
 .ds-dialog-description { margin-top: 0.25rem; font-size: 0.875rem; color: var(--color-muted-foreground); }
 .ds-dialog-body { padding: 1.5rem; color: var(--color-foreground); }
 .ds-dialog-close { margin-left: 1rem; padding: 0.5rem; border-radius: var(--radius); color: var(--color-muted-foreground); }
@@ -453,7 +453,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .docs-prose .ds-accordion-item > h3 { margin: 0; }
 .ds-accordion-item { border: 2px solid var(--color-border); border-radius: var(--radius); overflow: hidden; background: var(--color-card); }
 .ds-accordion-item + .ds-accordion-item { margin-top: 0.5rem; }
-.ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 0.5rem 1.25rem; font-size: 1rem; font-weight: 600; color: var(--color-foreground); background: var(--color-card); border: none; cursor: pointer; transition: background 0.15s ease; text-align: left; min-height: 2.5rem; }
+.ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 0.5rem 1.25rem; font-size: 1.25rem; font-weight: 600; color: var(--color-foreground); background: var(--color-card); border: none; cursor: pointer; transition: background 0.15s ease; text-align: left; min-height: 2.5rem; }
 .ds-accordion-trigger:hover { background: var(--color-muted); }
 .ds-accordion-trigger[data-state="open"] { background: var(--color-muted); }
 .ds-accordion-trigger:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-ring); outline-offset: 2px; }
@@ -488,7 +488,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-alert--warning [data-slot="icon"], .ds-alert--warning > svg:first-child { color: var(--color-warning); }
 .ds-alert--info { border-color: var(--color-foreground); background: var(--color-muted); color: var(--color-foreground); }
 .ds-alert--info [data-slot="icon"], .ds-alert--info > svg:first-child { color: var(--color-muted-foreground); }
-.ds-alert-title { font-size: inherit; font-weight: 600; line-height: 1.5; margin: 0; }
+.ds-alert-title { font-size: 1.25rem; font-weight: 600; line-height: 1.5; margin: 0; }
 .ds-alert-description { font-size: inherit; line-height: 1.625; margin: 0; color: inherit; }
 .ds-alert-description p { line-height: 1.625; margin: 0; }
 .ds-alert-description p + p { margin-top: 0.5rem; }
@@ -508,8 +508,8 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Monaco, "Courier New", monospace;
 }
 .docs-prose h1 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -517,8 +517,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   scroll-margin-top: 5rem;
 }
 .docs-prose h2 {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
@@ -681,10 +680,10 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 /* ========== Docs: Component page header & footer ========== */
 .docs-page-header { margin-bottom: 2rem; }
 .docs-page-title {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin: 0;
   color: var(--color-foreground);
 }
 .docs-page-meta { font-size: 0.875rem; color: var(--color-muted-foreground); margin-bottom: 0.5rem; }
@@ -784,7 +783,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .docs-footer-inner { width: 100%; margin-left: auto; margin-right: auto; padding: 2rem 1rem; }
 .docs-footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
 @media (min-width: 768px) { .docs-footer-grid { grid-template-columns: repeat(3, 1fr); } }
-.docs-footer-title { font-weight: 700; margin-bottom: 0.75rem; color: var(--color-foreground); }
+.docs-footer-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-foreground); }
 .docs-footer-title-sm { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--color-foreground); }
 .docs-footer-text { font-size: 0.875rem; color: var(--color-muted-foreground); }
 .docs-footer-links { font-size: 0.875rem; }
@@ -804,9 +803,8 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 /* ========== Docs: Homepage ========== */
 .docs-home { }
 .docs-home-hero { margin-bottom: 2rem; }
-.docs-home-title { font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-foreground); }
-@media (min-width: 768px) { .docs-home-title { font-size: 3rem; line-height: 1; } }
-.docs-home-lead { font-size: 1.125rem; line-height: 1.75rem; color: var(--color-muted-foreground); margin-bottom: 0.5rem; }
+.docs-home-title { font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--color-foreground); }
+.docs-home-lead { font-size: 1rem; line-height: 1.75rem; color: var(--color-muted-foreground); margin-bottom: 0.5rem; }
 .docs-home-sub { font-size: 1rem; color: var(--color-muted-foreground); }
 .docs-home-stats {
   display: grid;
@@ -820,7 +818,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .docs-home-stat-value { font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; color: var(--color-foreground); }
 .docs-home-stat-label { font-size: 0.875rem; color: var(--color-muted-foreground); }
 .docs-home-section { margin-top: 2rem; }
-.docs-home-section-title { font-size: 1.5rem; line-height: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-foreground); }
+.docs-home-section-title { font-size: 1.25rem; line-height: 1.75rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-foreground); }
 .docs-home-section p { color: var(--color-muted-foreground); margin-bottom: 0.5rem; }
 .docs-home-list { list-style: disc; list-style-position: inside; color: var(--color-muted-foreground); }
 .docs-home-list li + li { margin-top: 0.5rem; }
