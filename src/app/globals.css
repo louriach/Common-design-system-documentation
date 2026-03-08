@@ -5,22 +5,22 @@
 /* Design tokens: brutalist black/white base + semantic variants (destructive, success, warning).
    Defined on :root so var(--color-*) and var(--radius) work without Tailwind. */
 :root {
-  /* Base wireframe */
-  --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(12% 0 0);
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(12% 0 0);
+  /* Base: off-white surfaces, warm neutral */
+  --color-background: oklch(97% 0.006 85);
+  --color-foreground: oklch(18% 0 0);
+  --color-card: oklch(99.5% 0.004 85);
+  --color-card-foreground: oklch(18% 0 0);
   --color-popover: oklch(100% 0 0);
   --color-popover-foreground: oklch(12% 0 0);
   --color-primary: oklch(12% 0 0);
   --color-primary-foreground: oklch(98% 0 0);
   --color-secondary: oklch(96% 0 0);
   --color-secondary-foreground: oklch(12% 0 0);
-  --color-muted: oklch(96% 0 0);
-  --color-muted-foreground: oklch(45% 0 0);
-  --color-accent: oklch(96% 0 0);
-  --color-accent-foreground: oklch(12% 0 0);
-  --color-border: oklch(88% 0 0);
+  --color-muted: oklch(95% 0.008 85);
+  --color-muted-foreground: oklch(42% 0 0);
+  --color-accent: oklch(95% 0.008 85);
+  --color-accent-foreground: oklch(18% 0 0);
+  --color-border: oklch(90% 0.008 85);
   --color-input: oklch(88% 0 0);
   --color-ring: oklch(12% 0 0);
   /* Semantic variants for alerts, badges, buttons */
@@ -35,6 +35,7 @@
   --color-success-bg: oklch(96% 0.05 145);
   --color-warning-bg: oklch(97% 0.06 85);
   --radius: 0.25rem;
+  --radius-card: 0.75rem;
 }
 
 /* Dark mode: unlayered so it overrides :root when html has class="dark". */
@@ -66,6 +67,7 @@ html.dark,
     --color-destructive-bg: oklch(22% 0.04 25);
     --color-success-bg: oklch(22% 0.05 145);
     --color-warning-bg: oklch(26% 0.05 85);
+  --radius-card: 0.75rem;
 }
 
 @layer base {

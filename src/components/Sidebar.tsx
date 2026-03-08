@@ -96,7 +96,7 @@ export function Sidebar({ components }: SidebarProps) {
           </div>
 
           <nav className="space-y-6">
-            <div>
+            <div className="docs-nav-list">
               <Link
                 href="/"
                 className={`docs-nav-link ${pathname === "/" ? "docs-nav-link--home-active" : ""}`}
@@ -108,7 +108,7 @@ export function Sidebar({ components }: SidebarProps) {
             {Object.entries(grouped).map(([category, categoryComponents]) => (
               <div key={category}>
                 <h3 className="docs-nav-category">{category}</h3>
-                <ul className="space-y-1">
+                <ul className="docs-nav-list space-y-0">
                   {categoryComponents.map((component) => (
                     <li key={component.slug}>
                       <Link

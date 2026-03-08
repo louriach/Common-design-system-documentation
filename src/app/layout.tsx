@@ -38,7 +38,9 @@ export default function RootLayout({
             <div className="flex flex-col flex-1 min-w-0 bg-background">
               <main className="flex-1 overflow-y-auto bg-background">
                 <div className="container mx-auto px-4 py-8 max-w-4xl">
-                  {children}
+                  <div className="docs-content-panel">
+                    {children}
+                  </div>
                 </div>
               </main>
               <Footer />
