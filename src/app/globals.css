@@ -84,6 +84,7 @@ html.dark,
     color: var(--color-foreground);
     font-family: ui-monospace, "Cascadia Mono", "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
     font-size: 14px;
+    line-height: 1.45;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

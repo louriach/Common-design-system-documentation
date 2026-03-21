@@ -23,12 +23,12 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
   };
 
   return (
-    <div className="docs-demo space-y-4">
+    <div className="docs-demo">
       <div className="docs-demo-preview">
         {children}
       </div>
       <div className="docs-demo-code-wrap">
-        <div className="flex items-center justify-between docs-demo-label">
+        <div className="docs-demo-label">
           <span>Code</span>
           <Button
             variant="ghost"
@@ -39,12 +39,12 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
           >
             {copied ? (
               <>
-                <Check className="h-4 w-4 mr-1 shrink-0" />
+                <Check className="h-3 w-3 shrink-0" />
                 Copied
               </>
             ) : (
               <>
-                <Copy className="h-4 w-4 mr-1 shrink-0" />
+                <Copy className="h-3 w-3 shrink-0" />
                 Copy
               </>
             )}

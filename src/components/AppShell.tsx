@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { Footer } from "./Footer";
-import { Button } from "./ui/button";
 import { ComponentMetadata } from "@/lib/markdown";
 
 interface AppShellProps {
@@ -15,9 +14,7 @@ export function AppShell({ components, children }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className="flex flex-1 bg-background">
-      {/* Persistent hamburger: fixed top-left, toggles sidebar */}
-      {/* Only show fixed toggle when sidebar is closed */}
+    <div className="docs-shell">
       {!sidebarOpen && (
         <button
           className="docs-sidebar-toggle"
@@ -30,21 +27,21 @@ export function AppShell({ components, children }: AppShellProps) {
         </button>
       )}
 
-      <Sidebar
-        components={components}
-        isOpen={sidebarOpen}
-        onToggle={() => setSidebarOpen((open) => !open)}
-      />
+      <div className="docs-shell-inner">
+        <Sidebar
+          components={components}
+          isOpen={sidebarOpen}
+          onToggle={() => setSidebarOpen((open) => !open)}
+        />
 
-      <div
-        className={`flex flex-col flex-1 min-w-0 bg-background docs-main-content ${sidebarOpen ? "docs-main-content--sidebar-open" : ""}`}
-      >
-        <main className="flex-1 overflow-y-auto bg-background">
-          <div className="container mx-auto px-4 py-6 max-w-65ch">
-            <div className="docs-content-panel">{children}</div>
-          </div>
-        </main>
-        <Footer />
+        <div className="docs-main-content">
+          <main className="flex-1">
+            <div className="docs-main-inner">
+              <div className="docs-content-panel">{children}</div>
+            </div>
+          </main>
+          <Footer />
+        </div>
       </div>
     </div>
   );
