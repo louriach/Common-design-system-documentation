@@ -378,7 +378,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-btn--outline:hover { background: var(--color-muted); border-color: var(--color-foreground); }
 .ds-btn--secondary { background: var(--color-secondary); color: var(--color-secondary-foreground); border: 1px solid var(--color-border); }
 .ds-btn--secondary:hover { background: var(--color-border); }
-.ds-btn--ghost { color: var(--color-foreground); border-color: transparent; }
+.ds-btn--ghost { background-color: transparent !important; color: var(--color-foreground); border-color: transparent; }
 .ds-btn--ghost:hover { background: var(--color-muted); }
 .ds-btn--link { color: var(--color-primary); text-underline-offset: 4px; border-color: transparent; }
 .ds-btn--link:hover { text-decoration: underline; }
