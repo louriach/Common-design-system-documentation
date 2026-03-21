@@ -1,81 +1,16 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Radio } from "@/components/ui/radio";
-import { Select } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Toggle } from "@/components/ui/toggle";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Combobox } from "@/components/ui/combobox";
-import { Avatar } from "@/components/ui/avatar";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { DatePicker } from "@/components/ui/date-picker";
-import { Fieldset } from "@/components/ui/fieldset";
-import { Link } from "@/components/ui/link";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Modal } from "@/components/ui/modal";
-import { Tooltip } from "@/components/ui/tooltip";
-import { Progress } from "@/components/ui/progress";
-import { Spinner } from "@/components/ui/spinner";
-import { IconButton } from "@/components/ui/icon-button";
+import { componentRegistry } from "@/lib/component-registry";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
   [key: string]: any;
 }
 
-// Component mapping for live demos
-export const componentMap: Record<string, React.ComponentType<any>> = {
-  Button,
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  Badge,
-  Input,
-  Checkbox,
-  Radio,
-  Select,
-  Textarea,
-  Toggle,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  Combobox,
-  Avatar,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  Breadcrumb,
-  BreadcrumbItem,
-  DatePicker,
-  Fieldset,
-  Link,
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  Modal,
-  Tooltip,
-  Progress,
-  Spinner,
-  IconButton,
-};
+// Component map — sourced from the registry so swapping components only
+// requires editing src/lib/component-registry.ts
+export const componentMap = componentRegistry;
 
 // Icon mapping
 export const iconMap: Record<string, React.ComponentType<any>> = {
