@@ -8,9 +8,10 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 interface SidebarProps {
   components: ComponentMetadata[];
   isOpen: boolean;
+  onToggle: () => void;
 }
 
-export function Sidebar({ components, isOpen }: SidebarProps) {
+export function Sidebar({ components, isOpen, onToggle }: SidebarProps) {
   const pathname = usePathname();
 
   // Group components by category
@@ -36,16 +37,16 @@ export function Sidebar({ components, isOpen }: SidebarProps) {
         aria-hidden={!isOpen}
       >
         <div>
-          <div className="mb-6 pt-12 md:pt-4">
-            <Link
-              href="/"
-              className="text-xl font-bold text-foreground hover:text-primary block mb-4"
-            >
+          <div className="docs-sidebar-header">
+            <button className="docs-sidebar-toggle-btn" onClick={onToggle} aria-label="Close menu">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <Link href="/" className="docs-sidebar-brand">
               Design System KB
             </Link>
-            <div className="flex items-center gap-2">
-              <ThemeSwitcher />
-            </div>
+            <ThemeSwitcher />
           </div>
 
           <nav className="space-y-6">

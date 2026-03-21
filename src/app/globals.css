@@ -83,6 +83,7 @@ html.dark,
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: ui-monospace, "Cascadia Mono", "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

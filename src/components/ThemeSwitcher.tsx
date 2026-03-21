@@ -9,19 +9,17 @@ export function ThemeSwitcher() {
   const isDark = theme === "dark";
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="w-9 h-9"
+    <button
+      className="docs-theme-toggle"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (
-        <Sun className="h-4 w-4 transition-all" />
+        <Sun className="h-3.5 w-3.5 transition-all" />
       ) : (
-        <Moon className="h-4 w-4 transition-all" />
+        <Moon className="h-3.5 w-3.5 transition-all" />
       )}
-    </Button>
+    </button>
   );
 }
