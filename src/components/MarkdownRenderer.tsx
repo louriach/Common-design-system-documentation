@@ -93,8 +93,8 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
           },
           pre: ({ node, children, ...props }: any) => {
             const child = React.Children.toArray(children)[0] as any;
-            if (child?.type?.displayName === "ComponentDemo" || 
-                (child?.props?.children?.type?.displayName === "ComponentDemo")) {
+            // If the code handler returned a ComponentDemo, it has a `code` prop — strip the <pre> wrapper
+            if (child?.props?.code !== undefined) {
               return <>{children}</>;
             }
             return <pre {...props}>{children}</pre>;
