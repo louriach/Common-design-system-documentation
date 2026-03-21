@@ -1,40 +1,37 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-const badgeVariants = cva("ds-badge", {
-  variants: {
-    variant: {
-      default: "ds-badge--default",
-      secondary: "ds-badge--secondary",
-      destructive: "ds-badge--destructive",
-      outline: "ds-badge--outline",
-      success: "ds-badge--success",
-      warning: "ds-badge--warning",
-      error: "ds-badge--error",
-      info: "ds-badge--info",
-    },
-    size: {
-      sm: "ds-badge--sm",
-      md: "ds-badge--md",
-      lg: "ds-badge--lg",
-    },
-    shape: {
-      rounded: "ds-badge--rounded",
-      square: "ds-badge--square",
-      pill: "ds-badge--pill",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-    size: "md",
-    shape: "pill",
-  },
-})
+type BadgeVariant = "default" | "secondary" | "destructive" | "outline" | "success" | "warning" | "error" | "info"
+type BadgeSize = "sm" | "md" | "lg"
+type BadgeShape = "rounded" | "square" | "pill"
 
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {
+const variantClass: Record<BadgeVariant, string> = {
+  default: "ds-badge--default",
+  secondary: "ds-badge--secondary",
+  destructive: "ds-badge--destructive",
+  outline: "ds-badge--outline",
+  success: "ds-badge--success",
+  warning: "ds-badge--warning",
+  error: "ds-badge--error",
+  info: "ds-badge--info",
+}
+
+const sizeClass: Record<BadgeSize, string> = {
+  sm: "ds-badge--sm",
+  md: "ds-badge--md",
+  lg: "ds-badge--lg",
+}
+
+const shapeClass: Record<BadgeShape, string> = {
+  rounded: "ds-badge--rounded",
+  square: "ds-badge--square",
+  pill: "ds-badge--pill",
+}
+
+interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: BadgeVariant
+  size?: BadgeSize
+  shape?: BadgeShape
   count?: number | React.ReactNode
   dot?: boolean
   showZero?: boolean
@@ -43,9 +40,9 @@ export interface BadgeProps
 
 function Badge({
   className,
-  variant,
-  size,
-  shape,
+  variant = "default",
+  size = "md",
+  shape = "pill",
   count,
   dot,
   showZero = false,
@@ -61,7 +58,6 @@ function Badge({
           variant === "success" && "bg-success",
           variant === "warning" && "bg-warning",
           variant === "error" && "bg-destructive",
-          variant === "info" && "bg-muted",
           className
         )}
         aria-label={typeof children === "string" ? children : "Status indicator"}
@@ -70,30 +66,27 @@ function Badge({
     )
   }
 
-  const content = count !== undefined ? (
-    typeof count === "number" ? (
-      count > overflowCount ? `${overflowCount}+` : count.toString()
-    ) : (
-      count
-    )
-  ) : (
-    children
-  )
+  const content =
+    count !== undefined
+      ? typeof count === "number"
+        ? count > overflowCount
+          ? `${overflowCount}+`
+          : count.toString()
+        : count
+      : children
 
-  if (
-    typeof count === "number" &&
-    count === 0 &&
-    !showZero &&
-    children === undefined
-  ) {
+  if (typeof count === "number" && count === 0 && !showZero && children === undefined) {
     return null
   }
 
   return (
-    <div className={cn(badgeVariants({ variant, size, shape }), className)} {...props}>
+    <div
+      className={cn("ds-badge", variantClass[variant], sizeClass[size], shapeClass[shape], className)}
+      {...props}
+    >
       {content}
     </div>
   )
 }
 
-export { Badge, badgeVariants }
+export { Badge }

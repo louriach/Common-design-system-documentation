@@ -1,57 +1,44 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-const alertVariants = cva("ds-alert", {
-  variants: {
-    variant: {
-      default: "ds-alert--default",
-      destructive: "ds-alert--destructive",
-      success: "ds-alert--success",
-      warning: "ds-alert--warning",
-      info: "ds-alert--info",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-})
+type AlertVariant = "default" | "destructive" | "success" | "warning" | "info"
 
-const Alert = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
-  <div
-    ref={ref}
-    role="alert"
-    className={cn(alertVariants({ variant }), className)}
-    {...props}
-  />
-))
+const variantClass: Record<AlertVariant, string> = {
+  default: "ds-alert--default",
+  destructive: "ds-alert--destructive",
+  success: "ds-alert--success",
+  warning: "ds-alert--warning",
+  info: "ds-alert--info",
+}
+
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: AlertVariant
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  ({ className, variant = "default", ...props }, ref) => (
+    <div
+      ref={ref}
+      role="alert"
+      className={cn("ds-alert", variantClass[variant], className)}
+      {...props}
+    />
+  )
+)
 Alert.displayName = "Alert"
 
-const AlertTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h5
-    ref={ref}
-    className={cn("ds-alert-title", className)}
-    {...props}
-  />
-))
+const AlertTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h5 ref={ref} className={cn("ds-alert-title", className)} {...props} />
+  )
+)
 AlertTitle.displayName = "AlertTitle"
 
-const AlertDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("ds-alert-description", className)}
-    {...props}
-  />
-))
+const AlertDescription = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("ds-alert-description", className)} {...props} />
+  )
+)
 AlertDescription.displayName = "AlertDescription"
 
 export { Alert, AlertTitle, AlertDescription }

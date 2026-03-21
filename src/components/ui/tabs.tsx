@@ -1,65 +1,107 @@
 "use client"
 
 import * as React from "react"
-import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { cn } from "@/lib/utils"
 
-export interface TabsProps extends React.ComponentProps<typeof TabsPrimitive.Root> {
+interface TabsContextValue {
+  activeTab: string
+  setActiveTab: (value: string) => void
+}
+
+const TabsContext = React.createContext<TabsContextValue>({
+  activeTab: "",
+  setActiveTab: () => {},
+})
+
+interface TabsProps {
   defaultValue?: string
   value?: string
   onValueChange?: (value: string) => void
+  className?: string
+  children?: React.ReactNode
 }
 
-const Tabs = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Root>, TabsProps>(
-  ({ className, ...props }, ref) => (
-    <TabsPrimitive.Root ref={ref} className={cn("w-full", className)} {...props} />
+function Tabs({ defaultValue = "", value, onValueChange, className, children }: TabsProps) {
+  const [activeTab, setActiveTabState] = React.useState(defaultValue)
+  const current = value ?? activeTab
+
+  const setActiveTab = (v: string) => {
+    setActiveTabState(v)
+    onValueChange?.(v)
+  }
+
+  return (
+    <TabsContext.Provider value={{ activeTab: current, setActiveTab }}>
+      <div className={cn("ds-tabs", className)}>{children}</div>
+    </TabsContext.Provider>
   )
-)
+}
 Tabs.displayName = "Tabs"
 
-export interface TabsListProps extends React.ComponentProps<typeof TabsPrimitive.List> {}
+interface TabsListProps {
+  className?: string
+  children?: React.ReactNode
+}
 
-const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, TabsListProps>(
-  ({ className, ...props }, ref) => (
-    <TabsPrimitive.List
-      ref={ref}
-      className={cn("ds-tabs-list", className)}
-      {...props}
-    />
+function TabsList({ className, children }: TabsListProps) {
+  return (
+    <div role="tablist" className={cn("ds-tabs-list", className)}>
+      {children}
+    </div>
   )
-)
+}
 TabsList.displayName = "TabsList"
 
-export interface TabsTriggerProps
-  extends React.ComponentProps<typeof TabsPrimitive.Trigger> {
+interface TabsTriggerProps {
   value: string
+  className?: string
+  children?: React.ReactNode
+  disabled?: boolean
 }
 
-const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Trigger>, TabsTriggerProps>(
-  ({ className, ...props }, ref) => (
-    <TabsPrimitive.Trigger
-      ref={ref}
-      className={cn("ds-tabs-trigger", className)}
-      {...props}
-    />
+function TabsTrigger({ value, className, children, disabled }: TabsTriggerProps) {
+  const { activeTab, setActiveTab } = React.useContext(TabsContext)
+  const isActive = activeTab === value
+
+  return (
+    <button
+      role="tab"
+      aria-selected={isActive}
+      aria-controls={`tabpanel-${value}`}
+      id={`tab-${value}`}
+      disabled={disabled}
+      tabIndex={isActive ? 0 : -1}
+      className={cn("ds-tabs-trigger", isActive && "ds-tabs-trigger--active", className)}
+      onClick={() => !disabled && setActiveTab(value)}
+    >
+      {children}
+    </button>
   )
-)
+}
 TabsTrigger.displayName = "TabsTrigger"
 
-export interface TabsContentProps
-  extends React.ComponentProps<typeof TabsPrimitive.Content> {
+interface TabsContentProps {
   value: string
+  className?: string
+  children?: React.ReactNode
 }
 
-const TabsContent = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Content>, TabsContentProps>(
-  ({ className, ...props }, ref) => (
-    <TabsPrimitive.Content
-      ref={ref}
+function TabsContent({ value, className, children }: TabsContentProps) {
+  const { activeTab } = React.useContext(TabsContext)
+  const isActive = activeTab === value
+
+  return (
+    <div
+      role="tabpanel"
+      id={`tabpanel-${value}`}
+      aria-labelledby={`tab-${value}`}
+      hidden={!isActive}
       className={cn("ds-tabs-content", className)}
-      {...props}
-    />
+    >
+      {children}
+    </div>
   )
-)
+}
 TabsContent.displayName = "TabsContent"
 
 export { Tabs, TabsList, TabsTrigger, TabsContent }

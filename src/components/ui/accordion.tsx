@@ -1,77 +1,70 @@
 "use client"
 
 import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { cn } from "@/lib/utils"
-import { ChevronDown } from "lucide-react"
 
-export type AccordionProps = {
+interface AccordionProps {
   className?: string
-  type?: "single" | "multiple"
-  defaultValue?: string | string[]
-  value?: string | string[]
-  onValueChange?: (value: string | string[]) => void
-  collapsible?: boolean
   children?: React.ReactNode
 }
 
-const Accordion = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Root>,
-  AccordionProps
->(({ className, type = "single", collapsible = true, children, ...props }, ref) => (
-  <AccordionPrimitive.Root
-    ref={ref}
-    type={type}
-    {...(collapsible && { collapsible: "true" })}
-    className={cn("ds-accordion-root", className)}
-    {...(props as any)}
-  >
-    {children}
-  </AccordionPrimitive.Root>
-))
+function Accordion({ className, children }: AccordionProps) {
+  return <div className={cn("ds-accordion-root", className)}>{children}</div>
+}
 Accordion.displayName = "Accordion"
 
-const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentProps<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
-    ref={ref}
-    className={cn("ds-accordion-item", className)}
-    {...props}
-  />
-))
+interface AccordionItemProps {
+  className?: string
+  children?: React.ReactNode
+  value?: string
+  defaultOpen?: boolean
+}
+
+function AccordionItem({ className, children, value, defaultOpen = false }: AccordionItemProps) {
+  return (
+    <details className={cn("ds-accordion-item", className)} data-value={value} open={defaultOpen}>
+      {children}
+    </details>
+  )
+}
 AccordionItem.displayName = "AccordionItem"
 
-const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentProps<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header>
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn("ds-accordion-trigger", className)}
-      {...props}
-    >
+interface AccordionTriggerProps {
+  className?: string
+  children?: React.ReactNode
+}
+
+function AccordionTrigger({ className, children }: AccordionTriggerProps) {
+  return (
+    <summary className={cn("ds-accordion-trigger", className)}>
       {children}
-      <ChevronDown className="ds-accordion-chevron h-4 w-4" aria-hidden />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-))
+      <svg
+        className="ds-accordion-chevron"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </summary>
+  )
+}
 AccordionTrigger.displayName = "AccordionTrigger"
 
-const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentProps<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className={cn("ds-accordion-content", className)}
-    {...props}
-  >
-    {children}
-  </AccordionPrimitive.Content>
-))
+interface AccordionContentProps {
+  className?: string
+  children?: React.ReactNode
+}
+
+function AccordionContent({ className, children }: AccordionContentProps) {
+  return <div className={cn("ds-accordion-content", className)}>{children}</div>
+}
 AccordionContent.displayName = "AccordionContent"
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
