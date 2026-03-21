@@ -16,10 +16,10 @@ export interface ModalProps {
 }
 
 const sizeClasses = {
-  sm: "max-w-md",
-  md: "max-w-lg",
-  lg: "max-w-2xl",
-  xl: "max-w-4xl",
+  sm: "ds-dialog--sm",
+  md: "ds-dialog--md",
+  lg: "ds-dialog--lg",
+  xl: "ds-dialog--xl",
 }
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
@@ -42,7 +42,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           <Dialog.Overlay className="ds-dialog-backdrop fixed inset-0 z-50" />
           <Dialog.Content
             ref={ref}
-            className={cn("ds-dialog-content fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2", sizeClasses[size])}
+            className={cn("ds-dialog-content", sizeClasses[size])}
             aria-labelledby={title ? "modal-title" : undefined}
             aria-describedby={description ? "modal-description" : undefined}
             onClick={(e) => e.stopPropagation()}
