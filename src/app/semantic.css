@@ -959,58 +959,52 @@ details[open] > .ds-accordion-trigger .ds-accordion-chevron { transform: rotate(
 .docs-footer-minimal-sep { opacity: 0.4; }
 
 /* ========== Docs: Homepage ========== */
-.docs-home { }
 .docs-home-hero { margin-bottom: 1.5rem; }
-.docs-home-title { font-size: 1rem; font-weight: 700; margin: 0 0 0.75rem; color: var(--color-foreground); }
-.docs-home-lead { font-size: inherit; line-height: 1.6; color: var(--color-muted-foreground); margin-bottom: 0.5rem; }
-.docs-home-sub { font-size: inherit; line-height: 1.6; color: var(--color-muted-foreground); }
+.docs-home-title { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--color-foreground); }
+.docs-home-lead { font-size: inherit; line-height: 1.6; color: var(--color-muted-foreground); margin: 0; }
 .docs-home-stats {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
   padding: 1.25rem 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.75rem;
 }
-@media (min-width: 768px) { .docs-home-stats { grid-template-columns: repeat(3, 1fr); } }
 .docs-home-stat-value { font-size: 1.125rem; font-weight: 700; color: var(--color-foreground); margin-bottom: 0.2rem; }
-.docs-home-stat-label { font-size: inherit; color: var(--color-muted-foreground); }
-.docs-home-section { margin-top: 1.5rem; }
-.docs-home-section-title { font-size: 0.9375rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-foreground); }
-.docs-home-section-intro { color: var(--color-muted-foreground); margin-bottom: 1rem; }
-.docs-home-section p { color: var(--color-muted-foreground); margin-bottom: 0.5rem; }
-.docs-home-list { list-style: disc; list-style-position: inside; color: var(--color-muted-foreground); line-height: 2; }
+.docs-home-stat-label { font-size: 0.8125rem; color: var(--color-muted-foreground); margin: 0; }
+.docs-home-section-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 1rem; color: var(--color-muted-foreground); }
 
-/* Steps */
-.docs-home-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; }
-.docs-home-step { display: flex; align-items: flex-start; gap: 1rem; }
-.docs-home-step-number {
-  flex-shrink: 0;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.125rem;
+/* Component category grid */
+.docs-home-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 2rem;
 }
-.docs-home-step-title { font-size: 0.875rem; font-weight: 600; color: var(--color-foreground); margin: 0 0 0.25rem; }
-.docs-home-step-body { font-size: inherit; color: var(--color-muted-foreground); margin: 0 0 0.625rem; line-height: 1.6; }
-.docs-home-step-body code { font-family: var(--font-mono, monospace); font-size: 0.8125rem; background: var(--color-muted); color: var(--color-foreground); border-radius: 0.25rem; padding: 0.1em 0.35em; }
-.docs-home-code {
-  font-family: var(--font-mono, monospace);
+@media (min-width: 768px) { .docs-home-categories { grid-template-columns: repeat(3, 1fr); } }
+.docs-home-category-name {
   font-size: 0.75rem;
-  line-height: 1.6;
-  background: var(--color-muted);
-  color: var(--color-foreground);
-  border-radius: var(--radius, 0.375rem);
-  padding: 0.75rem 1rem;
-  overflow-x: auto;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted-foreground);
+  margin: 0 0 0.5rem;
+}
+.docs-home-category-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  white-space: pre;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
 }
-.docs-home-list li + li { margin-top: 0.375rem; }
+.docs-home-category-link {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+  text-decoration: none;
+  padding: 0.2rem 0;
+  border-radius: 0.25rem;
+  transition: color 0.15s;
+}
+.docs-home-category-link:hover { color: var(--color-primary); }
