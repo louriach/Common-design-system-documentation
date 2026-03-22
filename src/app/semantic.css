@@ -418,7 +418,6 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 
 /* ========== Component: Checkbox ========== */
 .ds-checkbox { display: flex; align-items: flex-start; gap: 0.5rem; }
-.ds-checkbox__input { margin-top: 0.125rem; } /* nudge to optically align with label cap-height */
 .ds-checkbox__content { display: flex; flex-direction: column; gap: 0.2rem; }
 .ds-checkbox__input {
   appearance: none;
@@ -426,6 +425,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   flex-shrink: 0;
   width: 1rem;
   height: 1rem;
+  margin-top: 0.125rem; /* nudge to optically align with label cap-height */
   border: 1.5px solid var(--color-border);
   border-radius: 0.25rem;
   background: var(--color-background);
@@ -461,6 +461,8 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 }
 .ds-checkbox__input:focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
 .ds-checkbox--disabled .ds-checkbox__input { cursor: not-allowed; opacity: 0.5; pointer-events: none; }
+.ds-checkbox--error .ds-checkbox__input { border-color: var(--color-destructive); }
+.ds-checkbox--error .ds-checkbox__input:hover { border-color: var(--color-destructive); }
 .ds-checkbox__label {
   font-size: 0.875rem;
   font-weight: 500;
@@ -504,6 +506,8 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 }
 .ds-radio__input:focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
 .ds-radio--disabled .ds-radio__input { cursor: not-allowed; opacity: 0.5; pointer-events: none; }
+.ds-radio--error .ds-radio__input { border-color: var(--color-destructive); }
+.ds-radio--error .ds-radio__input:hover { border-color: var(--color-destructive); }
 .ds-radio__label {
   font-size: 0.875rem;
   font-weight: 500;
