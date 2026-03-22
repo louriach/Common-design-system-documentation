@@ -727,6 +727,9 @@ details[open] > .ds-accordion-trigger .ds-accordion-chevron { transform: rotate(
   line-height: 1.5;
   color: var(--color-foreground);
 }
+/* Reset prose paragraph margins inside any ds-* component so helper/error
+   text sits flush to its control without the 0.75rem prose gap */
+.docs-prose [class*="ds-"] p { margin: 0; }
 .docs-prose ul {
   list-style-type: disc;
   list-style-position: outside;
