@@ -430,8 +430,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   border-radius: 0.25rem;
   background: var(--color-background);
   cursor: pointer;
-  display: grid;
-  place-content: center;
+  position: relative;
   transition: background 0.12s, border-color 0.12s;
 }
 .ds-checkbox__input:hover { border-color: var(--color-foreground); }
@@ -441,11 +440,14 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 }
 .ds-checkbox__input:checked::before {
   content: '';
-  width: 0.5rem;
-  height: 0.3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.27rem;
   border-left: 1.5px solid var(--color-primary-foreground);
   border-bottom: 1.5px solid var(--color-primary-foreground);
-  transform: rotate(-45deg) translateY(-10%);
+  transform: translate(-50%, -65%) rotate(-45deg);
 }
 .ds-checkbox__input:indeterminate {
   background: var(--color-primary);
