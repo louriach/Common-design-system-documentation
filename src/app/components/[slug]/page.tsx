@@ -82,15 +82,6 @@ export default async function ComponentPage({ params }: Props) {
         <div className="prose-container">
           <MarkdownRenderer content={component.content} />
         </div>
-        <footer className="docs-page-footer">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Edit on GitHub →
-          </a>
-        </footer>
       </div>
     );
 }
