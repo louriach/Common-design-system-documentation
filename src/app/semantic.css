@@ -187,7 +187,7 @@
 .border-muted { border-color: var(--color-muted); }
 
 /* ========== Border radius ========== */
-.rounded { border-radius: var(--radius, 0.25rem); }
+.rounded { border-radius: var(--radius-control); }
 .rounded-full { border-radius: 9999px; }
 .rounded-none { border-radius: 0; }
 
@@ -359,7 +359,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   justify-content: center;
   gap: var(--space-2);
   white-space: nowrap;
-  border-radius: var(--radius, 0.25rem);
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   font-size: var(--text-base);
   font-weight: 500;
@@ -387,7 +387,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-btn--lg { height: var(--height-lg); padding-left: var(--space-6); padding-right: var(--space-6); }
 .ds-btn--xs { height: var(--height-xs); padding-left: var(--space-2); padding-right: var(--space-2); font-size: 0.75rem; gap: var(--space-1); }
 .ds-btn--icon { width: var(--height-md); height: var(--height-md); }
-.ds-btn--icon-xs { width: var(--height-xs); height: var(--height-xs); border-radius: var(--radius); }
+.ds-btn--icon-xs { width: var(--height-xs); height: var(--height-xs); border-radius: var(--radius-control); }
 .ds-btn--icon-sm { width: var(--height-sm); height: var(--height-sm); }
 .ds-btn--icon-lg { width: var(--height-lg); height: var(--height-lg); }
 .ds-btn [class*="size-"]:not([class*="size-"]) { width: var(--space-4); height: var(--space-4); }
@@ -400,7 +400,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   display: flex;
   height: var(--height-lg);
   width: 100%;
-  border-radius: var(--radius);
+  border-radius: var(--radius-control);
   border: 1px solid var(--color-input);
   background: var(--color-background);
   padding: var(--space-2) var(--space-3);
@@ -429,7 +429,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
   height: var(--space-4);
   margin-top: var(--space-0-5); /* nudge to optically align with label cap-height */
   border: 1.5px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-control);
   background: var(--color-background);
   cursor: pointer;
   position: relative;
@@ -589,7 +589,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-toggle__error { font-size: var(--text-sm); color: var(--color-destructive); padding-left: 3.375rem; margin: 0; }
 
 /* ========== Component: Card ========== */
-.ds-card { background: var(--color-card); color: var(--color-card-foreground); display: flex; flex-direction: column; gap: var(--space-6); border-radius: var(--radius); border: 1px solid var(--color-border); padding: var(--space-6) 0; }
+.ds-card { background: var(--color-card); color: var(--color-card-foreground); display: flex; flex-direction: column; gap: var(--space-6); border-radius: var(--radius-card); border: 1px solid var(--color-border); padding: var(--space-6) 0; }
 .ds-card-header { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; align-items: start; gap: var(--space-2); padding: 0 var(--space-6); }
 .ds-card-title { font-size: var(--text-2xl); line-height: 1; font-weight: 600; }
 .ds-card-description { color: var(--color-muted-foreground); font-size: var(--text-base); }
@@ -608,7 +608,7 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-dialog-title { font-size: var(--text-lg); font-weight: 600; color: var(--color-foreground); margin: 0; }
 .ds-dialog-description { margin-top: var(--space-1); font-size: var(--text-base); color: var(--color-muted-foreground); }
 .ds-dialog-body { padding: var(--space-6); color: var(--color-foreground); }
-.ds-dialog-close { margin-left: var(--space-4); padding: var(--space-1); border-radius: var(--radius); color: var(--color-muted-foreground); background: none; border: none; outline: none; cursor: pointer; flex-shrink: 0; }
+.ds-dialog-close { margin-left: var(--space-4); padding: var(--space-1); border-radius: var(--radius-control); color: var(--color-muted-foreground); background: none; border: none; outline: none; cursor: pointer; flex-shrink: 0; }
 .ds-dialog-close:hover { color: var(--color-foreground); background: var(--color-muted); }
 .ds-dialog-close:focus-visible { box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-ring); }
 
