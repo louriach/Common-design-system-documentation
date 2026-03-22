@@ -62,20 +62,20 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <div className={cn("ds-checkbox", error && "ds-checkbox--error", disabled && "ds-checkbox--disabled", className)}>
-        <div className="ds-checkbox__row">
-          <input
-            type="checkbox"
-            id={checkboxId}
-            ref={checkboxRef}
-            checked={isControlled ? shouldBeChecked : undefined}
-            defaultChecked={!isControlled && !indeterminate ? defaultChecked : undefined}
-            onChange={handleChange}
-            disabled={disabled}
-            aria-invalid={error ? "true" : undefined}
-            aria-describedby={errorId || helperId}
-            className="ds-checkbox__input"
-            {...props}
-          />
+        <input
+          type="checkbox"
+          id={checkboxId}
+          ref={checkboxRef}
+          checked={isControlled ? shouldBeChecked : undefined}
+          defaultChecked={!isControlled && !indeterminate ? defaultChecked : undefined}
+          onChange={handleChange}
+          disabled={disabled}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={errorId || helperId}
+          className="ds-checkbox__input"
+          {...props}
+        />
+        <div className="ds-checkbox__content">
           {label && (
             <label htmlFor={checkboxId} className="ds-checkbox__label">
               {label}
@@ -84,15 +84,15 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               )}
             </label>
           )}
+          {error && (
+            <p id={errorId} className="ds-checkbox__error" role="alert">
+              {helperText || "This field is required"}
+            </p>
+          )}
+          {helperText && !error && (
+            <p id={helperId} className="ds-checkbox__helper">{helperText}</p>
+          )}
         </div>
-        {error && (
-          <p id={errorId} className="ds-checkbox__error" role="alert">
-            {helperText || "This field is required"}
-          </p>
-        )}
-        {helperText && !error && (
-          <p id={helperId} className="ds-checkbox__helper">{helperText}</p>
-        )}
       </div>
     )
   }

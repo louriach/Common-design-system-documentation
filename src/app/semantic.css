@@ -417,8 +417,9 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-error { font-size: 0.875rem; color: var(--color-destructive); margin-top: 0.375rem; }
 
 /* ========== Component: Checkbox ========== */
-.ds-checkbox { display: flex; flex-direction: column; gap: 0.3rem; }
-.ds-checkbox__row { display: flex; align-items: center; gap: 0.5rem; }
+.ds-checkbox { display: flex; align-items: flex-start; gap: 0.5rem; }
+.ds-checkbox__input { margin-top: 0.125rem; } /* nudge to optically align with label cap-height */
+.ds-checkbox__content { display: flex; flex-direction: column; gap: 0.2rem; }
 .ds-checkbox__input {
   appearance: none;
   -webkit-appearance: none;
@@ -469,12 +470,13 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-checkbox--disabled .ds-checkbox__label { cursor: not-allowed; opacity: 0.5; }
 .ds-checkbox__required { color: var(--color-destructive); margin-left: 0.2rem; }
 /* 1rem (input) + 0.5rem (gap) = 1.5rem indent to align under label */
-.ds-checkbox__helper { font-size: 0.8125rem; color: var(--color-muted-foreground); padding-left: 1.5rem; margin: 0; line-height: 1.4; }
-.ds-checkbox__error { font-size: 0.8125rem; color: var(--color-destructive); padding-left: 1.5rem; margin: 0; }
+.ds-checkbox__helper { font-size: 0.8125rem; color: var(--color-muted-foreground); margin: 0; line-height: 1.4; }
+.ds-checkbox__error { font-size: 0.8125rem; color: var(--color-destructive); margin: 0; }
 
 /* ========== Component: Radio ========== */
-.ds-radio { display: flex; flex-direction: column; gap: 0.3rem; }
-.ds-radio__row { display: flex; align-items: center; gap: 0.5rem; }
+.ds-radio { display: flex; align-items: flex-start; gap: 0.5rem; }
+.ds-radio__input { margin-top: 0.125rem; }
+.ds-radio__content { display: flex; flex-direction: column; gap: 0.2rem; }
 .ds-radio__input {
   appearance: none;
   -webkit-appearance: none;
@@ -510,8 +512,8 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 }
 .ds-radio--disabled .ds-radio__label { cursor: not-allowed; opacity: 0.5; }
 .ds-radio__required { color: var(--color-destructive); margin-left: 0.2rem; }
-.ds-radio__helper { font-size: 0.8125rem; color: var(--color-muted-foreground); padding-left: 1.5rem; margin: 0; line-height: 1.4; }
-.ds-radio__error { font-size: 0.8125rem; color: var(--color-destructive); padding-left: 1.5rem; margin: 0; }
+.ds-radio__helper { font-size: 0.8125rem; color: var(--color-muted-foreground); margin: 0; line-height: 1.4; }
+.ds-radio__error { font-size: 0.8125rem; color: var(--color-destructive); margin: 0; }
 
 /* ========== Component: Toggle ========== */
 .ds-toggle { display: inline-flex; flex-direction: column; gap: 0.25rem; }

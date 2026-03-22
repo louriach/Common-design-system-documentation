@@ -45,22 +45,22 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
 
     return (
       <div className={cn("ds-radio", error && "ds-radio--error", disabled && "ds-radio--disabled", className)}>
-        <div className="ds-radio__row">
-          <input
-            type="radio"
-            id={radioId}
-            ref={radioRef}
-            name={name}
-            value={value}
-            checked={isControlled ? checked : undefined}
-            defaultChecked={!isControlled ? defaultChecked : undefined}
-            onChange={handleChange}
-            disabled={disabled}
-            aria-invalid={error ? "true" : undefined}
-            aria-describedby={errorId || helperId}
-            className="ds-radio__input"
-            {...props}
-          />
+        <input
+          type="radio"
+          id={radioId}
+          ref={radioRef}
+          name={name}
+          value={value}
+          checked={isControlled ? checked : undefined}
+          defaultChecked={!isControlled ? defaultChecked : undefined}
+          onChange={handleChange}
+          disabled={disabled}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={errorId || helperId}
+          className="ds-radio__input"
+          {...props}
+        />
+        <div className="ds-radio__content">
           {label && (
             <label htmlFor={radioId} className="ds-radio__label">
               {label}
@@ -69,15 +69,15 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               )}
             </label>
           )}
+          {error && (
+            <p id={errorId} className="ds-radio__error" role="alert">
+              {helperText || "This field is required"}
+            </p>
+          )}
+          {helperText && !error && (
+            <p id={helperId} className="ds-radio__helper">{helperText}</p>
+          )}
         </div>
-        {error && (
-          <p id={errorId} className="ds-radio__error" role="alert">
-            {helperText || "This field is required"}
-          </p>
-        )}
-        {helperText && !error && (
-          <p id={helperId} className="ds-radio__helper">{helperText}</p>
-        )}
       </div>
     )
   }
