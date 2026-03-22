@@ -16,12 +16,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const errorId = error ? `${textareaId}-error` : undefined
 
     return (
-      <div className="w-full">
+      <div className="ds-textarea-wrap">
         {label && (
           <label htmlFor={textareaId} className="ds-label">
             {label}
             {props.required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}

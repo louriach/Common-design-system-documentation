@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <label htmlFor={inputId} className="ds-label">
             {label}
             {props.required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}

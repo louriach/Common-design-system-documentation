@@ -29,11 +29,11 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     }
 
     return (
-      <div ref={ref} className={cn("w-full", className)} {...props}>
+      <div ref={ref} className={cn("ds-progress-wrap", className)} {...props}>
         {showLabel && (
-          <div className="flex justify-between items-center mb-1">
-            <span className="text-sm text-muted-foreground">Progress</span>
-            <span className="text-sm font-medium text-foreground">{Math.round(percentage)}%</span>
+          <div className="ds-progress__header">
+            <span className="ds-progress__label">Progress</span>
+            <span className="ds-progress__value">{Math.round(percentage)}%</span>
           </div>
         )}
         <div

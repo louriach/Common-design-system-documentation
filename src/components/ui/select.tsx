@@ -31,18 +31,18 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     const errorId = error ? `${selectId}-error` : undefined
 
     return (
-      <div className="w-full">
+      <div className="ds-select-wrap">
         {label && (
           <label htmlFor={selectId} className="ds-label">
             {label}
             {required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}
           </label>
         )}
-        <div className="relative">
+        <div className="ds-input-relative">
           <select
             id={selectId}
             ref={ref}
@@ -64,12 +64,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             )}
             {children}
           </select>
-          <div
-            className={cn(
-              "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2",
-              "text-muted-foreground"
-            )}
-          >
+          <div className="ds-select-chevron">
             <svg
               width="12"
               height="12"

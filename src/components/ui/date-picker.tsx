@@ -21,20 +21,20 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const errorId = error ? `${inputId}-error` : undefined
 
     return (
-      <div className="w-full">
+      <div className="ds-datepicker-wrap">
         {label && (
           <label htmlFor={inputId} className="ds-label">
             {label}
             {props.required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}
           </label>
         )}
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+        <div className="ds-input-relative">
+          <div className="ds-input-icon-left">
+            <Calendar className="ds-input-icon" />
           </div>
           <input
             type="date"

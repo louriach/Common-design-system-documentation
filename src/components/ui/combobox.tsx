@@ -153,18 +153,18 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
     }
 
     return (
-      <div className="w-full relative">
+      <div className="ds-combobox-wrap ds-input-relative">
         {label && (
           <label htmlFor={comboboxId} className="ds-label">
             {label}
             {required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}
           </label>
         )}
-        <div className="relative">
+        <div className="ds-input-relative">
           <input
             ref={inputRef}
             id={comboboxId}
@@ -194,12 +194,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
             )}
             {...props}
           />
-          <div
-            className={cn(
-              "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2",
-              "text-muted-foreground"
-            )}
-          >
+          <div className="ds-select-chevron">
             <svg
               width="12"
               height="12"
@@ -221,11 +216,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
               ref={listboxRef}
               id={listboxId}
               role="listbox"
-              className={cn(
-                "absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded border border-border",
-                "bg-background",
-                "py-1 text-sm"
-              )}
+              className="ds-combobox__listbox"
             >
               {filteredOptions.map((option, index) => (
                 <li
@@ -235,15 +226,13 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
                   aria-selected={option.value === value}
                   onClick={() => handleOptionSelect(option)}
                   className={cn(
-                    "relative cursor-pointer select-none px-3 py-2",
-                    "text-foreground",
-                    "hover:bg-muted",
+                    "ds-combobox__option",
                     focusedIndex === index &&
-                      "bg-muted",
+                      "ds-combobox__option--focused",
                     option.value === value &&
-                      "bg-primary-soft text-primary",
+                      "ds-combobox__option--selected",
                     option.disabled &&
-                      "opacity-50 cursor-not-allowed pointer-events-none"
+                      "ds-combobox__option--disabled"
                   )}
                 >
                   {option.label}
