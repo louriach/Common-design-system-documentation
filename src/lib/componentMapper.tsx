@@ -530,10 +530,10 @@ export function renderMultipleComponents(
     );
   }
   
-  // Handle Button groups (horizontal layout)
-  if (allSameType && firstComponent.component === "Button") {
+  // Handle Button / IconButton groups (horizontal layout)
+  if (allSameType && (firstComponent.component === "Button" || firstComponent.component === "IconButton")) {
     return (
-      <div className="flex flex-wrap gap-2">
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
         {components.map((comp, index) => {
           const rendered = renderComponent(comp);
           return <div key={index}>{rendered}</div>;
@@ -541,10 +541,10 @@ export function renderMultipleComponents(
       </div>
     );
   }
-  
+
   // Handle other groups (vertical layout by default)
   return (
-    <div className="space-y-2">
+    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
       {components.map((comp, index) => {
         const rendered = renderComponent(comp);
         return <div key={index}>{rendered}</div>;
