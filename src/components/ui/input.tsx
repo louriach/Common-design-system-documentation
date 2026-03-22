@@ -16,7 +16,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const errorId = error ? `${inputId}-error` : undefined
 
     return (
-      <div className="w-full">
+      <div className="ds-input-wrap">
         {label && (
           <label htmlFor={inputId} className="ds-label">
             {label}

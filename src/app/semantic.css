@@ -862,7 +862,16 @@ details[open] > .ds-accordion-trigger .ds-accordion-chevron { transform: rotate(
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
+/* Form controls (inputs, selects, etc.) should fill the preview width */
+.docs-demo-preview > .ds-input-wrap,
+.docs-demo-preview > .ds-select-wrap,
+.docs-demo-preview > .ds-textarea-wrap,
+.docs-demo-preview > .ds-datepicker-wrap,
+.docs-demo-preview > .ds-fieldset-wrap,
+.docs-demo-preview > .ds-combobox-wrap { width: 100%; }
+.ds-input-wrap { width: 100%; }
 .docs-demo-code-wrap {
   margin-top: var(--space-1);
   overflow: hidden;
