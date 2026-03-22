@@ -391,7 +391,9 @@ tr.even\:bg-muted:nth-child(even) { background-color: var(--color-muted); }
 .ds-btn--icon-sm { width: var(--height-sm); height: var(--height-sm); }
 .ds-btn--icon-lg { width: var(--height-lg); height: var(--height-lg); }
 .ds-btn [class*="size-"]:not([class*="size-"]) { width: var(--space-4); height: var(--space-4); }
-.ds-btn svg { pointer-events: none; flex-shrink: 0; }
+.ds-btn svg { pointer-events: none; flex-shrink: 0; display: block; }
+/* The dangerouslySetInnerHTML span wrapper must not introduce baseline gap */
+.ds-btn > span { display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
 
 /* ========== Component: Input ========== */
 .ds-input {
