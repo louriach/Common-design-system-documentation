@@ -12,6 +12,22 @@ interface ComponentProps {
 // requires editing src/lib/component-registry.ts
 export const componentMap = componentRegistry;
 
+// Destructure all components into scope so renderComponent's JSX can reference
+// them by name. This is the only place they need to exist beyond the registry.
+const {
+  Button, IconButton,
+  Card, CardHeader, CardTitle, CardDescription, CardContent,
+  Alert, AlertTitle, AlertDescription,
+  Modal, Progress, Spinner, Tooltip,
+  Avatar, Badge,
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+  Breadcrumb, BreadcrumbItem,
+  Link,
+  Tabs, TabsList, TabsTrigger, TabsContent,
+  Checkbox, Combobox, DatePicker, Fieldset, Input, Radio, Select, Textarea, Toggle,
+} = componentRegistry;
+
 // Icon mapping
 export const iconMap: Record<string, React.ComponentType<any>> = {
   InfoIcon,
