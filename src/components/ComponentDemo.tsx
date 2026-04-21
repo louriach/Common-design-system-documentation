@@ -23,20 +23,13 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
   };
 
   return (
-    <div className="my-6 space-y-4">
-      {/* Demo Preview */}
-      <div className="relative rounded border border-border bg-background p-6">
-        <div className="flex items-center justify-center min-h-[100px]">
-          {children}
-        </div>
+    <div className="docs-demo">
+      <div className="docs-demo-preview">
+        {children}
       </div>
-
-      {/* Code Block */}
-      <div className="relative">
-        <div className="flex items-center justify-between mb-2 px-1">
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
-            Code
-          </span>
+      <div className="docs-demo-code-wrap">
+        <div className="docs-demo-label">
+          <span>Code</span>
           <Button
             variant="ghost"
             size="sm"
@@ -46,18 +39,18 @@ export function ComponentDemo({ code, children }: ComponentDemoProps) {
           >
             {copied ? (
               <>
-                <Check className="h-3 w-3 mr-1" />
+                <Check className="h-3 w-3 shrink-0" />
                 Copied
               </>
             ) : (
               <>
-                <Copy className="h-3 w-3 mr-1" />
+                <Copy className="h-3 w-3 shrink-0" />
                 Copy
               </>
             )}
           </Button>
         </div>
-        <pre className="bg-foreground text-background p-4 rounded overflow-x-auto text-sm">
+        <pre className="docs-demo-pre">
           <code>{code.trim()}</code>
         </pre>
       </div>

@@ -21,36 +21,27 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const errorId = error ? `${inputId}-error` : undefined
 
     return (
-      <div className="w-full">
+      <div className="ds-datepicker-wrap">
         {label && (
-          <label
-            htmlFor={inputId}
-            className="block text-sm font-medium text-foreground mb-1.5"
-          >
+          <label htmlFor={inputId} className="ds-label">
             {label}
             {props.required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}
           </label>
         )}
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+        <div className="ds-input-relative">
+          <div className="ds-input-icon-left">
+            <Calendar className="ds-input-icon" />
           </div>
           <input
             type="date"
             id={inputId}
             className={cn(
-              "flex h-10 w-full rounded border border-input bg-background pl-10 pr-3 py-2 text-sm text-foreground",
-              "placeholder:text-muted-foreground",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-              "read-only:bg-muted read-only:cursor-default",
-              "[&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:cursor-pointer",
-              error &&
-                "border-destructive focus-visible:ring-destructive",
+              "ds-input input-date-native-hidden pl-10",
+              error && "ds-input--error",
               className
             )}
             ref={ref}
@@ -60,18 +51,12 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           />
         </div>
         {error && (
-          <p
-            id={errorId}
-            className="mt-1.5 text-sm text-destructive"
-            role="alert"
-          >
+          <p id={errorId} className="ds-error" role="alert">
             {helperText || "Please select a valid date"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
-            {helperText}
-          </p>
+          <p id={helperId} className="ds-helper">{helperText}</p>
         )}
       </div>
     )

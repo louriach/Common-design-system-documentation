@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
 2:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"default"]
 3:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"default"]
-4:I[22016,["/_next/static/chunks/36ce258c0b999245.js","/_next/static/chunks/b0d8f357dd5135fb.js"],""]
-5:I[19455,["/_next/static/chunks/36ce258c0b999245.js","/_next/static/chunks/b0d8f357dd5135fb.js"],"Button"]
-0:{"buildId":"HRC6bfCsxxAF0e4ClYG4T","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}],"notFound":[["$","div",null,{"className":"max-w-4xl mx-auto py-12","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-4xl font-bold mb-4","children":"Component Not Found"}],["$","p",null,{"className":"text-lg text-gray-600 dark:text-gray-400 mb-8","children":"The component you're looking for doesn't exist or has been moved."}],["$","$L4",null,{"href":"/","children":["$","$L5",null,{"children":"← Back to Components"}]}]]}]}],[]]}]]}],"loading":null,"isPartial":false}
+4:I[22016,["/_next/static/chunks/156be1fdec8e1fb7.js"],""]
+5:I[19455,["/_next/static/chunks/156be1fdec8e1fb7.js"],"Button"]
+0:{"buildId":"AYC_8i9Umggrt-7Nyi2v5","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}],"notFound":[["$","div",null,{"className":"max-w-4xl mx-auto py-12","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-4xl font-bold mb-4","children":"Component Not Found"}],["$","p",null,{"className":"text-lg text-gray-600 dark:text-gray-400 mb-8","children":"The component you're looking for doesn't exist or has been moved."}],["$","$L4",null,{"href":"/","children":["$","$L5",null,{"children":"← Back to Components"}]}]]}]}],[]]}]]}],"loading":null,"isPartial":false}

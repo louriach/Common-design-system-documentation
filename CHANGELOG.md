@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Semantic color variants (destructive, success, warning) for alerts, badges, buttons, and progress
 - Component doc template at `content/components/_template.md` for duplicating new component docs
 - Changelog page at `/changelog/` that renders this file
-- Proper accessibility checks: Playwright + axe-core on all component pages (see `npm run test:a11y`)
 
 ### Changed
 - All UI components and layout now use semantic tokens from `globals.css` instead of raw Tailwind grays

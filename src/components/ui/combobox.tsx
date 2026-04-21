@@ -153,21 +153,18 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
     }
 
     return (
-      <div className="w-full relative">
+      <div className="ds-combobox-wrap ds-input-relative">
         {label && (
-          <label
-            htmlFor={comboboxId}
-            className="block text-sm font-medium text-foreground mb-1.5"
-          >
+          <label htmlFor={comboboxId} className="ds-label">
             {label}
             {required && (
-              <span className="text-destructive ml-1" aria-label="required">
+              <span className="ds-required" aria-label="required">
                 *
               </span>
             )}
           </label>
         )}
-        <div className="relative">
+        <div className="ds-input-relative">
           <input
             ref={inputRef}
             id={comboboxId}
@@ -191,22 +188,13 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
             aria-invalid={error ? "true" : undefined}
             aria-describedby={errorId || helperId}
             className={cn(
-              "flex h-10 w-full rounded border border-input bg-background px-3 py-2 text-sm text-foreground",
-              "placeholder:text-muted-foreground",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
-              error &&
-                "border-destructive focus-visible:ring-destructive",
+              "ds-input",
+              error && "ds-input--error",
               className
             )}
             {...props}
           />
-          <div
-            className={cn(
-              "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2",
-              "text-muted-foreground"
-            )}
-          >
+          <div className="ds-select-chevron">
             <svg
               width="12"
               height="12"
@@ -228,11 +216,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
               ref={listboxRef}
               id={listboxId}
               role="listbox"
-              className={cn(
-                "absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded border border-border",
-                "bg-background",
-                "py-1 text-sm"
-              )}
+              className="ds-combobox__listbox"
             >
               {filteredOptions.map((option, index) => (
                 <li
@@ -242,15 +226,13 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
                   aria-selected={option.value === value}
                   onClick={() => handleOptionSelect(option)}
                   className={cn(
-                    "relative cursor-pointer select-none px-3 py-2",
-                    "text-foreground",
-                    "hover:bg-muted",
+                    "ds-combobox__option",
                     focusedIndex === index &&
-                      "bg-muted",
+                      "ds-combobox__option--focused",
                     option.value === value &&
-                      "bg-primary/10 text-primary",
+                      "ds-combobox__option--selected",
                     option.disabled &&
-                      "opacity-50 cursor-not-allowed pointer-events-none"
+                      "ds-combobox__option--disabled"
                   )}
                 >
                   {option.label}
@@ -260,18 +242,12 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
           )}
         </div>
         {error && (
-          <p
-            id={errorId}
-            className="mt-1.5 text-sm text-destructive"
-            role="alert"
-          >
+          <p id={errorId} className="ds-error" role="alert">
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
-            {helperText}
-          </p>
+          <p id={helperId} className="ds-helper">{helperText}</p>
         )}
       </div>
     )

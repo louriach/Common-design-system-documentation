@@ -1,81 +1,32 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Radio } from "@/components/ui/radio";
-import { Select } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Toggle } from "@/components/ui/toggle";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Combobox } from "@/components/ui/combobox";
-import { Avatar } from "@/components/ui/avatar";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { DatePicker } from "@/components/ui/date-picker";
-import { Fieldset } from "@/components/ui/fieldset";
-import { Link } from "@/components/ui/link";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Modal } from "@/components/ui/modal";
-import { Tooltip } from "@/components/ui/tooltip";
-import { Progress } from "@/components/ui/progress";
-import { Spinner } from "@/components/ui/spinner";
-import { IconButton } from "@/components/ui/icon-button";
+import { componentRegistry } from "@/lib/component-registry";
 import { InfoIcon, CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 
 interface ComponentProps {
   [key: string]: any;
 }
 
-// Component mapping for live demos
-export const componentMap: Record<string, React.ComponentType<any>> = {
-  Button,
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  Badge,
-  Input,
-  Checkbox,
-  Radio,
-  Select,
-  Textarea,
-  Toggle,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  Combobox,
-  Avatar,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  Breadcrumb,
-  BreadcrumbItem,
-  DatePicker,
-  Fieldset,
+// Component map — sourced from the registry so swapping components only
+// requires editing src/lib/component-registry.ts
+export const componentMap = componentRegistry;
+
+// Destructure all components into scope so renderComponent's JSX can reference
+// them by name. This is the only place they need to exist beyond the registry.
+const {
+  Button, IconButton,
+  Card, CardHeader, CardTitle, CardDescription, CardContent,
+  Alert, AlertTitle, AlertDescription,
+  Modal, Progress, Spinner, Tooltip,
+  Avatar, Badge,
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+  Breadcrumb, BreadcrumbItem,
   Link,
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  Modal,
-  Tooltip,
-  Progress,
-  Spinner,
-  IconButton,
-};
+  Tabs, TabsList, TabsTrigger, TabsContent,
+  Checkbox, Combobox, DatePicker, Fieldset, Input, Radio, Select, Textarea, Toggle,
+} = componentRegistry;
 
 // Icon mapping
 export const iconMap: Record<string, React.ComponentType<any>> = {
@@ -579,10 +530,10 @@ export function renderMultipleComponents(
     );
   }
   
-  // Handle Button groups (horizontal layout)
-  if (allSameType && firstComponent.component === "Button") {
+  // Handle Button / IconButton groups (horizontal layout)
+  if (allSameType && (firstComponent.component === "Button" || firstComponent.component === "IconButton")) {
     return (
-      <div className="flex flex-wrap gap-2">
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
         {components.map((comp, index) => {
           const rendered = renderComponent(comp);
           return <div key={index}>{rendered}</div>;
@@ -590,10 +541,10 @@ export function renderMultipleComponents(
       </div>
     );
   }
-  
+
   // Handle other groups (vertical layout by default)
   return (
-    <div className="space-y-2">
+    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
       {components.map((comp, index) => {
         const rendered = renderComponent(comp);
         return <div key={index}>{rendered}</div>;
@@ -628,13 +579,15 @@ export function renderComponent(parsed: {
 
     return (
       <Alert variant={variant as any}>
-        <IconComponent className="h-4 w-4" />
-        {props.title && <AlertTitle>{props.title}</AlertTitle>}
-        {(children || props.description) && (
-          <AlertDescription>
-            {children || props.description}
-          </AlertDescription>
-        )}
+        <IconComponent className="h-5 w-5" />
+        <div className="flex flex-col gap-1">
+          {props.title && <AlertTitle>{props.title}</AlertTitle>}
+          {(children || props.description) && (
+            <AlertDescription>
+              {children || props.description}
+            </AlertDescription>
+          )}
+        </div>
       </Alert>
     );
   }

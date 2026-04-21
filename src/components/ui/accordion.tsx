@@ -2,215 +2,69 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { ChevronDown } from "lucide-react"
 
-export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
-  type?: "single" | "multiple"
-  defaultValue?: string | string[]
-  value?: string | string[]
-  onValueChange?: (value: string | string[]) => void
-  collapsible?: boolean
+interface AccordionProps {
+  className?: string
+  children?: React.ReactNode
 }
 
-const AccordionContext = React.createContext<{
-  type: "single" | "multiple"
-  value: string | string[]
-  onValueChange: (value: string) => void
-  collapsible: boolean
-} | null>(null)
-
-const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
-  (
-    {
-      className,
-      type = "single",
-      defaultValue,
-      value,
-      onValueChange,
-      collapsible = true,
-      children,
-      ...props
-    },
-    ref
-  ) => {
-    const [internalValue, setInternalValue] = React.useState<string | string[]>(
-      defaultValue || (type === "multiple" ? [] : "")
-    )
-    const isControlled = value !== undefined
-    const currentValue = isControlled ? value : internalValue
-
-    const handleValueChange = React.useCallback(
-      (itemValue: string) => {
-        if (type === "single") {
-          const newValue = currentValue === itemValue && collapsible ? "" : itemValue
-          if (!isControlled) {
-            setInternalValue(newValue)
-          }
-          onValueChange?.(newValue as string)
-        } else {
-          const currentArray = Array.isArray(currentValue) ? currentValue : []
-          const newValue = currentArray.includes(itemValue)
-            ? currentArray.filter((v) => v !== itemValue)
-            : [...currentArray, itemValue]
-          if (!isControlled) {
-            setInternalValue(newValue)
-          }
-          onValueChange?.(newValue)
-        }
-      },
-      [type, currentValue, collapsible, isControlled, onValueChange]
-    )
-
-    const isOpen = React.useCallback(
-      (itemValue: string) => {
-        if (type === "single") {
-          return currentValue === itemValue
-        }
-        return Array.isArray(currentValue) && currentValue.includes(itemValue)
-      },
-      [type, currentValue]
-    )
-
-    return (
-      <AccordionContext.Provider
-        value={{
-          type,
-          value: currentValue,
-          onValueChange: handleValueChange,
-          collapsible,
-        }}
-      >
-        <div ref={ref} className={cn("w-full space-y-1", className)} {...props}>
-          {children}
-        </div>
-      </AccordionContext.Provider>
-    )
-  }
-)
+function Accordion({ className, children }: AccordionProps) {
+  return <div className={cn("ds-accordion-root", className)}>{children}</div>
+}
 Accordion.displayName = "Accordion"
 
-export interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  value: string
+interface AccordionItemProps {
+  className?: string
+  children?: React.ReactNode
+  value?: string
+  defaultOpen?: boolean
 }
 
-const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
-  ({ className, value, children, ...props }, ref) => {
-    const context = React.useContext(AccordionContext)
-    if (!context) {
-      throw new Error("AccordionItem must be used within Accordion")
-    }
-
-    const isOpen = context.type === "single"
-      ? context.value === value
-      : Array.isArray(context.value) && context.value.includes(value)
-
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "border border-border rounded overflow-hidden",
-          className
-        )}
-        {...props}
-      >
-        {React.Children.map(children, (child) => {
-          if (React.isValidElement(child)) {
-            const childProps = child.props as Record<string, any>
-            if (child.type === AccordionTrigger || (child as any).type?.displayName === "AccordionTrigger") {
-              return React.cloneElement(child, {
-                ...childProps,
-                value,
-                isOpen,
-              } as any)
-            }
-            if (child.type === AccordionContent || (child as any).type?.displayName === "AccordionContent") {
-              return React.cloneElement(child, {
-                ...childProps,
-                value,
-                isOpen,
-              } as any)
-            }
-          }
-          return child
-        })}
-      </div>
-    )
-  }
-)
+function AccordionItem({ className, children, value, defaultOpen = false }: AccordionItemProps) {
+  return (
+    <details className={cn("ds-accordion-item", className)} data-value={value} open={defaultOpen}>
+      {children}
+    </details>
+  )
+}
 AccordionItem.displayName = "AccordionItem"
 
-export interface AccordionTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  value?: string
-  isOpen?: boolean
+interface AccordionTriggerProps {
+  className?: string
+  children?: React.ReactNode
 }
 
-const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerProps>(
-  ({ className, value, isOpen, children, ...props }, ref) => {
-    const context = React.useContext(AccordionContext)
-    if (!context) {
-      throw new Error("AccordionTrigger must be used within Accordion")
-    }
-
-    const handleClick = () => {
-      if (value) {
-        context.onValueChange(value)
-      }
-    }
-
-    return (
-      <button
-        ref={ref}
-        type="button"
-        onClick={handleClick}
-        aria-expanded={isOpen}
-        className={cn(
-          "flex w-full items-center justify-between px-4 py-3 text-sm font-medium text-foreground",
-          "hover:bg-muted transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-          className
-        )}
-        {...props}
+function AccordionTrigger({ className, children }: AccordionTriggerProps) {
+  return (
+    <summary className={cn("ds-accordion-trigger", className)}>
+      {children}
+      <svg
+        className="ds-accordion-chevron"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
       >
-        <span>{children}</span>
-        <ChevronDown
-          className={cn(
-            "h-4 w-4 text-muted-foreground transition-transform duration-200",
-            isOpen && "transform rotate-180"
-          )}
-        />
-      </button>
-    )
-  }
-)
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </summary>
+  )
+}
 AccordionTrigger.displayName = "AccordionTrigger"
 
-export interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  value?: string
-  isOpen?: boolean
+interface AccordionContentProps {
+  className?: string
+  children?: React.ReactNode
 }
 
-const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>(
-  ({ className, value, isOpen, children, ...props }, ref) => {
-    if (!isOpen) {
-      return null
-    }
-
-    return (
-      <div
-        ref={ref}
-        role="region"
-        className={cn(
-          "px-4 py-3 text-sm text-foreground border-t border-border",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    )
-  }
-)
+function AccordionContent({ className, children }: AccordionContentProps) {
+  return <div className={cn("ds-accordion-content", className)}>{children}</div>
+}
 AccordionContent.displayName = "AccordionContent"
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

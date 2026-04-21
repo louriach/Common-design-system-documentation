@@ -1,26 +1,26 @@
-@import "tailwindcss";
+@import "./semantic.css";
 
-/* Enable class-based dark mode for Tailwind v4 */
-@custom-variant dark (&&:where(.dark, .dark *));
+/* Class-based dark mode */
 
-/* Single source of truth: brutalist black/white base + semantic variants (destructive, success, warning) */
-@theme {
-  /* Base wireframe */
-  --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(12% 0 0);
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(12% 0 0);
+/* Design tokens: brutalist black/white base + semantic variants (destructive, success, warning).
+   Defined on :root so var(--color-*) and var(--radius) work without Tailwind. */
+:root {
+  /* Base: off-white surfaces, warm neutral */
+  --color-background: oklch(97% 0.006 85);
+  --color-foreground: oklch(18% 0 0);
+  --color-card: oklch(99.5% 0.004 85);
+  --color-card-foreground: oklch(18% 0 0);
   --color-popover: oklch(100% 0 0);
   --color-popover-foreground: oklch(12% 0 0);
   --color-primary: oklch(12% 0 0);
   --color-primary-foreground: oklch(98% 0 0);
   --color-secondary: oklch(96% 0 0);
   --color-secondary-foreground: oklch(12% 0 0);
-  --color-muted: oklch(96% 0 0);
-  --color-muted-foreground: oklch(45% 0 0);
-  --color-accent: oklch(96% 0 0);
-  --color-accent-foreground: oklch(12% 0 0);
-  --color-border: oklch(88% 0 0);
+  --color-muted: oklch(95% 0.008 85);
+  --color-muted-foreground: oklch(42% 0 0);
+  --color-accent: oklch(95% 0.008 85);
+  --color-accent-foreground: oklch(18% 0 0);
+  --color-border: oklch(90% 0.008 85);
   --color-input: oklch(88% 0 0);
   --color-ring: oklch(12% 0 0);
   /* Semantic variants for alerts, badges, buttons */
@@ -30,11 +30,65 @@
   --color-success-foreground: oklch(98% 0 0);
   --color-warning: oklch(75% 0.18 85);
   --color-warning-foreground: oklch(20% 0 0);
+  /* Soft background tints for alerts and status surfaces */
+  --color-destructive-bg: oklch(97% 0.04 25);
+  --color-success-bg: oklch(96% 0.05 145);
+  --color-warning-bg: oklch(97% 0.06 85);
   --radius: 0.25rem;
+  --radius-control: 0.375rem;  /* buttons, inputs, selects — change once to restyle all controls */
+  --radius-card: 0.75rem;
+
+  /* Spacing scale (4px base) */
+  --space-px: 1px;
+  --space-0-5: 0.125rem;
+  --space-1: 0.25rem;
+  --space-1-5: 0.375rem;
+  --space-2: 0.5rem;
+  --space-2-5: 0.625rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-11: 2.75rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Font sizes */
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.25rem;
+
+  /* Component heights */
+  --height-xs: 1.5rem;
+  --height-sm: 2rem;
+  --height-md: 2.25rem;
+  --height-lg: 2.5rem;
+
+  /* Layout */
+  --sidebar-width: 15rem;
+  --sidebar-width-expanded: 15.5rem;
+  --content-max-width: 56rem;
+
+  /* Dialog sizes */
+  --dialog-sm: 28rem;
+  --dialog-md: 32rem;
+  --dialog-lg: 42rem;
+  --dialog-xl: 56rem;
 }
 
-@layer base {
-  .dark {
+/* Dark mode: unlayered so it overrides :root when html has class="dark". */
+html.dark,
+.dark {
     --color-background: oklch(8% 0 0);
     --color-foreground: oklch(96% 0 0);
     --color-card: oklch(8% 0 0);
@@ -58,8 +112,13 @@
     --color-success-foreground: oklch(98% 0 0);
     --color-warning: oklch(75% 0.18 85);
     --color-warning-foreground: oklch(12% 0 0);
-  }
+    --color-destructive-bg: oklch(22% 0.04 25);
+    --color-success-bg: oklch(22% 0.05 145);
+    --color-warning-bg: oklch(26% 0.05 85);
+  --radius-card: 0.75rem;
+}
 
+@layer base {
   html {
     color-scheme: light;
   }
@@ -72,12 +131,26 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: ui-monospace, "Cascadia Mono", "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.45;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Form elements don't inherit font-family; they use browser default (e.g. Arial). */
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
   }
 
   code,
   pre {
     font-family: ui-monospace, "Cascadia Mono", "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+  }
+
+  .dark .bg-neutral-100 {
+    background-color: #171717;
   }
 }

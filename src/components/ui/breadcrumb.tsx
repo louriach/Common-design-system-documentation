@@ -13,21 +13,21 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       <nav
         ref={ref}
         aria-label="Breadcrumb"
-        className={cn("flex items-center space-x-1 text-sm", className)}
+        className={cn("ds-breadcrumb", className)}
         {...props}
       >
-        <ol className="flex items-center space-x-1">
+        <ol className="ds-breadcrumb__list">
           {React.Children.map(children, (child, index) => {
             if (React.isValidElement(child)) {
               return (
-                <li key={index} className="flex items-center">
+                <li key={index} className="ds-breadcrumb__item-inner">
                   {React.cloneElement(child as React.ReactElement<any>, {
                     isLast: index === React.Children.count(children) - 1,
                     separator: separator,
                   })}
                   {index < React.Children.count(children) - 1 && (
-                    <span className="mx-2 text-muted-foreground">
-                      {separator || <ChevronRight className="h-4 w-4" />}
+                    <span className="ds-breadcrumb__separator">
+                      {separator || <ChevronRight style={{ width: '1rem', height: '1rem' }} />}
                     </span>
                   )}
                 </li>
@@ -69,7 +69,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
         <span
           ref={ref as any}
           aria-current="page"
-          className={cn("flex items-center", className)}
+          className={cn("ds-breadcrumb__item-link", className)}
           {...(props as any)}
         >
           {content}
@@ -81,7 +81,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
       <Link
         ref={ref}
         href={href}
-        className={cn("flex items-center hover:underline", className)}
+        className={cn("ds-breadcrumb__item-link hover:underline", className)}
         {...props}
       >
         {content}

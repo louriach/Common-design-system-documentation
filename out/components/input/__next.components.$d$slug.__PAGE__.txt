@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[12740,["/_next/static/chunks/36ce258c0b999245.js","/_next/static/chunks/b0d8f357dd5135fb.js","/_next/static/chunks/38dc232e481815c7.js"],"MarkdownRenderer"]
+2:I[12740,["/_next/static/chunks/156be1fdec8e1fb7.js","/_next/static/chunks/c5646214fd1778bd.js"],"MarkdownRenderer"]
 7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/0bd6498bda341889.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T374a,
@@ -527,8 +527,8 @@ Validate when the form is submitted.
   required
 />
 ```
-0:{"buildId":"HRC6bfCsxxAF0e4ClYG4T","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-8","children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","children":"Input"}],["$","p",null,{"className":"text-sm text-muted-foreground mb-2","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"text-lg text-foreground","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
-4:["$","div",null,{"className":"mt-12 pt-8 border-t border-border flex justify-end","children":["$","a",null,{"href":"https://github.com","className":"text-sm text-primary hover:underline","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
-5:["$","script","script-0",{"src":"/_next/static/chunks/38dc232e481815c7.js","async":true}]
+0:{"buildId":"AYC_8i9Umggrt-7Nyi2v5","rsc":["$","$1","c",{"children":[["$","div",null,{"children":[["$","header",null,{"className":"docs-page-header","children":[["$","h1",null,{"className":"docs-page-title","children":"Input"}],["$","p",null,{"className":"docs-page-meta","children":["Category: ",["$","span",null,{"className":"font-medium","children":"Forms"}]]}],["$","p",null,{"className":"docs-page-description","children":"Text input field component for collecting user data entry"}]]}],["$","div",null,{"className":"prose-container","children":["$","$L2",null,{"content":"$3"}]}],"$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+4:["$","footer",null,{"className":"docs-page-footer","children":["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noopener noreferrer","children":"Edit on GitHub →"}]}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/c5646214fd1778bd.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

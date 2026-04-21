@@ -6,347 +6,63 @@ category: Data Display
 
 ## Overview
 
-Badge components show small labels, status indicators, counts, or tags that add context about an item or action. Badges commonly appear for notifications, status information, categorization, or numerical counts. They let people quickly spot important attributes or states without cluttering the interface.
+Badges show compact labels, counts, or status indicators alongside other content. They let users quickly spot states, categories, or quantities without cluttering the interface.
 
 ## Usage
 
-### Basic Badge
-```tsx:live
-<Badge>New</Badge>
-```
+### Variants
 
-### Status Badges
-```tsx:live
-<Badge variant="default">Default</Badge>
-```
+Use semantic variants to communicate meaning at a glance.
 
 ```tsx:live
-<Badge variant="success">Active</Badge>
+<div className="flex gap-2">
+  <Badge variant="default">Default</Badge>
+  <Badge variant="success">Active</Badge>
+  <Badge variant="warning">Pending</Badge>
+  <Badge variant="error">Error</Badge>
+</div>
 ```
 
-```tsx:live
-<Badge variant="warning">Pending</Badge>
-```
+### Count
+
+Numeric badge for notification counts or quantities.
 
 ```tsx:live
-<Badge variant="error">Error</Badge>
+<Badge variant="default">12</Badge>
 ```
 
-### Badge with Count
-```tsx:live
-<Badge variant="default">5</Badge>
-```
-
-### Badge Sizes
-```tsx:live
-<Badge size="sm">Small</Badge>
-```
+### Sizes
 
 ```tsx:live
-<Badge size="md">Medium</Badge>
-```
-
-```tsx:live
-<Badge size="lg">Large</Badge>
+<div className="flex gap-2 items-center">
+  <Badge size="sm">Small</Badge>
+  <Badge size="md">Medium</Badge>
+  <Badge size="lg">Large</Badge>
+</div>
 ```
 
 ## Props
 
-| Prop | Type | Description |
-| --- | --- | --- |
-| variant | `"default" \| "success" \| "warning" \| "error" \| "info" \| "secondary"` | Visual style variant. |
-| size | `"sm" \| "md" \| "lg"` | Badge size (default: "md"). |
-| shape | `"rounded" \| "square" \| "pill"` | Border radius style (default: "rounded"). |
-| dot | `boolean` | Show dot indicator instead of text (default: false). |
-| count | `number \| ReactNode` | Numeric count or custom content to display. |
-| overflowCount | `number` | Maximum count to display before showing "+" (default: 99). |
-| showZero | `boolean` | Show badge when count is zero (default: false). |
-| status | `"success" \| "processing" \| "default" \| "error" \| "warning"` | Status indicator style. |
-| text | `ReactNode` | Text content for status badges. |
-
-## Variants
-
-### Default
-Standard badge style for general use. Best for neutral information, tags, or categorization.
-
-**Use cases:**
-- Category labels
-- General status indicators
-- Non-critical information
-- Tags and metadata
-
-### Success
-Green badge indicating positive status or successful completion.
-
-**Use cases:**
-- Active status
-- Completed tasks
-- Verified items
-- Success confirmations
-
-### Warning
-Yellow/Orange badge for cautionary information or pending states.
-
-**Use cases:**
-- Pending approval
-- Warning states
-- Attention-required items
-- Temporary status
-
-### Error
-Red badge for errors, failures, or critical issues.
-
-**Use cases:**
-- Error states
-- Failed operations
-- Critical alerts
-- Blocked actions
-
-### Info
-Blue badge for informational content or neutral status.
-
-**Use cases:**
-- Informational labels
-- Neutral status
-- Additional context
-- Helpful hints
-
-### Secondary
-Subtle badge style for less prominent information.
-
-**Use cases:**
-- Secondary categorization
-- Subtle status indicators
-- Background information
-
-## States
-
-### Default
-Standard appearance with appropriate color and contrast.
-
-### With Count
-Badge displays a numeric count, typically used for notifications or quantities.
-
-**Behavior:**
-- Hides when count is 0 (unless `showZero` is true)
-- Shows overflow format (e.g., "99+") when count exceeds `overflowCount`
-- Animates when count changes (optional)
-
-### Dot Badge
-Small circular indicator without text, used for presence indicators or minimal status.
-
-**Use cases:**
-- Online/offline status
-- Notification presence
-- Minimal status indicators
-- Avatar overlays
-
-### Status Badge
-Badge with status dot and optional text, commonly used for system status indicators.
-
-**Status types:**
-- **Success**: Green dot, indicates successful state
-- **Processing**: Blue animated dot, indicates in-progress state
-- **Error**: Red dot, indicates error state
-- **Warning**: Yellow dot, indicates warning state
-- **Default**: Gray dot, neutral state
-
-## Anatomy
-
-### Components
-
-1. **Container**: Wrapper element with background, border, and padding
-2. **Content**: Text, count, or icon content
-3. **Dot** (optional): Small circular indicator
-4. **Icon** (optional): Leading or trailing icon for visual context
-
-### Leading Icon
-Optional icon that appears before the badge text to provide additional visual context.
-
-**Guidelines:**
-- Use icons that clearly represent the badge's meaning
-- Keep icons small and proportional to text
-- Ensure icons maintain sufficient contrast
-- Don't use icons for purely decorative purposes
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| variant | `"default" \| "success" \| "warning" \| "error" \| "info" \| "secondary"` | `"default"` | Color and meaning |
+| size | `"sm" \| "md" \| "lg"` | `"md"` | Badge size |
+| dot | `boolean` | `false` | Show a dot indicator instead of text |
 
 ## Accessibility
 
-- Use semantic HTML: `<span>` for non-interactive badges, `<button>` for interactive badges
-- Provide `aria-label` for icon-only or dot badges:
-  ```tsx
-  <Badge dot aria-label="3 unread notifications">3</Badge>
-  ```
-- Ensure sufficient color contrast (WCAG 2.1 AA minimum):
-  - Text on background: 4.5:1 for normal text, 3:1 for large text
-  - Status indicators: Don't rely on color alone
-- For count badges, provide context:
-  ```tsx
-  <Badge count={5} aria-label="5 unread messages">5</Badge>
-  ```
-- Use `title` attribute for additional context on hover
-- For status badges, use `aria-live` if status changes dynamically:
-  ```tsx
-  <Badge status="success" aria-live="polite">Active</Badge>
-  ```
-- Ensure badges are readable at all sizes
-- Don't use badges for critical information that requires immediate attention (use Alert instead)
+- Use `<span>` for non-interactive badges; don't use `<button>` unless the badge is clickable
+- For dot-only or count-only badges, add `aria-label` to describe what the count represents
+- Don't rely on color alone — pair color with text to convey meaning
+- For dynamically updating badges (e.g., notification counts), add `aria-live="polite"`
 
-## Content Guidelines
+## When to use
 
-### Text Content
-- Keep text short and concise (1-3 words typically)
-- Use title case or sentence case consistently
-- Avoid punctuation unless necessary
-- Use clear, descriptive labels
+**Use a badge when:**
+- Showing status (active, pending, error) on a list item or card
+- Displaying a notification count
+- Labeling or categorizing content with a tag
 
-### Count Display
-- Show exact numbers for counts under 100
-- Use overflow format (e.g., "99+") for large numbers
-- Consider hiding badge when count is zero (unless contextually important)
-- Format large numbers appropriately (e.g., "1.2k" for 1,200)
-
-### Examples
-
-**Good:**
-- "New"
-- "Active"
-- "5"
-- "99+"
-- "Premium"
-
-**Avoid:**
-- "This is a very long badge label that doesn't fit"
-- "!!!"
-- "---"
-- "New Item Available Now"
-
-## Best Practices
-
-### When to Use
-- ✅ Display status or state information
-- ✅ Show notification counts
-- ✅ Categorize or tag items
-- ✅ Indicate attributes or properties
-- ✅ Show presence indicators
-- ✅ Display small numerical values
-
-### When Not to Use
-- ❌ For critical alerts (use Alert component)
-- ❌ For actionable items (use Button or Chip)
-- ❌ For primary navigation (use navigation components)
-- ❌ When information requires detailed explanation
-- ❌ For error messages that need user action
-
-### Design Guidelines
-
-1. **Consistency**: Use consistent badge styles across the application
-2. **Hierarchy**: Use variant colors purposefully to establish meaning
-3. **Spacing**: Provide adequate spacing around badges
-4. **Positioning**: Position badges consistently relative to content
-5. **Color**: Establish a color scheme and stick to it:
-   - Green = Success/Active
-   - Red = Error/Critical
-   - Yellow = Warning/Pending
-   - Blue = Info/Neutral
-   - Gray = Default/Secondary
-
-### Usage Patterns
-
-**On Cards:**
-```tsx
-<Card>
-  <CardHeader>
-    <CardTitle>Product Name</CardTitle>
-    <Badge variant="success">In Stock</Badge>
-  </CardHeader>
-</Card>
-```
-
-**With Avatars:**
-```tsx
-<div className="relative">
-  <Avatar />
-  <Badge dot className="absolute top-0 right-0" />
-</div>
-```
-
-**Notification Counts:**
-```tsx
-<Button>
-  Notifications
-  <Badge count={5} />
-</Button>
-```
-
-**Status Indicators:**
-```tsx
-<div>
-  <span>Server Status</span>
-  <Badge status="success" text="Online" />
-</div>
-```
-
-## Related Components
-
-- **Alert**: For important messages requiring user attention
-- **Chip**: For removable tags or filters
-- **Tag**: For categorization and labeling
-- **Button**: For interactive actions
-- **Alert**: For important messages requiring user attention
-
-## Technical Considerations
-
-### Performance
-- Badge components are lightweight and render quickly
-- Count animations should be smooth and not impact performance
-- Avoid excessive badge usage on a single page
-
-### Responsive Design
-- Badges should scale appropriately on mobile devices
-- Consider hiding counts on very small screens if space is limited
-- Ensure touch targets are adequate for interactive badges
-
-### Browser Support
-- Works in all modern browsers
-- CSS custom properties for theming
-- Fallbacks for older browsers if needed
-
-## Common Patterns
-
-### Notification Badge
-```tsx
-<Button>
-  Messages
-  <Badge count={12} className="ml-2" />
-</Button>
-```
-
-### Status Indicator
-```tsx
-<div className="flex items-center gap-2">
-  <span>Service Status</span>
-  <Badge status="success" text="Operational" />
-</div>
-```
-
-### Category Tag
-```tsx
-<Card>
-  <div className="flex items-center gap-2">
-    <CardTitle>Article Title</CardTitle>
-    <Badge variant="info">Technology</Badge>
-  </div>
-</Card>
-```
-
-### Presence Indicator
-```tsx
-<div className="relative inline-block">
-  <Avatar />
-  <Badge 
-    dot 
-    className="absolute bottom-0 right-0 border-2 border-white" 
-    variant="success"
-  />
-</div>
-```
+**Don't use a badge when:**
+- The information requires explanation — use an Alert or inline text
+- The badge would be the primary call to action — use a Button

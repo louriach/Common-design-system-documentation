@@ -18,13 +18,13 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
     const errorId = error ? `${fieldsetId}-error` : undefined
 
     return (
-      <div className="w-full">
+      <div className="ds-fieldset-wrap">
         <fieldset
           id={fieldsetId}
           ref={ref}
           disabled={disabled}
           className={cn(
-            "w-full rounded border border-input p-4 space-y-3",
+            "ds-fieldset rounded border border-input p-4 space-y-3",
             "disabled:opacity-50 disabled:cursor-not-allowed",
             error && "border-destructive",
             className
@@ -42,7 +42,7 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
             >
               {legend}
               {required && (
-                <span className="text-destructive ml-1" aria-label="required">
+                <span className="ds-required" aria-label="required">
                   *
                 </span>
               )}
@@ -53,14 +53,14 @@ const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
         {error && (
           <p
             id={errorId}
-            className="mt-1.5 text-sm text-destructive"
+            className="ds-error"
             role="alert"
           >
             {helperText || "Please correct the errors in this field group"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground">
+          <p id={helperId} className="ds-helper">
             {helperText}
           </p>
         )}

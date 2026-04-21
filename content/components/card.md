@@ -5,52 +5,51 @@ category: Layouts
 ---
 
 ## Overview
-Card component serves as a flexible container for grouping related information. Used throughout applications for displaying content blocks, product listings, profile cards, and more.
+
+Cards group related content and actions into a self-contained unit. They provide visual separation from surrounding content and work well for product listings, user profiles, settings panels, and any discrete chunk of information.
 
 ## Usage
 
-### Basic Card
+### Basic card
+
 ```tsx:live
 <Card title="Card Title" description="Card content goes here">
   This is the card content area.
 </Card>
 ```
 
-### Card with Header
+### Interactive card
+
+Adds hover effects when the whole card is clickable.
+
 ```tsx:live
-<Card title="Example Card" description="A simple card component">
+<Card title="Example Card" description="A simple card component" interactive>
   Card content can include any content you need.
 </Card>
 ```
 
 ## Props
 
-| Prop | Type | Description |
-| --- | --- | --- |
-| variant | `"default" \| "elevated" \| "outlined"` | Card visual style. |
-| padding | `"sm" \| "md" \| "lg"` | Internal padding. |
-| interactive | `boolean` | Adds hover effects. |
-| clickable | `boolean` | Adds pointer cursor and click handler. |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| title | `string` | — | Card heading |
+| description | `string` | — | Subtitle or summary |
+| variant | `"default" \| "elevated" \| "outlined"` | `"default"` | Visual style |
+| padding | `"sm" \| "md" \| "lg"` | `"md"` | Internal spacing |
+| interactive | `boolean` | `false` | Adds hover and focus states |
 
 ## Accessibility
-- Use semantic HTML: `<article>`, `<section>`, or `<div>` depending on content
-- Ensure sufficient color contrast between card background and content
-- Make interactive cards keyboard accessible
-- Use appropriate heading hierarchy inside cards
-- Provide focus indicators for interactive cards
 
-## States
-- Default
-- Hover (if interactive)
-- Focus (if interactive)
-- Disabled (if interactive)
-- Loading
+- Use semantic elements inside cards — headings, paragraphs, lists — to maintain document structure
+- Interactive cards need a focusable element (button or link) for keyboard access; don't make the whole `<div>` a click target without a proper role
+- Maintain heading hierarchy within cards (`<h3>` inside a card on a page that uses `<h2>` for sections)
 
-## Best Practices
-- Keep content focused and concise
-- Use consistent spacing within cards
-- Consider responsive design - cards may stack vertically on mobile
-- Use card borders or shadows to distinguish from background
-- Avoid excessive nesting
-- Provide clear visual hierarchy within the card
+## When to use
 
+**Use a card when:**
+- Grouping related content that should be visually distinct from the page background
+- Building grid or list layouts where each item has multiple fields
+
+**Don't use a card when:**
+- The content is a simple list item with one or two fields — a plain row is sufficient
+- Cards would be nested more than one level deep

@@ -68,36 +68,19 @@ export default async function ComponentPage({ params }: Props) {
 
     return (
       <div>
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">{component.title}</h1>
+        <header className="docs-page-header">
+          <h1 className="docs-page-title">{component.title}</h1>
           {component.category && (
-            <p className="text-sm text-muted-foreground mb-2">
+            <p className="docs-page-meta">
               Category: <span className="font-medium">{component.category}</span>
             </p>
           )}
           {component.description && (
-            <p className="text-lg text-foreground">
-              {component.description}
-            </p>
+            <p className="docs-page-description">{component.description}</p>
           )}
-        </div>
-
-        {/* Content */}
+        </header>
         <div className="prose-container">
           <MarkdownRenderer content={component.content} />
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="mt-12 pt-8 border-t border-border flex justify-end">
-          <a
-            href="https://github.com"
-            className="text-sm text-primary hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Edit on GitHub →
-          </a>
         </div>
       </div>
     );

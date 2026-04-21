@@ -35,82 +35,50 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     React.useImperativeHandle(ref, () => toggleRef.current as HTMLInputElement)
 
     const isControlled = checked !== undefined
-    const actualChecked = isControlled ? checked : internalChecked
+    const actualChecked = isControlled ? (checked as boolean) : internalChecked
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!isControlled) {
-        setInternalChecked(e.target.checked)
-      }
+      if (!isControlled) setInternalChecked(e.target.checked)
       onChange?.(e)
     }
 
     return (
-      <div className="w-full">
-        <div className="flex items-start gap-2">
-          <div className="relative flex items-center pt-0.5">
-            <input
-              type="checkbox"
-              id={toggleId}
-              ref={toggleRef}
-              role="switch"
-              checked={isControlled ? actualChecked : undefined}
-              defaultChecked={!isControlled ? defaultChecked : undefined}
-              onChange={handleChange}
-              disabled={disabled}
-              aria-invalid={error ? "true" : undefined}
-              aria-describedby={errorId || helperId}
-              aria-checked={actualChecked}
-              className="sr-only"
-              {...props}
-            />
-            <label
-              htmlFor={toggleId}
-              className={cn(
-                "relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer",
-                "focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
-                actualChecked ? "bg-primary" : "bg-muted",
-                disabled && "opacity-50 cursor-not-allowed"
-              )}
-            >
-              <span
-                className={cn(
-                  "inline-block h-5 w-5 transform rounded-full bg-primary-foreground transition-transform",
-                  actualChecked ? "translate-x-6" : "translate-x-0.5"
-                )}
-              />
-            </label>
-          </div>
+      <div className={cn("ds-toggle", error && "ds-toggle--error", disabled && "ds-toggle--disabled", actualChecked && "ds-toggle--on", className)}>
+        <div className="ds-toggle__row">
+          <input
+            type="checkbox"
+            id={toggleId}
+            ref={toggleRef}
+            role="switch"
+            checked={isControlled ? actualChecked : undefined}
+            defaultChecked={!isControlled ? defaultChecked : undefined}
+            onChange={handleChange}
+            disabled={disabled}
+            aria-invalid={error ? "true" : undefined}
+            aria-describedby={errorId || helperId}
+            aria-checked={actualChecked}
+            className="ds-toggle__input"
+            {...props}
+          />
+          <label htmlFor={toggleId} className="ds-toggle__track">
+            <span className="ds-toggle__thumb" />
+          </label>
           {label && (
-            <label
-              htmlFor={toggleId}
-              className={cn(
-                "text-sm font-medium text-foreground cursor-pointer flex-1",
-                "select-none",
-                disabled && "cursor-not-allowed opacity-50"
-              )}
-            >
+            <label htmlFor={toggleId} className="ds-toggle__label">
               {label}
               {props.required && (
-                <span className="text-destructive ml-1" aria-label="required">
-                  *
-                </span>
+                <span className="ds-toggle__required" aria-label="required">*</span>
               )}
             </label>
           )}
         </div>
         {error && (
-          <p
-            id={errorId}
-            className="mt-1.5 text-sm text-destructive ml-13"
-            role="alert"
-          >
+          <p id={errorId} className="ds-toggle__error" role="alert">
             {helperText || "This field is required"}
           </p>
         )}
         {helperText && !error && (
-          <p id={helperId} className="mt-1.5 text-sm text-muted-foreground ml-13">
-            {helperText}
-          </p>
+          <p id={helperId} className="ds-toggle__helper">{helperText}</p>
         )}
       </div>
     )

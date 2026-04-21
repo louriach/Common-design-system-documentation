@@ -25,10 +25,10 @@ const statusSizeClasses = {
 }
 
 const statusColorClasses = {
-  online: "bg-green-500",
+  online: "bg-success",
   offline: "bg-muted-foreground",
-  away: "bg-yellow-500",
-  busy: "bg-red-500",
+  away: "bg-warning",
+  busy: "bg-destructive",
 }
 
 const getInitials = (name: string): string => {
@@ -77,19 +77,19 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
               src={src}
               alt={displayAlt}
               onError={() => setImageError(true)}
-              className="h-full w-full object-cover"
+              className="ds-avatar__image"
             />
           ) : fallback ? (
-            <span className="flex items-center justify-center h-full w-full">
+            <span className="ds-avatar__inner">
               {fallback}
             </span>
           ) : initials ? (
-            <span className="flex items-center justify-center h-full w-full">
+            <span className="ds-avatar__inner">
               {initials}
             </span>
           ) : (
             <svg
-              className="h-full w-full text-muted-foreground"
+              className="ds-avatar__icon"
               fill="currentColor"
               viewBox="0 0 20 20"
             >

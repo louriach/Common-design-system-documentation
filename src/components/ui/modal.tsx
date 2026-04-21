@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { X } from "lucide-react"
 
 export interface ModalProps {
   open?: boolean
@@ -14,101 +13,66 @@ export interface ModalProps {
   closable?: boolean
 }
 
-const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ open, onOpenChange, title, description, children, size = "md", closable = true, ...props }, ref) => {
-    const isOpen = open !== undefined ? open : true
-    const [mounted, setMounted] = React.useState(false)
+const sizeClass: Record<string, string> = {
+  sm: "ds-dialog--sm",
+  md: "ds-dialog--md",
+  lg: "ds-dialog--lg",
+  xl: "ds-dialog--xl",
+}
+
+const Modal = React.forwardRef<HTMLDialogElement, ModalProps>(
+  ({ open, onOpenChange, title, description, children, size = "md", closable = true }, ref) => {
+    const internalRef = React.useRef<HTMLDialogElement>(null)
+    const dialogRef = (ref as React.RefObject<HTMLDialogElement>) ?? internalRef
 
     React.useEffect(() => {
-      setMounted(true)
-    }, [])
-
-    const handleClose = React.useCallback(() => {
-      onOpenChange?.(false)
-    }, [onOpenChange])
-
-    const handleBackdropClick = React.useCallback((e: React.MouseEvent) => {
-      if (e.target === e.currentTarget && closable) {
-        handleClose()
-      }
-    }, [closable, handleClose])
-
-    React.useEffect(() => {
-      if (mounted && isOpen) {
-        document.body.style.overflow = "hidden"
+      const el = dialogRef.current
+      if (!el) return
+      if (open) {
+        if (!el.open) el.showModal()
       } else {
-        document.body.style.overflow = ""
+        if (el.open) el.close()
       }
-      return () => {
-        document.body.style.overflow = ""
-      }
-    }, [mounted, isOpen])
+    }, [open, dialogRef])
 
-    if (!mounted) {
-      return null
-    }
+    const handleClose = () => onOpenChange?.(false)
 
-    if (!isOpen) return null
-
-    const sizeClasses = {
-      sm: "max-w-md",
-      md: "max-w-lg",
-      lg: "max-w-2xl",
-      xl: "max-w-4xl"
+    // Close on backdrop click (native dialog renders backdrop outside the element)
+    const handleClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+      if (!closable) return
+      const rect = e.currentTarget.getBoundingClientRect()
+      const clickedOutside =
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom
+      if (clickedOutside) handleClose()
     }
 
     return (
-      <div
-        className="fixed inset-0 z-50 flex items-center justify-center"
-        onClick={handleBackdropClick}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={title ? "modal-title" : undefined}
-        aria-describedby={description ? "modal-description" : undefined}
+      <dialog
+        ref={dialogRef}
+        className={cn("ds-dialog-content", sizeClass[size])}
+        onClose={handleClose}
+        onClick={handleClick}
       >
-        <div className="fixed inset-0 bg-foreground/50" />
-        
-        <div
-          ref={ref}
-          className={cn(
-            "relative z-50 w-full bg-background rounded border border-border",
-            sizeClasses[size],
-            "max-h-[90vh] overflow-y-auto"
-          )}
-          onClick={(e) => e.stopPropagation()}
-          {...props}
-        >
-          {(title || closable) && (
-            <div className="flex items-center justify-between p-6 border-b border-border">
-              <div className="flex-1">
-                {title && (
-                  <h2 id="modal-title" className="text-lg font-semibold text-foreground">
-                    {title}
-                  </h2>
-                )}
-                {description && (
-                  <p id="modal-description" className="mt-1 text-sm text-muted-foreground">
-                    {description}
-                  </p>
-                )}
-              </div>
-              {closable && (
-                <button
-                  onClick={handleClose}
-                  className="ml-4 p-2 rounded text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  aria-label="Close modal"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              )}
+        {(title || closable) && (
+          <div className="ds-dialog-header">
+            <div>
+              {title && <h2 className="ds-dialog-title">{title}</h2>}
+              {description && <p className="ds-dialog-description">{description}</p>}
             </div>
-          )}
-
-          <div className="p-6 text-foreground">
-            {children}
+            {closable && (
+              <button className="ds-dialog-close" onClick={handleClose} aria-label="Close modal">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            )}
           </div>
-        </div>
-      </div>
+        )}
+        <div className="ds-dialog-body">{children}</div>
+      </dialog>
     )
   }
 )

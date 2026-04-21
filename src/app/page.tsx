@@ -1,55 +1,83 @@
 import { getAllComponents } from "@/lib/markdown";
+import Link from "next/link";
+
+const categories = [
+  {
+    name: "Actions",
+    items: ["button", "icon-button", "link"],
+    labels: { button: "Button", "icon-button": "Icon Button", link: "Link" },
+  },
+  {
+    name: "Forms",
+    items: ["input", "textarea", "select", "checkbox", "radio", "toggle", "combobox", "date-picker", "fieldset"],
+    labels: { input: "Input", textarea: "Textarea", select: "Select", checkbox: "Checkbox", radio: "Radio", toggle: "Toggle", combobox: "Combobox", "date-picker": "Date Picker", fieldset: "Fieldset" },
+  },
+  {
+    name: "Feedback",
+    items: ["alert", "modal", "progress", "spinner", "tooltip"],
+    labels: { alert: "Alert", modal: "Modal", progress: "Progress", spinner: "Spinner", tooltip: "Tooltip" },
+  },
+  {
+    name: "Navigation",
+    items: ["accordion", "breadcrumb", "tabs"],
+    labels: { accordion: "Accordion", breadcrumb: "Breadcrumb", tabs: "Tabs" },
+  },
+  {
+    name: "Data display",
+    items: ["avatar", "badge", "card", "table"],
+    labels: { avatar: "Avatar", badge: "Badge", card: "Card", table: "Table" },
+  },
+];
 
 export default function Home() {
   const components = getAllComponents();
 
   return (
-    <div className="space-y-8">
-      {/* Hero Section */}
-      <div className="space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold">
-          Design System Knowledge Base
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          A shared knowledge base for design system component documentation. 
-          Reduce the need for every team to write the same documentation.
-        </p>
-        <p className="text-base text-muted-foreground">
-          Each component includes accessibility guidelines, state management, props,
-          and best practices to help you build accessible, inclusive user interfaces.
-        </p>
-      </div>
+    <div className="docs-home">
 
-      {/* Stats Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-6 border-y border-border">
-        <div>
-          <div className="text-3xl font-bold">{components.length}</div>
-          <p className="text-sm text-muted-foreground">Components</p>
-        </div>
-        <div>
-          <div className="text-3xl font-bold">WCAG 2.1</div>
-          <p className="text-sm text-muted-foreground">Accessibility Standard</p>
-        </div>
-        <div>
-          <div className="text-3xl font-bold">Open Source</div>
-          <p className="text-sm text-muted-foreground">MIT Licensed</p>
-        </div>
-      </div>
-
-      {/* Getting Started */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold">Getting Started</h2>
-        <p className="text-muted-foreground">
-          Browse components using the sidebar on the left. Each component page includes:
+      <section className="docs-home-hero">
+        <h1 className="docs-home-title">Design System</h1>
+        <p className="docs-home-lead">
+          Component documentation with live previews, props references, and
+          accessibility guidelines — all in one place.
         </p>
-        <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-          <li>Overview and usage examples</li>
-          <li>Props and configuration options</li>
-          <li>Accessibility guidelines (WCAG 2.1 AA)</li>
-          <li>State management patterns</li>
-          <li>Best practices and common patterns</li>
-        </ul>
-      </div>
+      </section>
+
+      <section className="docs-home-stats">
+        <div>
+          <div className="docs-home-stat-value">{components.length}</div>
+          <p className="docs-home-stat-label">Components documented</p>
+        </div>
+        <div>
+          <div className="docs-home-stat-value">WCAG 2.1</div>
+          <p className="docs-home-stat-label">Accessibility standard</p>
+        </div>
+        <div>
+          <div className="docs-home-stat-value">MIT</div>
+          <p className="docs-home-stat-label">Open source</p>
+        </div>
+      </section>
+
+      <section className="docs-home-section">
+        <h2 className="docs-home-section-title">Components</h2>
+        <div className="docs-home-categories">
+          {categories.map((cat) => (
+            <div key={cat.name} className="docs-home-category">
+              <h3 className="docs-home-category-name">{cat.name}</h3>
+              <ul className="docs-home-category-list">
+                {cat.items.map((slug) => (
+                  <li key={slug}>
+                    <Link href={`/components/${slug}`} className="docs-home-category-link">
+                      {cat.labels[slug as keyof typeof cat.labels]}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }

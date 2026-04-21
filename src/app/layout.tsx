@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Sidebar } from "@/components/Sidebar";
-import { Footer } from "@/components/Footer";
+import { AppShell } from "@/components/AppShell";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { getAllComponents } from "@/lib/markdown";
 import "./globals.css";
@@ -24,19 +23,16 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem("theme");if(t==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");})();`,
+          }}
+        />
+      </head>
       <body className="antialiased flex flex-col min-h-screen bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex flex-1 bg-background">
-            <Sidebar components={components} />
-            <div className="flex flex-col flex-1 min-w-0 bg-background">
-              <main className="flex-1 overflow-y-auto bg-background">
-                <div className="container mx-auto px-4 py-8 max-w-4xl">
-                  {children}
-                </div>
-              </main>
-              <Footer />
-            </div>
-          </div>
+        <ThemeProvider>
+          <AppShell components={components}>{children}</AppShell>
         </ThemeProvider>
       </body>
     </html>

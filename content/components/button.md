@@ -5,22 +5,25 @@ category: Actions
 ---
 
 ## Overview
-Button component for user interactions.
+
+Buttons trigger actions. Use them for form submissions, confirming decisions, and any interaction that causes something to happen — as opposed to links, which navigate.
 
 ## Usage
 
-### Basic Button
+### Default
+
+The primary action in a context; use once per section.
+
 ```tsx:live
 <Button>Click me</Button>
 ```
 
-### Button Variants
-```tsx:live
-<Button variant="default">Default</Button>
-```
+### Variants
+
+Match button weight to action importance.
 
 ```tsx:live
-<Button variant="destructive">Destructive</Button>
+<Button variant="default">Default</Button>
 ```
 
 ```tsx:live
@@ -35,22 +38,39 @@ Button component for user interactions.
 <Button variant="ghost">Ghost</Button>
 ```
 
+```tsx:live
+<Button variant="destructive">Destructive</Button>
+```
+
+### Disabled
+
+Use when the action is not currently available; consider adding a tooltip to explain why.
+
+```tsx:live
+<Button disabled>Disabled</Button>
+```
+
 ## Props
 
-| Prop | Type | Description |
-| --- | --- | --- |
-| variant | `"default" \| "secondary" \| "outline" \| "ghost"` | Visual style of the button. |
-| size | `"sm" \| "md" \| "lg"` | Size of the button. |
-| disabled | `boolean` | Disables the button. |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| variant | `"default" \| "secondary" \| "outline" \| "ghost" \| "destructive"` | `"default"` | Visual style |
+| size | `"sm" \| "md" \| "lg"` | `"md"` | Button size |
+| disabled | `boolean` | `false` | Prevents interaction |
+| type | `"button" \| "submit" \| "reset"` | `"button"` | HTML button type |
+| onClick | `function` | — | Click event handler |
 
 ## Accessibility
-- ARIA labels required for icon-only buttons
-- Keyboard support: Enter and Space to activate
-- Focus management with visible focus indicator
 
-## States
-- Default
-- Hover
-- Focus
-- Disabled
-- Loading
+- `Enter` and `Space` activate a focused button
+- Always provide visible label text; for icon-only buttons use `aria-label`
+- Focus ring must be clearly visible
+- Disabled buttons are excluded from tab order — use `aria-disabled` instead if the button should remain focusable
+
+## When to use
+
+**Use a button when:**
+- The action causes a change (save, delete, submit, open modal)
+- The interaction is a primary call to action
+
+**Use a link instead when** the action navigates to another page or section. **Use `variant="destructive"`** for irreversible actions like deleting data.
